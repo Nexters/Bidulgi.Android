@@ -1,4 +1,4 @@
-package com.teamnexters.kkaba.common.response;
+package com.teamnexters.bidulgi.common.response;
 
 public class StringResponsePacket extends BidulgiResponsePacket{
 	private String value;

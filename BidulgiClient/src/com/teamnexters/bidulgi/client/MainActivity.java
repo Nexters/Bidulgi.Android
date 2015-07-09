@@ -3,7 +3,7 @@ package com.teamnexters.bidulgi.client;
 import android.os.Bundle;
 
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
-import com.teamnexters.kkaba.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 
 public class MainActivity extends UIHandlingActivity {
 

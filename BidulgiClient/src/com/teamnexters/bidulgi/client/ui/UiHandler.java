@@ -5,7 +5,7 @@ import java.lang.ref.WeakReference;
 import android.app.Activity;
 import android.os.Handler;
 
-import com.teamnexters.kkaba.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 
 
 public class UiHandler extends Handler {

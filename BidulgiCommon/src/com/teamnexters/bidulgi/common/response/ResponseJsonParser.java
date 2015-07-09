@@ -1,4 +1,4 @@
-package com.teamnexters.kkaba.common.response;
+package com.teamnexters.bidulgi.common.response;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

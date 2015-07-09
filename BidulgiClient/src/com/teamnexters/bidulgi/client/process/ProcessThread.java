@@ -5,8 +5,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import android.util.Log;
 
-import com.teamnexters.kkaba.common.response.BidulgiResponseCode;
-import com.teamnexters.kkaba.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
+import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 
 public class ProcessThread extends Thread{
 	private Object waitingObject;

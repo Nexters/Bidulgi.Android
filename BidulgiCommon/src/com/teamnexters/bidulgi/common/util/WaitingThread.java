@@ -1,4 +1,4 @@
-package com.teamnexters.kkaba.common.util;
+package com.teamnexters.bidulgi.common.util;
 
 
 public class WaitingThread extends Thread {

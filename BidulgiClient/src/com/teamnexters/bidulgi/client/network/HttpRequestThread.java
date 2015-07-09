@@ -15,11 +15,11 @@ import android.util.Log;
 import com.teamnexters.bidulgi.client.process.ProcessThread;
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
 import com.teamnexters.bidulgi.client.ui.UiHandler;
-import com.teamnexters.kkaba.common.request.BidulgiRequestCode;
-import com.teamnexters.kkaba.common.request.BidulgiRequestPacket;
-import com.teamnexters.kkaba.common.request.RequestUriFactory;
-import com.teamnexters.kkaba.common.response.BidulgiResponsePacket;
-import com.teamnexters.kkaba.common.response.ResponseJsonParser;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestPacket;
+import com.teamnexters.bidulgi.common.request.RequestUriFactory;
+import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.common.response.ResponseJsonParser;
 
 public class HttpRequestThread extends Thread implements BidulgiRequestCode {
 

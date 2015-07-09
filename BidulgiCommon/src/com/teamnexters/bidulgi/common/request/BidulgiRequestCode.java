@@ -1,4 +1,4 @@
-package com.teamnexters.kkaba.common.request;
+package com.teamnexters.bidulgi.common.request;
 
 public interface BidulgiRequestCode {
 	public int REQUEST_TEST = 0;

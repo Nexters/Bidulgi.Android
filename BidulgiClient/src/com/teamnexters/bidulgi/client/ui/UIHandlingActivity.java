@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
-import com.teamnexters.kkaba.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 
 public abstract class UIHandlingActivity extends ActionBarActivity {
 	public abstract void onHandleUI(BidulgiResponsePacket response);
