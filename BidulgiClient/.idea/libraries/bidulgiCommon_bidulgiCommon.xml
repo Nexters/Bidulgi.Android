@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bidulgiCommon.bidulgiCommon">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/bidulgiCommon/build/libs/bidulgiCommon.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
