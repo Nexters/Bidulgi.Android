@@ -1,6 +1,7 @@
 package com.teamnexters.bidulgi.common.response;
 
 
+
 public abstract class BidulgiResponsePacket implements BidulgiResponseCode{
 	private Integer responseCode;
 
@@ -19,6 +20,10 @@ public abstract class BidulgiResponsePacket implements BidulgiResponseCode{
 		switch (responseCode) {
 		case RESPONSE_TEST:
 			return LongResponsePacket.class;
+
+		case RESPONSE_REGISTRATION_SUCCESS:
+		case RESPONSE_LOGIN_SUCCESS:
+			return LoginResponsePacket.class;
 		}
 		return CommonResponsePacket.class;
 	}
