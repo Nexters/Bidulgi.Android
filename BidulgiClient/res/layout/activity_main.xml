@@ -4,10 +4,45 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
+     <EditText
+        android:id="@+id/editEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello Bidulgi!" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="171dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" >
+
+        
+    </EditText>
+
+    <EditText
+        android:id="@+id/editPassWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:hint="PW"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editEmail"
+        android:layout_below="@+id/editPassWord"
+        android:layout_marginTop="25dp"
+        android:text="Sign Up" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnSignUp"
+        android:layout_alignRight="@+id/editEmail"
+        android:text="Login" />
 
 </LinearLayout>

@@ -14,5 +14,7 @@
     <string name="defaultBadge">안알랴쥼</string>
     <string name="title_activity_peep">PeepActivity</string>
     <string name="title_activity_result_popup">ResultPopupActivity</string>
+    <string name="title_activity_agree">AgreeActivity</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
 
 </resources>
