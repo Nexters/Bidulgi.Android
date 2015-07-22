@@ -1,6 +1,7 @@
 package com.teamnexters.bidulgi.client;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ public class SignUpActivity extends UIHandlingActivity {
 	String passWord;
 
 	Intent intent;
+	private SharedPreferences pref;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,10 @@ public class SignUpActivity extends UIHandlingActivity {
 		if (response.getResponseCode() == 5) {
 			Toast.makeText(getApplicationContext(), "회원가입 성공",
 					Toast.LENGTH_SHORT).show();
-			intent = new Intent(getApplicationContext(), MainActivity.class);
+			SharedPreferences.Editor editor = pref.edit();
+			editor.putString("email", editEmail.getText().toString());
+			editor.commit();
+			intent = new Intent(getApplicationContext(), ClientActivity.class);
 			startActivity(intent);
 			finish();
 		}else{

@@ -16,5 +16,6 @@
     <string name="title_activity_result_popup">ResultPopupActivity</string>
     <string name="title_activity_agree">AgreeActivity</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_client">ClientActivity</string>
 
 </resources>

@@ -15,7 +15,7 @@
 
     <!--
   IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-  to match your app's package name + ".permission.C2D_MESSAGE".
+  to match your app's package name + ".permission.C2D_MESSAGE".
     -->
 
     <uses-sdk
@@ -37,6 +37,14 @@
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up" >
+        </activity>
+        <activity
+            android:name=".AgreeActivity"
+            android:label="@string/title_activity_agree" >
+        </activity>
+        <activity
+            android:name=".ClientActivity"
+            android:label="@string/title_activity_client" >
         </activity>
     </application>
 
