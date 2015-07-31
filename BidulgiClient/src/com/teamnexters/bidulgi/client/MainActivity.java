@@ -1,6 +1,14 @@
 package com.teamnexters.bidulgi.client;
 
+import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
+import com.teamnexters.bidulgi.common.request.LoginRequestPacket;
+import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
+import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+
 import android.app.Activity;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,12 +18,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.teamnexters.bidulgi.client.network.HttpRequestThread;
-import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
-import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
-import com.teamnexters.bidulgi.common.request.LoginRequestPacket;
-import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 
 public class MainActivity extends UIHandlingActivity {
 
@@ -32,18 +34,14 @@ public class MainActivity extends UIHandlingActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
-		Log.d("aaa", "¿©±â±îÁø ¿À´Ï");
+		Log.d("aaaa", "ë¡œë”© í›„ ë“¤ì–´ì˜´");
+		pref = getSharedPreferences("email", Activity.MODE_PRIVATE);
+		Log.d("pref", "pref ê°’ì€ " + pref.getString("email", "Nothing"));
 		if (pref.contains("email")) {
-			Log.d("aaa", "pref °ªÀº " + pref.getString("email", "Nothing"));
-			Log.d("aaa","if¹® ÀÔÀå");
 			intent = new Intent(getApplicationContext(), ClientActivity.class);
 			startActivity(intent);
 			finish();
 		} else {
-			Log.d("aaa","else¹® ÀÔÀå");
-			try{
 			setContentView(R.layout.activity_main);
 			editEmail = (EditText) findViewById(R.id.editEmail);
 			editPassWord = (EditText) findViewById(R.id.editPassWord);
@@ -52,27 +50,24 @@ public class MainActivity extends UIHandlingActivity {
 
 			btnLogin.setOnClickListener(onClickListener);
 			btnSignUp.setOnClickListener(onClickListener);
-			}catch(Exception e){
-				Log.d("aaa", e.toString());
-			}
 		}
 
 	}
 
 	@Override
 	public void onHandleUI(BidulgiResponsePacket response) {
-		if (response.getResponseCode() == 2) {
-			Toast.makeText(getApplicationContext(), "·Î±×ÀÎ ¼º°ø",
-					Toast.LENGTH_SHORT).show();
+		Log.d("aaa", "res : " + String.valueOf(response.getResponseCode()));
+		Log.d("aaa", "val : " + String.valueOf(BidulgiResponseCode.RESPONSE_LOGIN_SUCCESS));
+		switch (response.getResponseCode()) {
+		case BidulgiResponseCode.RESPONSE_LOGIN_SUCCESS:
+			Toast.makeText(getApplicationContext(), "ë¡œê·¸ì¸ ì„±ê³µ", Toast.LENGTH_SHORT).show();
 			SharedPreferences.Editor editor = pref.edit();
 			editor.putString("email", editEmail.getText().toString());
 			editor.commit();
 			intent = new Intent(getApplicationContext(), ClientActivity.class);
-			startActivity(intent);
 			finish();
-		} else {
-			Toast.makeText(getApplicationContext(), "·Î±×ÀÎ ½ÇÆĞ",
-					Toast.LENGTH_SHORT).show();
+		case BidulgiResponseCode.RESPONSE_LOGIN_FAIL:
+			Toast.makeText(getApplicationContext(), "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤. ", Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -81,7 +76,7 @@ public class MainActivity extends UIHandlingActivity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			// ·Î±×ÀÎ ¹öÆ° Å¬¸¯½Ã ¿Ã¹Ù¸¥ ÀÔ·Â ¿©ºÎ È®ÀÎ ¹× ·Î±×ÀÎ
+			// ë¡œê·¸ì¸ ë²„íŠ¼ í´ë¦­ì‹œ ì˜¬ë°”ë¥¸ ì…ë ¥ ì—¬ë¶€ í™•ì¸ ë° ë¡œê·¸ì¸
 			if (v.getId() == R.id.btnLogin) {
 				if (editEmail.getText().toString().length() != 0) {
 					if (editPassWord.getText().toString().length() != 0) {
@@ -95,18 +90,15 @@ public class MainActivity extends UIHandlingActivity {
 						HttpRequestThread.getInstance().addRequest(request);
 
 					} else {
-						Toast.makeText(getApplicationContext(), "ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.",
-								Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), "ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.", Toast.LENGTH_SHORT).show();
 					}
 				} else {
-					Toast.makeText(getApplicationContext(), "ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇÏ¼¼¿ä.",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "ì´ë©”ì¼ì„ ì…ë ¥í•˜ì„¸ìš”.", Toast.LENGTH_SHORT).show();
 				}
 
-				// È¸¿ø°¡ÀÔ ¹öÆ° Å¬¸¯ ½Ã ÀÌ¿ë¾à°ü È­¸éÀ¸·Î ÀÌµ¿
+				// íšŒì›ê°€ì… ë²„íŠ¼ í´ë¦­ ì‹œ ì´ìš©ì•½ê´€ í™”ë©´ìœ¼ë¡œ ì´ë™
 			} else if (v.getId() == R.id.btnSignUp) {
-				intent = new Intent(getApplicationContext(),
-						AgreeActivity.class);
+				intent = new Intent(getApplicationContext(), AgreeActivity.class);
 				startActivity(intent);
 			}
 

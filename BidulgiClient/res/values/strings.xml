@@ -17,5 +17,12 @@
     <string name="title_activity_agree">AgreeActivity</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="title_activity_client">ClientActivity</string>
+    <string name="title_activity_fragment">FragmentActivity</string>
+    <string name="title_activity_bidoolgi_action_bar">BidoolgiActionBar</string>
+    <string name="title_activity_loading">LoadingActivity</string>
+    <string name="title_activity_dialog_long_click_friend">DialogLongClickFriend</string>
+    <string name="title_activity_dialog_click_friend">DialogClickFriend</string>
+    <string name="title_activity_click_friend">ClickFriendActivity</string>
+    <string name="title_activity_dialog_add_friend">DialogAddFriend</string>
 
 </resources>

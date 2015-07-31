@@ -48,7 +48,7 @@ public class AgreeActivity extends UIHandlingActivity {
 		// TODO Auto-generated method stub
 		
 	}
-	// ÀÌ¿ë¾à°ü Ã¼Å© ½Ã È¸¿ø°¡ÀÔ È­¸éÀ¸·Î ÀÌµ¿
+	// ì´ìš©ì•½ê´€ ì²´í¬ ì‹œ íšŒì›ê°€ì… í™”ë©´ìœ¼ë¡œ ì´ë™
 	OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener(){
 
 		@Override

@@ -15,11 +15,11 @@
 
     <!--
   IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-  to match your app's package name + ".permission.C2D_MESSAGE".
+  to match your app's package name + ".permission.C2D_MESSAGE".
     -->
 
     <uses-sdk
-        android:minSdkVersion="7"
+        android:minSdkVersion="11"
         android:targetSdkVersion="21" />
 
     <application
@@ -27,12 +27,17 @@
         android:icon="@drawable/ic_launcher"
         android:label="Bidulgi"
         android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        <activity
+            android:name=".LoadingActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="MainActivity" >
         </activity>
         <activity
             android:name=".SignUpActivity"
@@ -45,6 +50,20 @@
         <activity
             android:name=".ClientActivity"
             android:label="@string/title_activity_client" >
+        </activity>
+        <activity
+            android:name=".DialogLongClickFriend"
+            android:label="@string/title_activity_dialog_long_click_friend"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name=".ClickFriendActivity"
+            android:label="@string/title_activity_click_friend" >
+        </activity>
+        <activity
+            android:name=".DialogAddFriend"
+            android:label="@string/title_activity_dialog_add_friend"
+            android:theme="@android:style/Theme.Dialog" >
         </activity>
     </application>
 

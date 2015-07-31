@@ -64,9 +64,9 @@ public class SignUpActivity extends UIHandlingActivity {
 	@Override
 	public void onHandleUI(BidulgiResponsePacket response) {
 		// TODO Auto-generated method stub
-		//È¸¿ø°¡ÀÔ ¼º°ø½Ã ·Î±×ÀÎ È­¸éÀ¸·Î ÀÌµ¿
+		//íšŒì›ê°€ì… ì„±ê³µì‹œ ë¡œê·¸ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™
 		if (response.getResponseCode() == 5) {
-			Toast.makeText(getApplicationContext(), "È¸¿ø°¡ÀÔ ¼º°ø",
+			Toast.makeText(getApplicationContext(), "íšŒì›ê°€ì… ì„±ê³µ",
 					Toast.LENGTH_SHORT).show();
 			SharedPreferences.Editor editor = pref.edit();
 			editor.putString("email", editEmail.getText().toString());
@@ -75,7 +75,7 @@ public class SignUpActivity extends UIHandlingActivity {
 			startActivity(intent);
 			finish();
 		}else{
-			Toast.makeText(getApplicationContext(), "È¸¿ø°¡ÀÔ ½ÇÆĞ",
+			Toast.makeText(getApplicationContext(), "íšŒì›ê°€ì… ì‹¤íŒ¨",
 					Toast.LENGTH_SHORT).show();
 		}
 
@@ -86,7 +86,7 @@ public class SignUpActivity extends UIHandlingActivity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			// ¿Ã¹Ù¸¥ ÀÔ·ÂÀÎÁö È®ÀÎ ÈÄ È¸¿ø°¡ÀÔ ÁøÇà
+			// ì˜¬ë°”ë¥¸ ì…ë ¥ì¸ì§€ í™•ì¸ í›„ íšŒì›ê°€ì… ì§„í–‰
 			if (editEmail.getText().toString().length() != 0) {
 				if (editPassWord.getText().toString().length() != 0) {
 					if (editPassWord.getText().toString()
@@ -104,14 +104,14 @@ public class SignUpActivity extends UIHandlingActivity {
 						
 					} else {
 						Toast.makeText(getApplicationContext(),
-								"ºñ¹Ğ¹øÈ£¸¦ È®ÀÎ ÇØ ÁÖ¼¼¿ä.", Toast.LENGTH_SHORT).show();
+								"ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì¸ í•´ ì£¼ì„¸ìš”.", Toast.LENGTH_SHORT).show();
 					}
 				} else {
-					Toast.makeText(getApplicationContext(), "ºñ¹Ğ¹øÈ£¸¦ ÀÔ·Â ÇØ ÁÖ¼¼¿ä.",
+					Toast.makeText(getApplicationContext(), "ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥ í•´ ì£¼ì„¸ìš”.",
 							Toast.LENGTH_SHORT).show();
 				}
 			} else {
-				Toast.makeText(getApplicationContext(), "ÀÌ¸ŞÀÏÀ» ÀÔ·Â ÇØ ÁÖ¼¼¿ä.",
+				Toast.makeText(getApplicationContext(), "ì´ë©”ì¼ì„ ì…ë ¥ í•´ ì£¼ì„¸ìš”.",
 						Toast.LENGTH_SHORT).show();
 			}
 

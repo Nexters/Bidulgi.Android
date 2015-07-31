@@ -1,62 +1,154 @@
 package com.teamnexters.bidulgi.client;
 
-import android.app.Activity;
+import java.util.ArrayList;
+
+import com.teamnexters.bidulgi.fragments.BidoolgiFreinds;
+import com.teamnexters.bidulgi.fragments.BidoolgiMail;
+import com.teamnexters.bidulgi.fragments.BidoolgiMailList;
+import com.teamnexters.bidulgi.fragments.BidoolgiSetting;
+
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
+
 import android.view.MenuItem;
+
 import android.widget.Toast;
 
-import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
-import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+public class ClientActivity extends BidoolgiFragmentActivity {
+	SectionsPagerAdapter mSectionsPagerAdapter;
+	ViewPager mViewPager;
 
-public class ClientActivity extends UIHandlingActivity {
-	
+	BidoolgiFreinds fragmentFriends;
 	Intent intent;
-	private SharedPreferences pref;
-	
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.activity_client);
-		
-		
+
+		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager.setAdapter(mSectionsPagerAdapter);
+		actionBar.setViewPager(mViewPager);
+
+		fragmentFriends = (BidoolgiFreinds) mSectionsPagerAdapter.fragments.get(0);
+		/*
+		 * if(intent.getIntent().getExtras().getString("response").equals(
+		 * "success")){
+		 * fragmentFriends.deleteData(intent.getExtras().getInt("resPosition"));
+		 * 
+		 * }
+		 */
+
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.client, menu);
-		return true;
+	protected void tabSelected(int i) {
+		mViewPager.setCurrentItem(i);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
+		// Intent intent = new Intent(this, Activity.class);
+		// startActivity(intent);
 		int id = item.getItemId();
-		if (id == R.id.itemLogout) {
-			pref = getSharedPreferences("pref",Activity.MODE_PRIVATE);
-			SharedPreferences.Editor editor = pref.edit();
-			editor.clear();
-			editor.commit();
-			intent = new Intent(getApplicationContext(),MainActivity.class);
-			startActivity(intent);
-			Toast.makeText(getApplicationContext(), "�α׾ƿ� �Ǿ����ϴ�.", Toast.LENGTH_SHORT).show();
-			
-			
+		if (id == R.id.itemPlusFriend) {
+			intent = new Intent(getApplicationContext(), DialogAddFriend.class);
+			startActivityForResult(intent, 1);
+			// fragmentFriends.addData("양시영");
+
+			/*
+			 * intent = new Intent(getApplicationContext(), MainActivity.class);
+			 * startActivity(intent);
+			 */
+
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+
+	}
+
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.d("aaaa", "콜백 메소드 실행");
+		switch (resultCode) {
+		case 0:// request 코드랑 같은지 확인
+			if (data.getBooleanExtra("delete", false)) { // 삭제 여부 확인
+				// 삭제 시 시행할 동작
+
+				fragmentFriends.deleteData(data.getExtras().getInt("position"));
+				Log.d("aaaa", "삭제할 position은 " + data.getExtras().getInt("position"));
+				Toast.makeText(getApplicationContext(), "비둘기가 둥지에서 떠났습니다.", Toast.LENGTH_SHORT).show();
+
+			} else {
+			}
+		case 1:
+			if (data.getBooleanExtra("addFriend", false)) { // 친구추가 여부 확인
+				// 친구추가 시 시행할 동작
+				fragmentFriends.addData(data.getExtras().getString("name") , data.getExtras().getString("date"));
+				Toast.makeText(getApplicationContext(), data.getExtras().getString("name") + " 비둘기가 추가 되었습니다.",
+						Toast.LENGTH_SHORT).show();
+
+			} else {
+			}
+		}
+
+	};
+}
+
+/**
+ * Fragment를 ViewPager에 적용시키기위한 아답터.
+ */
+class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+	// Tab에 들어가는 Fragment를 담는 ArrayList
+	ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+	private Context mContext;
+
+	public SectionsPagerAdapter(FragmentManager fm) {
+		super(fm);
+		initFragments();
+	}
+
+	private void initFragments() {
+		fragments.add(new BidoolgiFreinds());
+		fragments.add(new BidoolgiMail());
+		fragments.add(new BidoolgiMailList());
+		fragments.add(new BidoolgiSetting());
+	}
+
+	/**
+	 *
+	 * @param position
+	 *            tab이 선택된 위치
+	 * @return 선택된 Fragment
+	 */
+	@Override
+	public Fragment getItem(int position) {
+		// 만약에 이상한숫자가 들어온다면 0으로 position을 바꿈. 이거없으면 ArrayIndexOutOfBound 날수있음
+		if (position > fragments.size()) {
+			position = 0;
+		}
+
+		Fragment fragment = fragments.get(position);
+		Bundle args = new Bundle();
+		args.putInt("position", position + 1); // tab의 인덱스는 항상 position으로
+												// Bundle에 넘김.
+		fragment.setArguments(args);
+
+		return fragment;
 	}
 
 	@Override
-	public void onHandleUI(BidulgiResponsePacket response) {
-		// TODO Auto-generated method stub
-		
+	public int getCount() {
+		return fragments.size();
 	}
-	
-	
+
 }

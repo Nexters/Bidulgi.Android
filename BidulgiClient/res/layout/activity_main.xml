@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
-     <EditText
-        android:id="@+id/editEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="171dp"
-        android:ems="10"
-        android:hint="E-mail"
-        android:inputType="textEmailAddress" >
-
-        
-    </EditText>
 
     <EditText
         android:id="@+id/editPassWord"
@@ -29,15 +15,6 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/btnSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editEmail"
-        android:layout_below="@+id/editPassWord"
-        android:layout_marginTop="25dp"
-        android:text="Sign Up" />
-
-    <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,4 +22,27 @@
         android:layout_alignRight="@+id/editEmail"
         android:text="Login" />
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editPassWord"
+        android:layout_alignLeft="@+id/editPassWord"
+        android:layout_marginBottom="18dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" >
+
+
+    </EditText>
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editPassWord"
+        android:layout_below="@+id/editPassWord"
+        android:layout_marginTop="32dp"
+        android:text="Sign Up" />
+
+</RelativeLayout>
