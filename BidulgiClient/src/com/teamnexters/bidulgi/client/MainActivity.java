@@ -30,11 +30,14 @@ public class MainActivity extends UIHandlingActivity {
 	String email;
 	String passWord;
 	private SharedPreferences pref;
+	private static final int RESPONSE_LOGIN_FAIL = 3;
+	private static final int RESPONSE_LOGIN_SUCCESS = 2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.d("aaaa", "로딩 후 들어옴");
+
 		pref = getSharedPreferences("email", Activity.MODE_PRIVATE);
 		Log.d("pref", "pref 값은 " + pref.getString("email", "Nothing"));
 		if (pref.contains("email")) {
@@ -59,15 +62,20 @@ public class MainActivity extends UIHandlingActivity {
 		Log.d("aaa", "res : " + String.valueOf(response.getResponseCode()));
 		Log.d("aaa", "val : " + String.valueOf(BidulgiResponseCode.RESPONSE_LOGIN_SUCCESS));
 		switch (response.getResponseCode()) {
-		case BidulgiResponseCode.RESPONSE_LOGIN_SUCCESS:
+		case RESPONSE_LOGIN_SUCCESS:
 			Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+			pref = getSharedPreferences("email", Activity.MODE_PRIVATE);
 			SharedPreferences.Editor editor = pref.edit();
 			editor.putString("email", editEmail.getText().toString());
+			Log.d("aaaa", "로그인 ID는 " + editEmail.getText().toString());
 			editor.commit();
 			intent = new Intent(getApplicationContext(), ClientActivity.class);
+			startActivity(intent);
 			finish();
-		case BidulgiResponseCode.RESPONSE_LOGIN_FAIL:
+			
+		case RESPONSE_LOGIN_FAIL:
 			Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호를 잘못 입력하셨습니다. ", Toast.LENGTH_SHORT).show();
+			
 		}
 	}
 
@@ -75,9 +83,11 @@ public class MainActivity extends UIHandlingActivity {
 
 		@Override
 		public void onClick(View v) {
+			
 			// TODO Auto-generated method stub
 			// 로그인 버튼 클릭시 올바른 입력 여부 확인 및 로그인
 			if (v.getId() == R.id.btnLogin) {
+				
 				if (editEmail.getText().toString().length() != 0) {
 					if (editPassWord.getText().toString().length() != 0) {
 						email = editEmail.getText().toString();
@@ -100,6 +110,7 @@ public class MainActivity extends UIHandlingActivity {
 			} else if (v.getId() == R.id.btnSignUp) {
 				intent = new Intent(getApplicationContext(), AgreeActivity.class);
 				startActivity(intent);
+				finish();
 			}
 
 		}

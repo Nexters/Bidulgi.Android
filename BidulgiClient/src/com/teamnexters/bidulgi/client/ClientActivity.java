@@ -7,6 +7,7 @@ import com.teamnexters.bidulgi.fragments.BidoolgiMail;
 import com.teamnexters.bidulgi.fragments.BidoolgiMailList;
 import com.teamnexters.bidulgi.fragments.BidoolgiSetting;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -27,13 +28,14 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 
 	BidoolgiFreinds fragmentFriends;
 	Intent intent;
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+	
 		setContentView(R.layout.activity_client);
-
+		
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -108,6 +110,8 @@ public class ClientActivity extends BidoolgiFragmentActivity {
  */
 class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+
+	
 	// Tab에 들어가는 Fragment를 담는 ArrayList
 	ArrayList<Fragment> fragments = new ArrayList<Fragment>();
 	private Context mContext;

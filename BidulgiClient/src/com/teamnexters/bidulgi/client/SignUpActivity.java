@@ -1,8 +1,10 @@
 package com.teamnexters.bidulgi.client;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +30,8 @@ public class SignUpActivity extends UIHandlingActivity {
 
 	Intent intent;
 	private SharedPreferences pref;
+	private static final int RESPONSE_REGISTRATION_FAIL = 4;
+	private static final int RESPONSE_REGISTRATION_SUCCESS = 5;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,19 +68,27 @@ public class SignUpActivity extends UIHandlingActivity {
 	@Override
 	public void onHandleUI(BidulgiResponsePacket response) {
 		// TODO Auto-generated method stub
-		//회원가입 성공시 로그인 화면으로 이동
-		if (response.getResponseCode() == 5) {
-			Toast.makeText(getApplicationContext(), "회원가입 성공",
-					Toast.LENGTH_SHORT).show();
-			SharedPreferences.Editor editor = pref.edit();
-			editor.putString("email", editEmail.getText().toString());
-			editor.commit();
-			intent = new Intent(getApplicationContext(), ClientActivity.class);
-			startActivity(intent);
-			finish();
-		}else{
-			Toast.makeText(getApplicationContext(), "회원가입 실패",
-					Toast.LENGTH_SHORT).show();
+		// 회원가입 성공시 로그인 화면으로 이동
+		try {
+			if (response.getResponseCode() == RESPONSE_REGISTRATION_SUCCESS) {
+				Toast.makeText(getApplicationContext(), "회원가입 성공", Toast.LENGTH_SHORT).show();
+				Log.d("aaa", "회원가입 성공");
+				pref = getSharedPreferences("email", Activity.MODE_PRIVATE);
+				SharedPreferences.Editor editor = pref.edit();
+				editor.putString("email", editEmail.getText().toString());
+				Log.d("aaa", "회원가입 email은 " + editEmail.getText().toString());
+				editor.commit();
+
+				intent = new Intent(getApplicationContext(), ClientActivity.class);
+				startActivity(intent);
+				finish();
+			} else if (response.getResponseCode() == RESPONSE_REGISTRATION_FAIL) {
+				Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_SHORT).show();
+			}
+		} catch (Exception e) {
+
+			Log.d("aaa", "회원가입 서버 코드는 " +response.getResponseCode() );
+			Log.d("aaa", e.toString());
 		}
 
 	}
@@ -89,33 +101,27 @@ public class SignUpActivity extends UIHandlingActivity {
 			// 올바른 입력인지 확인 후 회원가입 진행
 			if (editEmail.getText().toString().length() != 0) {
 				if (editPassWord.getText().toString().length() != 0) {
-					if (editPassWord.getText().toString()
-							.equals(editCheckPassWord.getText().toString())) {
+					if (editPassWord.getText().toString().equals(editCheckPassWord.getText().toString())) {
 
 						email = editEmail.getText().toString();
 						passWord = editPassWord.getText().toString();
-						
+
 						LoginRequestPacket request = new LoginRequestPacket();
 						request.setEmail(email);
 						request.setPassword(passWord);
 						request.setRequestCode(BidulgiRequestCode.REQUEST_REGISTRATION);
 						HttpRequestThread.getInstance().addRequest(request);
 
-						
 					} else {
-						Toast.makeText(getApplicationContext(),
-								"비밀번호를 확인 해 주세요.", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), "비밀번호를 확인 해 주세요.", Toast.LENGTH_SHORT).show();
 					}
 				} else {
-					Toast.makeText(getApplicationContext(), "비밀번호를 입력 해 주세요.",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "비밀번호를 입력 해 주세요.", Toast.LENGTH_SHORT).show();
 				}
 			} else {
-				Toast.makeText(getApplicationContext(), "이메일을 입력 해 주세요.",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "이메일을 입력 해 주세요.", Toast.LENGTH_SHORT).show();
 			}
 
-			
 		}
 
 	};

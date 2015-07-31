@@ -33,6 +33,7 @@ public class ClickFriendActivity extends Activity {
 		ImageView imgFriend = new ImageView(getApplicationContext());
 		imgFriend.setId(IMG_BIDOOLGIFRIEND);
 		imgFriend.setImageResource(intent.getExtras().getInt("icon"));
+
 		
 		RelativeLayout.LayoutParams imgFriendParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 		imgFriendParams.addRule(RelativeLayout.CENTER_HORIZONTAL);

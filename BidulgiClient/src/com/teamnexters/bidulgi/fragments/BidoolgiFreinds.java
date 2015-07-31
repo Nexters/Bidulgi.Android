@@ -25,7 +25,7 @@ public class BidoolgiFreinds extends Fragment {
 	private String name;
 	Intent intent;
 
-	private ArrayList<ListViewItem> data;
+	private ArrayList<ListViewItem> data = new ArrayList<ListViewItem>();
 	private ListViewAdapter adapter;
 
 	@Override
@@ -34,25 +34,27 @@ public class BidoolgiFreinds extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 
 		ListView listView = (ListView) getView().findViewById(R.id.listview);
+		Log.d("data", "data 값 비었니 " + data.isEmpty());
+		if (data.isEmpty()) {
+			data = new ArrayList<ListViewItem>();
+			ListViewItem test1 = new ListViewItem(R.drawable.user01, "착한남자 비둘기", "전역자");
+			ListViewItem test2 = new ListViewItem(R.drawable.user02, "집으로 비둘기", "전역자");
+			ListViewItem test3 = new ListViewItem(R.drawable.user03, "공길이 비둘기", "전역자");
+			ListViewItem test4 = new ListViewItem(R.drawable.user04, "발리에서 생긴 비둘기", "전역자");
+			ListViewItem test5 = new ListViewItem(R.drawable.user05, "시크릿 가든 비둘기", "전역자");
 
-		data = new ArrayList<>();
-		ListViewItem test1 = new ListViewItem(R.drawable.user01, "착한남자 비둘기" , "전역자");
-		ListViewItem test2 = new ListViewItem(R.drawable.user02, "집으로 비둘기" , "전역자");
-		ListViewItem test3 = new ListViewItem(R.drawable.user03, "공길이 비둘기", "전역자");
-		ListViewItem test4 = new ListViewItem(R.drawable.user04, "발리에서 생긴 비둘기", "전역자");
-		ListViewItem test5 = new ListViewItem(R.drawable.user05, "시크릿 가든 비둘기", "전역자");
+			data.add(test1);
+			data.add(test2);
+			data.add(test3);
+			data.add(test4);
+			data.add(test5);
+		}
+			adapter = new ListViewAdapter(getView().getContext(), R.layout.fragment_list, data);
+			listView.setAdapter(adapter);
+			listView.setOnItemClickListener(onItemClickListener);
+			listView.setOnItemLongClickListener(onItemLongClickListener);
 
-		data.add(test1);
-		data.add(test2);
-		data.add(test3);
-		data.add(test4);
-		data.add(test5);
-
-		adapter = new ListViewAdapter(getView().getContext(), R.layout.fragment_list, data);
-		listView.setAdapter(adapter);
-		listView.setOnItemClickListener(onItemClickListener);
-		listView.setOnItemLongClickListener(onItemLongClickListener);
-
+		
 	}
 
 	@Override
@@ -67,13 +69,13 @@ public class BidoolgiFreinds extends Fragment {
 
 		Log.d("aaaa", "넘어온 String 값은 " + name);
 		if (name.equals("나둘기")) {
-			ListViewItem test1 = new ListViewItem(R.drawable.user06, name , "복무중ㅠ.ㅠ");
+			ListViewItem test1 = new ListViewItem(R.drawable.user06, name, "복무중ㅠ.ㅠ");
 
 			data.add(test1);
 
 			adapter.notifyDataSetChanged();
 		} else {
-			ListViewItem test1 = new ListViewItem(R.drawable.ic_launcher, name , date);
+			ListViewItem test1 = new ListViewItem(R.drawable.ic_launcher, name, date);
 
 			data.add(test1);
 
