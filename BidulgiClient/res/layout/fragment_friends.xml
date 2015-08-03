@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:choiceMode="singleChoice"
-        android:divider="#ffcc22"
-        android:dividerHeight="1.5dp" />
+        android:divider="#ff99a8"
+        android:dividerHeight="0.7dp" />
 
 </LinearLayout>

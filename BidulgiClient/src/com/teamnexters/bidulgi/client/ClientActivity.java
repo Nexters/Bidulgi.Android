@@ -100,6 +100,13 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 
 			} else {
 			}
+		case 2:
+			if(data.getBooleanExtra("sendEmail", false)){
+				Toast.makeText(getApplicationContext(),"편지가 전송 되었습니다.",
+						Toast.LENGTH_SHORT).show();
+			}else{
+				
+			}
 		}
 
 	};

@@ -1,11 +1,14 @@
 package com.teamnexters.bidulgi.client;
 
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html.ImageGetter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -33,7 +36,10 @@ public class ClickFriendActivity extends Activity {
 		ImageView imgFriend = new ImageView(getApplicationContext());
 		imgFriend.setId(IMG_BIDOOLGIFRIEND);
 		imgFriend.setImageResource(intent.getExtras().getInt("icon"));
+		
+		
 
+		
 		
 		RelativeLayout.LayoutParams imgFriendParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 		imgFriendParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
@@ -43,6 +49,8 @@ public class ClickFriendActivity extends Activity {
 		Button btnEditEmail = new Button(getApplicationContext());
 		btnEditEmail.setId(BTN_EDITEMAIL);
 		btnEditEmail.setText("편지쓰기");
+		
+		
 		
 		RelativeLayout.LayoutParams btnEditEmailParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 		btnEditEmailParams.addRule(RelativeLayout.BELOW, IMG_BIDOOLGIFRIEND);
@@ -54,6 +62,8 @@ public class ClickFriendActivity extends Activity {
 		
 		setContentView(rl);
 	}
+	
+
 
 	
 }

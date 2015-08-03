@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.support.v4.view.ViewPager;
+import android.text.style.TabStopSpan;
 import android.util.Log;
 
 public class BidoolgiActionBar {
@@ -48,10 +49,10 @@ public class BidoolgiActionBar {
 	}
 
 	public void initTabs() {
-		test1 = actionBar.newTab().setText("친구목록");
-		test2 = actionBar.newTab().setText("편지");
-		test3 = actionBar.newTab().setText("보낸편지");
-		test4 = actionBar.newTab().setText("설정");
+		test1 = actionBar.newTab().setIcon(R.drawable.button_list);
+		test2 = actionBar.newTab().setIcon(R.drawable.button_mail);
+		test3 = actionBar.newTab().setIcon(R.drawable.button_board);
+		test4 = actionBar.newTab().setIcon(R.drawable.button_setting);
 	}
 
 	public void setTabListener(ActionBar.TabListener tabListener) {

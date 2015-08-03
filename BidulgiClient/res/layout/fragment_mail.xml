@@ -8,11 +8,12 @@
         android:id="@+id/editMails"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:ems="300" >
+        android:ems="300"
+        android:hint="300자 이내로 작성하세요." >
     </EditText>
 
     <Button
-        android:id="@+id/btnSend"
+        android:id="@+id/btnSendMail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editMails"
