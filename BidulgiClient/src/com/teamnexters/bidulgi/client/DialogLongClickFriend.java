@@ -40,6 +40,13 @@ public class DialogLongClickFriend extends Activity {
 		
 	}
 
+	public void onBackPressed() {
+		Intent resIntent = new Intent();
+		resIntent.putExtra("delete", false);
+		setResult(0, resIntent);
+		finish();
+	};
+	
 	OnClickListener onClickListener = new OnClickListener() {
 		
 		@Override

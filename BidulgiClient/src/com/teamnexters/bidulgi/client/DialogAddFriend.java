@@ -36,6 +36,13 @@ public class DialogAddFriend extends Activity {
 		btnNotAddFriend.setOnClickListener(onClickListener);
 
 	}
+	
+	public void onBackPressed() {
+		Intent resIntent = new Intent();
+		resIntent.putExtra("addFriend", false);
+		setResult(1, resIntent);
+		finish();
+	};
 
 	OnClickListener onClickListener = new OnClickListener() {
 
