@@ -4,4 +4,5 @@ public interface BidulgiRequestCode {
 	public int REQUEST_TEST = 0;
 	public int REQUEST_LOGIN = 1;
 	public int REQUEST_REGISTRATION = 2;
+	public int REQUEST_SEARCH_SOLDIER = 3;
 }

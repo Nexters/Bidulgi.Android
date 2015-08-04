@@ -8,4 +8,6 @@ public interface BidulgiResponseCode {
 	public int RESPONSE_REGISTRATION_FAIL = 4;
 	public int RESPONSE_REGISTRATION_SUCCESS = 5;
 	public int RESPONSE_LOGOUT_SUCCESS = 6;
+	public int RESPONSE_SOLDIER_INFO = 7;
+	public int RESPONSE_SOLDIER_SEARCH_FAIL = 8;
 }

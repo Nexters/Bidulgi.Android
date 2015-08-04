@@ -10,4 +10,5 @@ public interface BidulgiRequestUri {
 	public String REQUEST_REQUIRE_LOGIN = "/require-login";
 	public String REQUEST_REGISTRATION = "/registration";
 	public String REQUEST_LOGOUT = "/service/logout";
+	public String REQUEST_SEARCH_SOLDIER = "/service/search-soldier";
 }
