@@ -15,7 +15,7 @@
 
     <!--
   IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-  to match your app's package name + ".permission.C2D_MESSAGE".
+  to match your app's package name + ".permission.C2D_MESSAGE".
     -->
 
     <uses-sdk
@@ -24,8 +24,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/bidoolgiicon"
-        android:label="Bidulgi"
+        android:icon="@drawable/launchericon01"
+        android:label="Bidoolgi"
         android:theme="@style/CustomActionBarTheme" >
         <activity
             android:name=".LoadingActivity"
@@ -43,11 +43,13 @@
         </activity>
         <activity
             android:name=".SignUpActivity"
-            android:label="@string/title_activity_sign_up" >
+            android:label="@string/title_activity_sign_up"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name=".AgreeActivity"
-            android:label="@string/title_activity_agree" >
+            android:label="@string/title_activity_agree"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name=".ClientActivity"

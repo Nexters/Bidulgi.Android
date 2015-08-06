@@ -4,6 +4,6 @@
     <!-- Search, should appear as action button -->
     <item android:id="@+id/itemPlusFriend"
         android:title="친구추가"
-        android:icon="@drawable/button_plus"        
+        android:icon="@drawable/plus_01"        
         android:showAsAction="ifRoom" />
 </menu>

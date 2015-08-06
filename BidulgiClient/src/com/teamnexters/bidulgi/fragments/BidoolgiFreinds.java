@@ -19,11 +19,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ImageView;
 
 public class BidoolgiFreinds extends Fragment {
 	ListView listView;
 	private String name;
 	Intent intent;
+	private boolean isFriendsEmpty = true;
 
 	private ArrayList<ListViewItem> data = new ArrayList<ListViewItem>();
 	private ListViewAdapter adapter;
@@ -33,22 +35,11 @@ public class BidoolgiFreinds extends Fragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 
-		ListView listView = (ListView) getView().findViewById(R.id.listview);
+		
 		Log.d("data", "data 값 비었니 " + data.isEmpty());
-		if (data.isEmpty()) {
-			data = new ArrayList<ListViewItem>();
-			ListViewItem test1 = new ListViewItem(R.drawable.user01, "착한남자 비둘기", "전역자");
-			ListViewItem test2 = new ListViewItem(R.drawable.user02, "집으로 비둘기", "전역자");
-			ListViewItem test3 = new ListViewItem(R.drawable.user03, "공길이 비둘기", "전역자");
-			ListViewItem test4 = new ListViewItem(R.drawable.user04, "발리에서 생긴 비둘기", "전역자");
-			ListViewItem test5 = new ListViewItem(R.drawable.user05, "시크릿 가든 비둘기", "전역자");
-
-			data.add(test1);
-			data.add(test2);
-			data.add(test3);
-			data.add(test4);
-			data.add(test5);
-		}
+			ListView listView = (ListView) getView().findViewById(R.id.listview);
+			ImageView imgEmpty = (ImageView) getView().findViewById(R.id.imgEmpty);
+			listView.setEmptyView(imgEmpty);
 			adapter = new ListViewAdapter(getView().getContext(), R.layout.fragment_list, data);
 			listView.setAdapter(adapter);
 			listView.setOnItemClickListener(onItemClickListener);
@@ -57,12 +48,17 @@ public class BidoolgiFreinds extends Fragment {
 		
 	}
 
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		View moodView = inflater.inflate(R.layout.fragment_friends, container, false);
 
-		return moodView;
+
+			View moodView = inflater.inflate(R.layout.fragment_friends, container, false);
+
+			return moodView;
+		
+		
 	}
 
 	public void addData(String name, String date) {
