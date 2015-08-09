@@ -35,43 +35,40 @@ public class BidoolgiFreinds extends Fragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 
-		
 		Log.d("data", "data 값 비었니 " + data.isEmpty());
-			ListView listView = (ListView) getView().findViewById(R.id.listview);
-			ImageView imgEmpty = (ImageView) getView().findViewById(R.id.imgEmpty);
-			listView.setEmptyView(imgEmpty);
-			adapter = new ListViewAdapter(getView().getContext(), R.layout.fragment_list, data);
-			listView.setAdapter(adapter);
-			listView.setOnItemClickListener(onItemClickListener);
-			listView.setOnItemLongClickListener(onItemLongClickListener);
-
 		
+		ListView listView = (ListView) getView().findViewById(R.id.listview);
+		listView.setBackgroundResource(R.drawable.backgroundWhite);
+		ImageView imgEmpty = (ImageView) getView().findViewById(R.id.imgEmpty);
+		listView.setEmptyView(imgEmpty);
+		adapter = new ListViewAdapter(getView().getContext(), R.layout.fragment_list, data);
+		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(onItemClickListener);
+		listView.setOnItemLongClickListener(onItemLongClickListener);
+		Log.d("data", "data 값 비었니 " + data.isEmpty());
+
 	}
 
-	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+		View moodView = inflater.inflate(R.layout.fragment_friends, container, false);
 
+		return moodView;
 
-			View moodView = inflater.inflate(R.layout.fragment_friends, container, false);
-
-			return moodView;
-		
-		
 	}
 
-	public void addData(String name, String date) {
+	public void addData(String name, String date , String regiment, String company, String platoon, String number) {
 
 		Log.d("aaaa", "넘어온 String 값은 " + name);
 		if (name.equals("나둘기")) {
-			ListViewItem test1 = new ListViewItem(R.drawable.user06, name, "복무중ㅠ.ㅠ");
+			ListViewItem test1 = new ListViewItem(R.drawable.user06, name, "복무중ㅠ.ㅠ","","","","");
 
 			data.add(test1);
 
 			adapter.notifyDataSetChanged();
 		} else {
-			ListViewItem test1 = new ListViewItem(R.drawable.ic_launcher, name, date);
+			ListViewItem test1 = new ListViewItem(R.drawable.ic_launcher, name, date , regiment,company, platoon, number);
 
 			data.add(test1);
 
@@ -114,5 +111,6 @@ public class BidoolgiFreinds extends Fragment {
 		}
 
 	};
+
 
 }

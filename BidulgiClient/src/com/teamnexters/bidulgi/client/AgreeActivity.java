@@ -2,11 +2,13 @@ package com.teamnexters.bidulgi.client;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.TextView;
 
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
@@ -15,6 +17,7 @@ public class AgreeActivity extends UIHandlingActivity {
 	
 	Intent intent;
 	CheckBox checkBoxAgree;
+	TextView txtAgree;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,10 @@ public class AgreeActivity extends UIHandlingActivity {
 		setContentView(R.layout.activity_agree);
 		checkBoxAgree = (CheckBox)findViewById(R.id.checkBoxAgree);
 		checkBoxAgree.setOnCheckedChangeListener(onCheckedChangeListener);
+		/*txtAgree = (TextView)findViewById(R.id.txtAgree);
+		txtAgree.setMaxLines(5);
+		txtAgree.setVerticalScrollBarEnabled(true);
+		txtAgree.setMovementMethod(new ScrollingMovementMethod());*/
 	}
 
 	@Override

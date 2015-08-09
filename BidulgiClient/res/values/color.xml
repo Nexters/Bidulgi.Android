@@ -7,4 +7,6 @@
     <color name="game">#333333</color>
     <color name="bidoolgipink">#ff6884</color>
     <drawable name="white">#ffffff</drawable>
+    <drawable name="backgroundGray">#f4f4f5</drawable>
+    <drawable name="backgroundWhite">#ffffff</drawable>
 </resources>

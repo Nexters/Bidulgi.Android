@@ -5,25 +5,61 @@
     android:background="@drawable/bidoolgibackground"
     tools:context="com.teamnexters.bidulgi.client.AgreeActivity" >
 
-    <TextView
-        android:id="@+id/txtAgree"
+    <ImageView
+        android:id="@+id/agreeImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="43dp"
-        android:layout_marginTop="56dp"
-        android:text="이용약관" />
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="100dp"
+        android:layout_alignLeft="@+id/layoutAgree"
+        android:src="@drawable/agreetext01" />
 
-    <CheckBox
-        android:id="@+id/checkBoxAgree"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/layoutAgree"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/agreeImg"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="140dp"
-        android:button="@drawable/checkbox_agree"
-        android:text="이용약관에 동의합니다."
-        android:textColor="#ff6884" />
+        android:background="@drawable/agree_border"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txtAgree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff"
+            android:text="@string/text_agree"
+            android:textColor="#000000" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:background="@drawable/agree_check_background" >
+
+            <CheckBox
+                android:id="@+id/checkBoxAgree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:button="@drawable/checkbox_agree" />
+
+            <ImageView
+                android:id="@+id/checkBoxAgreeImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/checkBoxAgree"
+                android:src="@drawable/agreetext02" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

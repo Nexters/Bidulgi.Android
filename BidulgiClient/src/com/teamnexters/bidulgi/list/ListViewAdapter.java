@@ -58,6 +58,17 @@ public class ListViewAdapter extends BaseAdapter {
 		
 		TextView date = (TextView) convertView.findViewById(R.id.txtDate);
 		date.setText(listViewItem.getDate());
+		
+		TextView data = (TextView) convertView.findViewById(R.id.txtData);
+		data.setText(listViewItem.getRegiment()+"연대 "+listViewItem.getCompany()+"소대 "+listViewItem.getPlatoon()+"분대 "+listViewItem.getNumber()+"번 훈련병");
+		
+		if(position % 2 == 0){
+			convertView.setBackgroundResource(R.drawable.backgroundGray);
+		} else if(position % 2 == 1){
+			convertView.setBackgroundResource(R.drawable.backgroundWhite);
+		}
+			
+		
 
 		return convertView;
 	}

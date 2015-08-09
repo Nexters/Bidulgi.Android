@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#ffffff"
     tools:context="com.teamnexters.bidulgi.client.DialogAddFriend" >
 
     <EditText
@@ -16,12 +17,22 @@
         android:hint="비둘기 친구 이름" />
 
     <EditText
-        android:id="@+id/editDate"
+        android:id="@+id/editBirthDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editName"
+        android:inputType="number"
         android:ems="10"
-        android:hint="비둘기 친구 입대일" />
+        android:hint="비둘기 친구  생일(6자리)" />
+    
+    <EditText
+        android:id="@+id/editDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editBirthDay"
+        android:inputType="number"
+        android:ems="10"
+        android:hint="비둘기 친구 입대일(8자리)" />
 
     <Button
         android:id="@+id/btnAddFriend"

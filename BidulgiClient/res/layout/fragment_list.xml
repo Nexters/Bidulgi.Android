@@ -7,7 +7,8 @@
     <ImageView
         android:id="@+id/imgFriends"
         android:layout_width="60dp"
-        android:layout_height="60dp" />
+        android:layout_height="60dp"
+        android:src="@drawable/ic_launcher" />
 
     <TextView
         android:id="@+id/txtFriendsName"
@@ -15,14 +16,45 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/imgFriends"
-        android:gravity="center" />
+        android:gravity="center"
+        android:text="이름" />
+
+    <TextView
+        android:id="@+id/txtData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="15dp"
+        android:text="소속" />
 
     <TextView
         android:id="@+id/txtDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginBottom="15dp" />
+        android:layout_alignBaseline="@+id/txtData"
+        android:layout_alignBottom="@+id/txtData"
+        android:layout_alignParentRight="true"
+        android:text="입소일" />
+
+    <TextView
+        android:id="@+id/txtDateHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtDate"
+        android:layout_alignBaseline="@+id/txtRegimentHint"
+        android:layout_alignBottom="@+id/txtRegimentHint"
+        android:layout_alignParentRight="true"
+        android:text="입소일"
+        android:textColor="#ff6884" />
+
+    <TextView
+        android:id="@+id/txtRegimentHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="소속"
+        android:textColor="#ff6884" />
 
 </RelativeLayout>

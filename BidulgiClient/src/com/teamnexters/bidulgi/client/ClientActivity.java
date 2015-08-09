@@ -17,7 +17,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import android.widget.Toast;
@@ -28,6 +29,8 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 
 	BidoolgiFreinds fragmentFriends;
 	Intent intent;
+	
+	static int CURRENT_PAGE = 0;
 	
 
 	@Override
@@ -55,7 +58,9 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 	@Override
 	protected void tabSelected(int i) {
 		mViewPager.setCurrentItem(i);
+	
 	}
+
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -94,7 +99,7 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 		case 1:
 			if (data.getBooleanExtra("addFriend", false)) { // 친구추가 여부 확인
 				// 친구추가 시 시행할 동작
-				fragmentFriends.addData(data.getExtras().getString("name") , data.getExtras().getString("date"));
+				fragmentFriends.addData(data.getExtras().getString("name") , data.getExtras().getString("enterday"),data.getExtras().getString("regiment"),data.getExtras().getString("company"),data.getExtras().getString("platoon"),data.getExtras().getString("number"));
 				Toast.makeText(getApplicationContext(), data.getExtras().getString("name") + " 비둘기가 추가 되었습니다.",
 						Toast.LENGTH_SHORT).show();
 

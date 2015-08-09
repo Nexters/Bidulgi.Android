@@ -15,6 +15,7 @@ public class BidoolgiFragmentActivity extends FragmentActivity {
 	Intent intent;
 	// ActionBar의 탭이 가리키고있는 인덱스
 	protected int tabPosition = 0;
+	private static int tabNum = 0;
 
 	protected BidoolgiActionBar actionBar;
 
@@ -42,6 +43,7 @@ public class BidoolgiFragmentActivity extends FragmentActivity {
 		actionBar = new BidoolgiActionBar(this);
 	}
 
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -54,6 +56,9 @@ public class BidoolgiFragmentActivity extends FragmentActivity {
 				// TODO Auto-generated method stub
 				tabPosition = tab.getPosition();
 				tabSelected(tabPosition);
+				Log.d("aaaa", "호출된 탭의 위치는 " + tabPosition);
+
+
 			}
 
 			@Override

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.common.request.SoldierRequestPacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 
 public abstract class UIHandlingActivity extends Activity {
