@@ -2,51 +2,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bidoolgibackground"
     tools:context="com.teamnexters.bidulgi.client.SignUpActivity" >
 
-      <EditText
+    <EditText
         android:id="@+id/editEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="148dp"
+        android:background="@drawable/signup01"
         android:ems="10"
         android:hint="E-mail"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 
     <EditText
         android:id="@+id/editPassWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
         android:layout_alignLeft="@+id/editEmail"
         android:layout_below="@+id/editEmail"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/signup01"
         android:ems="10"
         android:hint="PassWord"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 
     <EditText
         android:id="@+id/editCheckPassWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
         android:layout_alignLeft="@+id/editPassWord"
         android:layout_below="@+id/editPassWord"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/signup01"
         android:ems="10"
         android:hint="PassWord Check"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 
     <Button
         android:id="@+id/btnSignUpOk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
         android:layout_alignLeft="@+id/editCheckPassWord"
         android:layout_below="@+id/editCheckPassWord"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="20dp"
-        android:text="가입하기" />
+        android:background="@drawable/button_signup" />
 
 </RelativeLayout>

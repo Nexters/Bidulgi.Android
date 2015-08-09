@@ -3,6 +3,8 @@ package com.teamnexters.bidulgi.client;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.view.ViewPager;
 import android.text.style.TabStopSpan;
 import android.util.Log;
@@ -37,11 +39,12 @@ public class BidoolgiActionBar {
 	public BidoolgiActionBar(Activity act) {
 			activity = act;
 			actionBar = activity.getActionBar();
-			actionBar.setTitle("Bidoolgi");
+			actionBar.setTitle(null);
 			actionBar.setIcon(null);
 			actionBar.setDisplayHomeAsUpEnabled(false);
 			actionBar.setDisplayUseLogoEnabled(false);
 			actionBar.setHomeButtonEnabled(false);
+			actionBar.setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
 			actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 			initTabs();
 		
@@ -49,10 +52,10 @@ public class BidoolgiActionBar {
 	}
 
 	public void initTabs() {
-		test1 = actionBar.newTab().setIcon(R.drawable.button_list);
-		test2 = actionBar.newTab().setIcon(R.drawable.button_mail);
-		test3 = actionBar.newTab().setIcon(R.drawable.button_board);
-		test4 = actionBar.newTab().setIcon(R.drawable.button_setting);
+		test1 = actionBar.newTab().setIcon(R.drawable.re_friend);
+		test2 = actionBar.newTab().setIcon(R.drawable.re_letter);
+		test3 = actionBar.newTab().setIcon(R.drawable.re_board);
+		test4 = actionBar.newTab().setIcon(R.drawable.re_setting);
 	}
 
 	public void setTabListener(ActionBar.TabListener tabListener) {

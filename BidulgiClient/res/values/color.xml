@@ -5,5 +5,6 @@
     <color name="tab_focused">#f6545b</color>
     <color name="transparent">#00000000</color>
     <color name="game">#333333</color>
-    <color name="bidoolgipink">#ff99a8</color>
+    <color name="bidoolgipink">#ff6884</color>
+    <drawable name="white">#ffffff</drawable>
 </resources>
