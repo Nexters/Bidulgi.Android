@@ -1,6 +1,6 @@
 package com.teamnexters.bidulgi.common.response;
 
-
+import com.teamnexters.bidulgi.common.request.SoldierRequestPacket;
 
 public abstract class BidulgiResponsePacket implements BidulgiResponseCode{
 	private Integer responseCode;
@@ -24,6 +24,8 @@ public abstract class BidulgiResponsePacket implements BidulgiResponseCode{
 		case RESPONSE_REGISTRATION_SUCCESS:
 		case RESPONSE_LOGIN_SUCCESS:
 			return LoginResponsePacket.class;
+		case RESPONSE_SOLDIER_INFO:
+			return SoldierResponsePacket.class;
 		}
 		return CommonResponsePacket.class;
 	}
