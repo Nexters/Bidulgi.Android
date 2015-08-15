@@ -18,12 +18,16 @@ public abstract class BidulgiResponsePacket implements BidulgiResponseCode{
 
 	public static Class<? extends BidulgiResponsePacket> getResponseClass(Integer responseCode){
 		switch (responseCode) {
-		case RESPONSE_TEST:
+		case RESPONSE_REMOVE_FRIEND_SOLDIER_SUCCESS:
 			return LongResponsePacket.class;
 
 		case RESPONSE_REGISTRATION_SUCCESS:
 		case RESPONSE_LOGIN_SUCCESS:
 			return LoginResponsePacket.class;
+
+		case RESPONSE_LIST_FRIEND_SOLDIER:
+			return SoldierListResponsePacket.class;
+
 		case RESPONSE_SOLDIER_INFO:
 			return SoldierResponsePacket.class;
 		}

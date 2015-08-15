@@ -1,5 +1,9 @@
 package com.teamnexters.bidulgi.client;
 
+import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.client.network.HttpRequestThreadForFriends;
+import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
@@ -10,7 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-public class BidoolgiFragmentActivity extends FragmentActivity {
+public abstract class BidoolgiFragmentActivity extends FragmentActivity {
+	public abstract void onHandleUI(BidulgiResponsePacket response);
 
 	Intent intent;
 	// ActionBar의 탭이 가리키고있는 인덱스
@@ -18,13 +23,19 @@ public class BidoolgiFragmentActivity extends FragmentActivity {
 	private static int tabNum = 0;
 
 	protected BidoolgiActionBar actionBar;
-
 	/**
 	 * ActionBar.TabListner 의 onTabSelected, onTabReSelected때 작동하는 콜백 메소드
 	 *
 	 * @param i
 	 *            선택된 탭의 인덱스
 	 */
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		HttpRequestThreadForFriends.getInstance().setHandler(this);
+	}
+	
 	protected void tabSelected(int i) {
 	}
 
@@ -44,11 +55,13 @@ public class BidoolgiFragmentActivity extends FragmentActivity {
 	}
 
 
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.custom_actionbar, menu);
+		
 		actionBar.setTabListener(new ActionBar.TabListener() {
 
 			@Override

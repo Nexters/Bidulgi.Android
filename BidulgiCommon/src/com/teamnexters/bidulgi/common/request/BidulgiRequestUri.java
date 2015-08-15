@@ -11,4 +11,7 @@ public interface BidulgiRequestUri {
 	public String REQUEST_REGISTRATION = "/registration";
 	public String REQUEST_LOGOUT = "/service/logout";
 	public String REQUEST_SEARCH_SOLDIER = "/service/search-soldier";
+	public String REQUEST_ADD_FRIEND_SOLDIER = "/service/add-friend-soldier";
+	public String REQUEST_LIST_FRIEND_SOLDIER = "/service/list-friend-soldier";
+	public String REQUEST_REMOVE_FRIEND_SOLDIER = "/service/remove-friend-soldier";
 }

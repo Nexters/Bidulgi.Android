@@ -8,6 +8,7 @@ public class ListViewItem {
 	private String company;
 	private String platoon;
 	private String number;
+	private Long soldierId;
 
 	public int getIcon() {
 		return icon;
@@ -33,7 +34,10 @@ public class ListViewItem {
 	public String getNumber(){
 		return number;
 	}
-	public ListViewItem(int icon, String name, String date , String regiment, String company, String platoon, String number) {
+	public Long getsoldierId(){
+		return soldierId;
+	}
+	public ListViewItem(int icon, String name, String date , String regiment, String company, String platoon, String number, Long soldierId) {
 		this.icon = icon;
 		this.name = name;
 		this.date = date;
@@ -41,5 +45,6 @@ public class ListViewItem {
 		this.company = company;
 		this.platoon = platoon;
 		this.number = number;
+		this.soldierId = soldierId;
 	}
 }

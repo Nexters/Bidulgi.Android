@@ -38,7 +38,7 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/signup01"
         android:ems="10"
-        android:hint="PassWord"
+        android:hint="Password"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
         android:paddingRight="10dp" />

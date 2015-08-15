@@ -1,7 +1,20 @@
 package com.teamnexters.bidulgi.client;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.client.network.HttpRequestThreadForFriends;
+import com.teamnexters.bidulgi.common.data.SoldierData;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestPacket;
+import com.teamnexters.bidulgi.common.request.CommonRequestPacket;
+import com.teamnexters.bidulgi.common.request.LoginRequestPacket;
+import com.teamnexters.bidulgi.common.request.LongRequestPacket;
+import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
+import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.common.response.SoldierListResponsePacket;
+import com.teamnexters.bidulgi.common.response.SoldierResponsePacket;
 import com.teamnexters.bidulgi.fragments.BidoolgiFreinds;
 import com.teamnexters.bidulgi.fragments.BidoolgiMail;
 import com.teamnexters.bidulgi.fragments.BidoolgiMailList;
@@ -10,7 +23,7 @@ import com.teamnexters.bidulgi.fragments.BidoolgiSetting;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -29,22 +42,33 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 
 	BidoolgiFreinds fragmentFriends;
 	Intent intent;
-	
+
 	static int CURRENT_PAGE = 0;
-	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	
+
 		setContentView(R.layout.activity_client);
-		
+
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		actionBar.setViewPager(mViewPager);
 
 		fragmentFriends = (BidoolgiFreinds) mSectionsPagerAdapter.fragments.get(0);
+
+		CommonRequestPacket request = new CommonRequestPacket();
+		request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_FRIEND_SOLDIER);
+		HttpRequestThreadForFriends.getInstance().addRequest(request);
+
+		/*
+		 * CommonRequestPacket requestAdd = new CommonRequestPacket();
+		 * requestAdd.setRequestCode(BidulgiRequestCode.
+		 * REQUEST_ADD_FRIEND_SOLDIER);
+		 * HttpRequestThreadForFriends.getInstance().addRequest(request);
+		 */
+
 		/*
 		 * if(intent.getIntent().getExtras().getString("response").equals(
 		 * "success")){
@@ -58,9 +82,7 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 	@Override
 	protected void tabSelected(int i) {
 		mViewPager.setCurrentItem(i);
-	
 	}
-
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -92,6 +114,7 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 
 				fragmentFriends.deleteData(data.getExtras().getInt("position"));
 				Log.d("aaaa", "삭제할 position은 " + data.getExtras().getInt("position"));
+				
 				Toast.makeText(getApplicationContext(), "비둘기가 둥지에서 떠났습니다.", Toast.LENGTH_SHORT).show();
 
 			} else {
@@ -99,22 +122,45 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 		case 1:
 			if (data.getBooleanExtra("addFriend", false)) { // 친구추가 여부 확인
 				// 친구추가 시 시행할 동작
-				fragmentFriends.addData(data.getExtras().getString("name") , data.getExtras().getString("enterday"),data.getExtras().getString("regiment"),data.getExtras().getString("company"),data.getExtras().getString("platoon"),data.getExtras().getString("number"));
+				fragmentFriends.addData(data.getExtras().getString("name"), data.getExtras().getString("enterday"),
+						data.getExtras().getString("regiment"), data.getExtras().getString("company"),
+						data.getExtras().getString("platoon"), data.getExtras().getString("number"),data.getExtras().getLong("soldierId"));
+				LongRequestPacket request = new LongRequestPacket();
+				request.setValue(data.getExtras().getLong("soldierId"));
+				request.setRequestCode(BidulgiRequestCode.REQUEST_ADD_FRIEND_SOLDIER);
+				HttpRequestThread.getInstance().addRequest(request);
+
 				Toast.makeText(getApplicationContext(), data.getExtras().getString("name") + " 비둘기가 추가 되었습니다.",
 						Toast.LENGTH_SHORT).show();
 
 			} else {
 			}
 		case 2:
-			if(data.getBooleanExtra("sendEmail", false)){
-				Toast.makeText(getApplicationContext(),"편지가 전송 되었습니다.",
-						Toast.LENGTH_SHORT).show();
-			}else{
-				
+			if (data.getBooleanExtra("sendEmail", false)) {
+				Toast.makeText(getApplicationContext(), "편지가 전송 되었습니다.", Toast.LENGTH_SHORT).show();
+			} else {
+
 			}
 		}
 
-	};
+	}
+
+	@Override
+	public void onHandleUI(BidulgiResponsePacket response) {
+		// TODO Auto-generated method stub
+		
+		Log.d("aaaa", "서버 회신은 " + response.getResponseCode());
+		switch(response.getResponseCode()){
+		case BidulgiResponseCode.RESPONSE_LIST_FRIEND_SOLDIER:
+		SoldierListResponsePacket responseSoldierList = (SoldierListResponsePacket)response;
+		List<SoldierData> data = responseSoldierList.getSoldierData();
+		
+		Log.d("aaaa", "군인친구 목록 첫번째 친구는"+ data.get(0).getName().toString());
+		for(int i = 0 ; i < data.size() ; i++ ){
+			fragmentFriends.addData(data.get(i).getName().toString() , data.get(i).getEnterDateString().toString() ,data.get(i).getRegiment().toString() ,data.get(i).getCompany().toString() ,data.get(i).getPlatoon().toString() ,data.get(i).getNumber().toString(),data.get(i).getSoldierId());
+		}
+		}
+	}
 }
 
 /**
@@ -122,8 +168,6 @@ public class ClientActivity extends BidoolgiFragmentActivity {
  */
 class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-
-	
 	// Tab에 들어가는 Fragment를 담는 ArrayList
 	ArrayList<Fragment> fragments = new ArrayList<Fragment>();
 	private Context mContext;

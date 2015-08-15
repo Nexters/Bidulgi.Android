@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import com.teamnexters.bidulgi.client.ClickFriendActivity;
 import com.teamnexters.bidulgi.client.DialogLongClickFriend;
 import com.teamnexters.bidulgi.client.R;
+import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
+import com.teamnexters.bidulgi.common.request.LongRequestPacket;
 import com.teamnexters.bidulgi.list.ListViewAdapter;
 import com.teamnexters.bidulgi.list.ListViewItem;
 
@@ -36,7 +39,7 @@ public class BidoolgiFreinds extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 
 		Log.d("data", "data 값 비었니 " + data.isEmpty());
-		
+		try{
 		ListView listView = (ListView) getView().findViewById(R.id.listview);
 		listView.setBackgroundResource(R.drawable.backgroundWhite);
 		ImageView imgEmpty = (ImageView) getView().findViewById(R.id.imgEmpty);
@@ -46,6 +49,9 @@ public class BidoolgiFreinds extends Fragment {
 		listView.setOnItemClickListener(onItemClickListener);
 		listView.setOnItemLongClickListener(onItemLongClickListener);
 		Log.d("data", "data 값 비었니 " + data.isEmpty());
+		} catch(Exception e){
+			Log.d("data", "data 에러는" +  e.toString());
+		}
 
 	}
 
@@ -58,17 +64,17 @@ public class BidoolgiFreinds extends Fragment {
 
 	}
 
-	public void addData(String name, String date , String regiment, String company, String platoon, String number) {
+	public void addData(String name, String date , String regiment, String company, String platoon, String number, Long soldierId) {
 
 		Log.d("aaaa", "넘어온 String 값은 " + name);
 		if (name.equals("나둘기")) {
-			ListViewItem test1 = new ListViewItem(R.drawable.user06, name, "복무중ㅠ.ㅠ","","","","");
+			ListViewItem test1 = new ListViewItem(R.drawable.user06, name, "복무중ㅠ.ㅠ","","","","",null);
 
 			data.add(test1);
 
 			adapter.notifyDataSetChanged();
 		} else {
-			ListViewItem test1 = new ListViewItem(R.drawable.ic_launcher, name, date , regiment,company, platoon, number);
+			ListViewItem test1 = new ListViewItem(R.drawable.ic_launcher, name, date , regiment,company, platoon, number, soldierId);
 
 			data.add(test1);
 
@@ -78,8 +84,13 @@ public class BidoolgiFreinds extends Fragment {
 	}
 
 	public void deleteData(int position) {
+		LongRequestPacket request = new LongRequestPacket();
+		request.setValue(data.get(position).getsoldierId());
+		request.setRequestCode(BidulgiRequestCode.REQUEST_REMOVE_FRIEND_SOLDIER);
+		HttpRequestThread.getInstance().addRequest(request);
 		data.remove(position);
 		adapter.notifyDataSetChanged();
+		
 
 	}
 

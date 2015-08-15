@@ -12,6 +12,7 @@ public class SoldierData {
 	private String number;
 	private String identityCookie;
 	private long soldierId;
+	private boolean isFriend;
 
 	private String profilePhotoSrc;
 	private Set<String> photoSrcSet;
@@ -81,6 +82,12 @@ public class SoldierData {
 	}
 	public void setSoldierId(long soldierId) {
 		this.soldierId = soldierId;
+	}
+	public boolean isFriend() {
+		return isFriend;
+	}
+	public void setFriend(boolean isFriend) {
+		this.isFriend = isFriend;
 	}
 
 }

@@ -36,6 +36,12 @@
     <style name="CustomActionTabBar" parent="android:style/Widget.Holo.ActionBar.TabView">
         <item name="android:background">@drawable/actionbar_tabs_selector</item>
     </style>
+    
+    <!-- Application theme. -->
+    <style name="DialogTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:background">#ffffff</item>
+        <item name="android:textColor">#ff6884</item>
+    </style>
 
 
 

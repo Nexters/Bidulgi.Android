@@ -3,6 +3,9 @@ package com.teamnexters.bidulgi.client;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 
+import org.apache.http.protocol.ResponseDate;
+import org.apache.http.protocol.ResponseServer;
+
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
 import com.teamnexters.bidulgi.common.data.SoldierData;
@@ -23,7 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class DialogAddFriend extends UIHandlingActivity  {
+public class DialogAddFriend extends UIHandlingActivity {
 
 	EditText editName;
 	EditText editBirthDay;
@@ -97,11 +100,11 @@ public class DialogAddFriend extends UIHandlingActivity  {
 		Intent resIntent = new Intent();
 		switch(response.getResponseCode()){
 		
-
-		
 		case BidulgiResponseCode.RESPONSE_SOLDIER_INFO:
 			SoldierResponsePacket responseSoldier = (SoldierResponsePacket)response;
 			SoldierData data = responseSoldier.getSoldierData();
+				
+			
 			Log.d("aaaa", data.getBirthString() + " " + data.getName() + " " + data.getCompany());
 			resIntent.putExtra("addFriend", true);
 			resIntent.putExtra("name", data.getName());
@@ -111,6 +114,7 @@ public class DialogAddFriend extends UIHandlingActivity  {
 			resIntent.putExtra("company", data.getCompany());
 			resIntent.putExtra("platoon", data.getPlatoon());
 			resIntent.putExtra("number", data.getNumber());
+			resIntent.putExtra("soldierId", data.getSoldierId());
 			setResult(1, resIntent);
 			finish();
 		case BidulgiResponseCode.RESPONSE_SOLDIER_SEARCH_FAIL:

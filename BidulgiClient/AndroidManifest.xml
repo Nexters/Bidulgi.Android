@@ -67,7 +67,7 @@
         <activity
             android:name=".DialogAddFriend"
             android:label="@string/title_activity_dialog_add_friend"
-            android:theme="@android:style/Theme.Dialog" >
+            android:theme="@style/DialogTheme" >
         </activity>
     </application>
 

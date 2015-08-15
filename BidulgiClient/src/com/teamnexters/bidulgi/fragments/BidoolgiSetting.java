@@ -25,7 +25,6 @@ public class BidoolgiSetting extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		
 		Button btnLogout = (Button) getView().findViewById(R.id.btnLogout);
 		btnLogout.setOnClickListener(onClickLogout);
 	}
@@ -37,7 +36,7 @@ public class BidoolgiSetting extends Fragment {
 
 		return moodView;
 	}
-	
+
 	OnClickListener onClickLogout = new OnClickListener(){
 
 		@Override
@@ -49,6 +48,7 @@ public class BidoolgiSetting extends Fragment {
 			editor.commit();
 			intent = new Intent(getView().getContext(),MainActivity.class);
 			startActivity(intent);
+			getActivity().finish();
 			
 			
 			Toast.makeText(getView().getContext(), "둥지를 떠났습니다.. 돌아오라..ㅠㅠ", Toast.LENGTH_SHORT).show();

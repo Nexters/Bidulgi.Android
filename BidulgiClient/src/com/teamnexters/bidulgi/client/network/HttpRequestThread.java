@@ -52,6 +52,7 @@ public class HttpRequestThread extends Thread implements BidulgiRequestCode {
 	public synchronized void setHandler(UIHandlingActivity activity) {
 		handler = new UiHandler(activity);
 	}
+	
 
 	public static HttpRequestThread getInstance() {
 		return instance;
