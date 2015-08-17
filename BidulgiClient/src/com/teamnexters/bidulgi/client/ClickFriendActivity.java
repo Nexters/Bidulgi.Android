@@ -23,9 +23,7 @@ public class ClickFriendActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		
-		
+				
 		//setContentView(R.layout.activity_dialog_click_friend);
 		
 		RelativeLayout rl = new RelativeLayout(getApplicationContext());
@@ -64,6 +62,4 @@ public class ClickFriendActivity extends Activity {
 	}
 	
 
-
-	
 }

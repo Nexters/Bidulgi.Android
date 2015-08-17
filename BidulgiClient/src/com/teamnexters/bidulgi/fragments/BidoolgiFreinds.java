@@ -102,6 +102,7 @@ public class BidoolgiFreinds extends Fragment {
 			intent = new Intent(getView().getContext(), ClickFriendActivity.class);
 			intent.putExtra("icon", data.get(position).getIcon());
 			intent.putExtra("name", data.get(position).getName());
+			intent.putExtra("regiment", data.get(position).getRegiment());
 			startActivity(intent);
 		}
 
