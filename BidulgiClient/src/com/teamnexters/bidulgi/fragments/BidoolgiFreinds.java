@@ -64,17 +64,17 @@ public class BidoolgiFreinds extends Fragment {
 
 	}
 
-	public void addData(String name, String date , String regiment, String company, String platoon, String number, Long soldierId) {
+	public void addData(String profilePhotoSrc, String name , String date , String regiment, String company, String platoon, String number, Long soldierId) {
 
 		Log.d("aaaa", "넘어온 String 값은 " + name);
 		if (name.equals("나둘기")) {
-			ListViewItem test1 = new ListViewItem(R.drawable.user06, name, "복무중ㅠ.ㅠ","","","","",null);
+			ListViewItem test1 = new ListViewItem(profilePhotoSrc, name, "복무중ㅠ.ㅠ","","","","",null);
 
 			data.add(test1);
 
 			adapter.notifyDataSetChanged();
 		} else {
-			ListViewItem test1 = new ListViewItem(R.drawable.ic_launcher, name, date , regiment,company, platoon, number, soldierId);
+			ListViewItem test1 = new ListViewItem(profilePhotoSrc, name, date , regiment,company, platoon, number, soldierId);
 
 			data.add(test1);
 
@@ -100,7 +100,7 @@ public class BidoolgiFreinds extends Fragment {
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			// TODO Auto-generated method stub
 			intent = new Intent(getView().getContext(), ClickFriendActivity.class);
-			intent.putExtra("icon", data.get(position).getIcon());
+			intent.putExtra("profilePhotoSrc", data.get(position).getProfilePhotoSrc());
 			intent.putExtra("name", data.get(position).getName());
 			intent.putExtra("regiment", data.get(position).getRegiment());
 			startActivity(intent);

@@ -117,7 +117,7 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 		case 1:
 			if (data.getBooleanExtra("addFriend", false)) { // 친구추가 여부 확인
 				// 친구추가 시 시행할 동작
-				fragmentFriends.addData(data.getExtras().getString("name"), data.getExtras().getString("enterday"),
+				fragmentFriends.addData(data.getExtras().getString("profilePhotoSrc"),data.getExtras().getString("name"), data.getExtras().getString("enterday"),
 						data.getExtras().getString("regiment"), data.getExtras().getString("company"),
 						data.getExtras().getString("platoon"), data.getExtras().getString("number"),
 						data.getExtras().getLong("soldierId"));
@@ -153,8 +153,9 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 		List<SoldierData> data = responseSoldierList.getSoldierData();
 		
 		Log.d("aaaa", "군인친구 목록 첫번째 친구는"+ data.get(0).getName().toString());
+		Log.d("aaaa", "군인 친구 목록 첫번째 친구 프로필 사진 URL은 " + data.get(0).getProfilePhotoSrc() );
 		for(int i = 0 ; i < data.size() ; i++ ){
-			fragmentFriends.addData(data.get(i).getName().toString() , data.get(i).getEnterDateString().toString() ,data.get(i).getRegiment().toString() ,data.get(i).getCompany().toString() ,data.get(i).getPlatoon().toString() ,data.get(i).getNumber().toString(),data.get(i).getSoldierId());
+			fragmentFriends.addData(data.get(i).getProfilePhotoSrc(), data.get(i).getName().toString() , data.get(i).getEnterDateString().toString() ,data.get(i).getRegiment().toString() ,data.get(i).getCompany().toString() ,data.get(i).getPlatoon().toString() ,data.get(i).getNumber().toString(),data.get(i).getSoldierId());
 		}
 		break;
 		}

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
 import com.teamnexters.bidulgi.common.data.SoldierData;
@@ -98,8 +99,10 @@ public class DialogAddFriend extends UIHandlingActivity {
 				
 			
 			Log.d("aaaa", data.getBirthString() + " " + data.getName() + " " + data.getCompany());
+			Log.d("aaaa", "사진 URL은 " + data.getProfilePhotoSrc());
 			resIntent.putExtra("addFriend", true);
 			resIntent.putExtra("name", data.getName());
+			resIntent.putExtra("profilePhotoSrc", data.getProfilePhotoSrc());
 			resIntent.putExtra("birthday", data.getBirthString());
 			resIntent.putExtra("enterday", data.getEnterDateString());
 			resIntent.putExtra("regiment", data.getRegiment());

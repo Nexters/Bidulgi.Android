@@ -2,9 +2,11 @@ package com.teamnexters.bidulgi.list;
 
 import java.util.ArrayList;
 
+import com.bumptech.glide.Glide;
 import com.teamnexters.bidulgi.client.R;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +53,13 @@ public class ListViewAdapter extends BaseAdapter {
 		ListViewItem listViewItem = data.get(position);
 
 		ImageView icon = (ImageView) convertView.findViewById(R.id.imgFriends);
-		icon.setImageResource(listViewItem.getIcon());
+		Log.d("aaaa", "넘어온 프로필 URL은 " + listViewItem.getProfilePhotoSrc());
+		if(listViewItem.getProfilePhotoSrc() == null){
+			icon.setImageResource(R.drawable.ic_launcher);
+		} else{
+		Glide.with(convertView.getContext()).load(listViewItem.getProfilePhotoSrc()).into(icon);
+		}
+		//icon.setImageResource(listViewItem.getIcon());
 
 		TextView name = (TextView) convertView.findViewById(R.id.txtFriendsName);
 		name.setText(listViewItem.getName());

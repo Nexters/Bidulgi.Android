@@ -1,7 +1,7 @@
 package com.teamnexters.bidulgi.list;
 
 public class ListViewItem {
-	private int icon;
+	private String profilePhotoSrc;
 	private String name;
 	private String date;
 	private String regiment;
@@ -10,8 +10,8 @@ public class ListViewItem {
 	private String number;
 	private Long soldierId;
 
-	public int getIcon() {
-		return icon;
+	public String getProfilePhotoSrc() {
+		return profilePhotoSrc;
 	}
 
 	public String getName() {
@@ -37,8 +37,8 @@ public class ListViewItem {
 	public Long getsoldierId(){
 		return soldierId;
 	}
-	public ListViewItem(int icon, String name, String date , String regiment, String company, String platoon, String number, Long soldierId) {
-		this.icon = icon;
+	public ListViewItem(String profilePhotoSrc, String name, String date , String regiment, String company, String platoon, String number, Long soldierId) {
+		this.profilePhotoSrc = profilePhotoSrc;
 		this.name = name;
 		this.date = date;
 		this.regiment = regiment;
