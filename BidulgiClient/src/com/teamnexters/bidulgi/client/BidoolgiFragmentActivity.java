@@ -1,20 +1,18 @@
 package com.teamnexters.bidulgi.client;
 
-import com.teamnexters.bidulgi.client.network.HttpRequestThread;
-import com.teamnexters.bidulgi.client.network.HttpRequestThreadForFriends;
-import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
-
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-public abstract class BidoolgiFragmentActivity extends FragmentActivity {
+import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
+import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+
+public abstract class BidoolgiFragmentActivity extends UIHandlingActivity {
 	public abstract void onHandleUI(BidulgiResponsePacket response);
 
 	Intent intent;
@@ -30,11 +28,6 @@ public abstract class BidoolgiFragmentActivity extends FragmentActivity {
 	 *            선택된 탭의 인덱스
 	 */
 	
-	@Override
-	protected void onResume() {
-		super.onResume();
-		HttpRequestThreadForFriends.getInstance().setHandler(this);
-	}
 	
 	protected void tabSelected(int i) {
 	}

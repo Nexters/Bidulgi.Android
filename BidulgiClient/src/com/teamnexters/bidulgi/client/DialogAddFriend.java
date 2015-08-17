@@ -1,10 +1,13 @@
 package com.teamnexters.bidulgi.client;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
-
-import org.apache.http.protocol.ResponseDate;
-import org.apache.http.protocol.ResponseServer;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
@@ -14,17 +17,6 @@ import com.teamnexters.bidulgi.common.request.SoldierRequestPacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 import com.teamnexters.bidulgi.common.response.SoldierResponsePacket;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 public class DialogAddFriend extends UIHandlingActivity {
 

@@ -3,38 +3,30 @@ package com.teamnexters.bidulgi.client;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.teamnexters.bidulgi.client.network.HttpRequestThread;
-import com.teamnexters.bidulgi.client.network.HttpRequestThreadForFriends;
-import com.teamnexters.bidulgi.common.data.SoldierData;
-import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
-import com.teamnexters.bidulgi.common.request.BidulgiRequestPacket;
-import com.teamnexters.bidulgi.common.request.CommonRequestPacket;
-import com.teamnexters.bidulgi.common.request.LoginRequestPacket;
-import com.teamnexters.bidulgi.common.request.LongRequestPacket;
-import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
-import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
-import com.teamnexters.bidulgi.common.response.SoldierListResponsePacket;
-import com.teamnexters.bidulgi.common.response.SoldierResponsePacket;
-import com.teamnexters.bidulgi.fragments.BidoolgiFreinds;
-import com.teamnexters.bidulgi.fragments.BidoolgiMail;
-import com.teamnexters.bidulgi.fragments.BidoolgiMailList;
-import com.teamnexters.bidulgi.fragments.BidoolgiSetting;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-
 import android.widget.Toast;
+
+import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
+import com.teamnexters.bidulgi.common.data.SoldierData;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
+import com.teamnexters.bidulgi.common.request.CommonRequestPacket;
+import com.teamnexters.bidulgi.common.request.LongRequestPacket;
+import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
+import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.common.response.SoldierListResponsePacket;
+import com.teamnexters.bidulgi.fragments.BidoolgiFreinds;
+import com.teamnexters.bidulgi.fragments.BidoolgiMail;
+import com.teamnexters.bidulgi.fragments.BidoolgiMailList;
+import com.teamnexters.bidulgi.fragments.BidoolgiSetting;
 
 public class ClientActivity extends BidoolgiFragmentActivity {
 	SectionsPagerAdapter mSectionsPagerAdapter;
@@ -61,7 +53,7 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 		try {
 			CommonRequestPacket request = new CommonRequestPacket();
 			request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_FRIEND_SOLDIER);
-			HttpRequestThreadForFriends.getInstance().addRequest(request);
+			HttpRequestThread.getInstance().addRequest(request);
 		} catch (Exception e) {
 			Log.d("error", "군인친구 목록 조회 에러" + e.toString());
 		}
