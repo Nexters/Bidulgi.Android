@@ -58,10 +58,13 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 
 		fragmentFriends = (BidoolgiFreinds) mSectionsPagerAdapter.fragments.get(0);
 
-		CommonRequestPacket request = new CommonRequestPacket();
-		request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_FRIEND_SOLDIER);
-		HttpRequestThreadForFriends.getInstance().addRequest(request);
-
+		try {
+			CommonRequestPacket request = new CommonRequestPacket();
+			request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_FRIEND_SOLDIER);
+			HttpRequestThreadForFriends.getInstance().addRequest(request);
+		} catch (Exception e) {
+			Log.d("error", "군인친구 목록 조회 에러" + e.toString());
+		}
 		/*
 		 * CommonRequestPacket requestAdd = new CommonRequestPacket();
 		 * requestAdd.setRequestCode(BidulgiRequestCode.
@@ -114,7 +117,7 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 
 				fragmentFriends.deleteData(data.getExtras().getInt("position"));
 				Log.d("aaaa", "삭제할 position은 " + data.getExtras().getInt("position"));
-				
+
 				Toast.makeText(getApplicationContext(), "비둘기가 둥지에서 떠났습니다.", Toast.LENGTH_SHORT).show();
 
 			} else {
@@ -124,7 +127,8 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 				// 친구추가 시 시행할 동작
 				fragmentFriends.addData(data.getExtras().getString("name"), data.getExtras().getString("enterday"),
 						data.getExtras().getString("regiment"), data.getExtras().getString("company"),
-						data.getExtras().getString("platoon"), data.getExtras().getString("number"),data.getExtras().getLong("soldierId"));
+						data.getExtras().getString("platoon"), data.getExtras().getString("number"),
+						data.getExtras().getLong("soldierId"));
 				LongRequestPacket request = new LongRequestPacket();
 				request.setValue(data.getExtras().getLong("soldierId"));
 				request.setRequestCode(BidulgiRequestCode.REQUEST_ADD_FRIEND_SOLDIER);
@@ -150,6 +154,7 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 		// TODO Auto-generated method stub
 		
 		Log.d("aaaa", "서버 회신은 " + response.getResponseCode());
+		try{
 		switch(response.getResponseCode()){
 		case BidulgiResponseCode.RESPONSE_LIST_FRIEND_SOLDIER:
 		SoldierListResponsePacket responseSoldierList = (SoldierListResponsePacket)response;
@@ -159,6 +164,10 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 		for(int i = 0 ; i < data.size() ; i++ ){
 			fragmentFriends.addData(data.get(i).getName().toString() , data.get(i).getEnterDateString().toString() ,data.get(i).getRegiment().toString() ,data.get(i).getCompany().toString() ,data.get(i).getPlatoon().toString() ,data.get(i).getNumber().toString(),data.get(i).getSoldierId());
 		}
+		break;
+		}
+		} catch(Exception e){
+			Log.d("error", "리스트 목록 받아올 때 에러 발생 에러 내용은 " + e.toString());
 		}
 	}
 }

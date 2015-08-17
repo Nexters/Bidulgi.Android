@@ -3,6 +3,7 @@ package com.teamnexters.bidulgi.client;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
@@ -21,10 +22,15 @@ public class AgreeActivity extends UIHandlingActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d("aaaa", "Agree onCreate");
+		try{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_agree);
 		checkBoxAgree = (CheckBox)findViewById(R.id.checkBoxAgree);
 		checkBoxAgree.setOnCheckedChangeListener(onCheckedChangeListener);
+		}catch(Exception e){
+			Log.d("aaaa", "Agree error :" + e.toString());
+		}
 		/*txtAgree = (TextView)findViewById(R.id.txtAgree);
 		txtAgree.setMaxLines(5);
 		txtAgree.setVerticalScrollBarEnabled(true);

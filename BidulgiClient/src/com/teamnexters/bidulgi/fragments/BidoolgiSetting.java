@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,6 +43,7 @@ public class BidoolgiSetting extends Fragment {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+			try{
 			pref = getView().getContext().getSharedPreferences("email",Activity.MODE_PRIVATE);
 			SharedPreferences.Editor editor = pref.edit();
 			editor.clear();
@@ -49,10 +51,10 @@ public class BidoolgiSetting extends Fragment {
 			intent = new Intent(getView().getContext(),MainActivity.class);
 			startActivity(intent);
 			getActivity().finish();
-			
-			
 			Toast.makeText(getView().getContext(), "둥지를 떠났습니다.. 돌아오라..ㅠㅠ", Toast.LENGTH_SHORT).show();
-
+			}catch(Exception e){
+				Log.d("aaaa", "error : " + e.toString());
+			}
 			
 		}
 		

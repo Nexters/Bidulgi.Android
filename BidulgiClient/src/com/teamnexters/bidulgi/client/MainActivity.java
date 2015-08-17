@@ -72,10 +72,11 @@ public class MainActivity extends UIHandlingActivity {
 			intent = new Intent(getApplicationContext(), ClientActivity.class);
 			startActivity(intent);
 			finish();
+			break;
 			
 		case RESPONSE_LOGIN_FAIL:
 			Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호를 잘못 입력하셨습니다. ", Toast.LENGTH_SHORT).show();
-			
+			break;
 		}
 	}
 
@@ -108,9 +109,13 @@ public class MainActivity extends UIHandlingActivity {
 
 				// 회원가입 버튼 클릭 시 이용약관 화면으로 이동
 			} else if (v.getId() == R.id.btnSignUp) {
+				try{
 				intent = new Intent(getApplicationContext(), AgreeActivity.class);
 				startActivity(intent);
 				finish();
+				}catch(Exception e){
+					Log.d("aaaa", "error 2 : " + e.toString());
+				}
 			}
 
 		}

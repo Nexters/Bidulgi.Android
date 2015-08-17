@@ -117,8 +117,10 @@ public class DialogAddFriend extends UIHandlingActivity {
 			resIntent.putExtra("soldierId", data.getSoldierId());
 			setResult(1, resIntent);
 			finish();
+			break;
 		case BidulgiResponseCode.RESPONSE_SOLDIER_SEARCH_FAIL:
 			Toast.makeText(getApplicationContext(), "해당 훈련병 정보가 없습니다.", Toast.LENGTH_SHORT).show();
+			break;
 		}
 	}
 
