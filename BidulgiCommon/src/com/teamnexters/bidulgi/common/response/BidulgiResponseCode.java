@@ -15,4 +15,9 @@ public interface BidulgiResponseCode {
 	public int RESPONSE_REMOVE_FRIEND_SOLDIER_SUCCESS = 11;
 	public int RESPONSE_REMOVE_FRIEND_SOLDIER_FAIL = 12;
 	public int RESPONSE_LIST_FRIEND_SOLDIER = 13;
+	public int RESPONSE_NICE_AUTH_FAIL = 14;
+	public int RESPONSE_NICE_AUTH_IMAGE = 15;
+	public int RESPONSE_NICE_SMS_SUCCESS = 16;
+	public int RESPONSE_NICE_SMS_FAIL = 17;
+	public int RESPONSE_NICE_AUTH_SUCCESS = 18;
 }

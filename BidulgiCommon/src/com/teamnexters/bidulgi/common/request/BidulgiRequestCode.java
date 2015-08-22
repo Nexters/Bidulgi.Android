@@ -8,4 +8,7 @@ public interface BidulgiRequestCode {
 	public int REQUEST_ADD_FRIEND_SOLDIER = 4;
 	public int REQUEST_REMOVE_FRIEND_SOLDIER = 5;
 	public int REQUEST_LIST_FRIEND_SOLDIER = 6;
+	public int REQUEST_START_NICE_AUTH = 7;
+	public int REQUEST_SEND_NICE_SMS = 8;
+	public int REQUEST_NOTIFY_SMS_NUMBER = 9;
 }
