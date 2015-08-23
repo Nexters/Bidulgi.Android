@@ -15,22 +15,28 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
-import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
+import com.teamnexters.bidulgi.common.data.NiceAuthData;
 import com.teamnexters.bidulgi.common.data.SoldierData;
 import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
 import com.teamnexters.bidulgi.common.request.CommonRequestPacket;
 import com.teamnexters.bidulgi.common.request.LongRequestPacket;
+import com.teamnexters.bidulgi.common.request.NiceAuthRequestPacket;
+import com.teamnexters.bidulgi.common.request.StringRequestPacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.common.response.NiceImageResponsePacket;
 import com.teamnexters.bidulgi.common.response.SoldierListResponsePacket;
 import com.teamnexters.bidulgi.fragments.BidoolgiFreinds;
 import com.teamnexters.bidulgi.fragments.BidoolgiMail;
 import com.teamnexters.bidulgi.fragments.BidoolgiMailList;
 import com.teamnexters.bidulgi.fragments.BidoolgiSetting;
+import com.teamnexters.bidulgi.nice.NiceAuthDialog;
+import com.teamnexters.bidulgi.nice.NiceAuthRequester;
 
-public class ClientActivity extends BidoolgiFragmentActivity {
+public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuthRequester {
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	ViewPager mViewPager;
+	private NiceAuthDialog niceAuthDialog;
 
 	BidoolgiFreinds fragmentFriends;
 	Intent intent;
@@ -117,17 +123,15 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 		case 1:
 			if (data.getBooleanExtra("addFriend", false)) { // 친구추가 여부 확인
 				// 친구추가 시 시행할 동작
-				fragmentFriends.addData(data.getExtras().getString("profilePhotoSrc"),data.getExtras().getString("name"), data.getExtras().getString("enterday"),
-						data.getExtras().getString("regiment"), data.getExtras().getString("company"),
-						data.getExtras().getString("platoon"), data.getExtras().getString("number"),
-						data.getExtras().getLong("soldierId"));
+				fragmentFriends.addData(data.getExtras().getString("profilePhotoSrc"), data.getExtras().getString("name"),
+						data.getExtras().getString("enterday"), data.getExtras().getString("regiment"), data.getExtras().getString("company"), data.getExtras()
+								.getString("platoon"), data.getExtras().getString("number"), data.getExtras().getLong("soldierId"));
 				LongRequestPacket request = new LongRequestPacket();
 				request.setValue(data.getExtras().getLong("soldierId"));
 				request.setRequestCode(BidulgiRequestCode.REQUEST_ADD_FRIEND_SOLDIER);
 				HttpRequestThread.getInstance().addRequest(request);
 
-				Toast.makeText(getApplicationContext(), data.getExtras().getString("name") + " 비둘기가 추가 되었습니다.",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), data.getExtras().getString("name") + " 비둘기가 추가 되었습니다.", Toast.LENGTH_SHORT).show();
 
 			} else {
 			}
@@ -143,25 +147,87 @@ public class ClientActivity extends BidoolgiFragmentActivity {
 
 	@Override
 	public void onHandleUI(BidulgiResponsePacket response) {
-		// TODO Auto-generated method stub
-		
-		Log.d("aaaa", "서버 회신은 " + response.getResponseCode());
-		try{
-		switch(response.getResponseCode()){
+		switch (response.getResponseCode()) {
 		case BidulgiResponseCode.RESPONSE_LIST_FRIEND_SOLDIER:
-		SoldierListResponsePacket responseSoldierList = (SoldierListResponsePacket)response;
-		List<SoldierData> data = responseSoldierList.getSoldierData();
-		
-		Log.d("aaaa", "군인친구 목록 첫번째 친구는"+ data.get(0).getName().toString());
-		Log.d("aaaa", "군인 친구 목록 첫번째 친구 프로필 사진 URL은 " + data.get(0).getProfilePhotoSrc() );
-		for(int i = 0 ; i < data.size() ; i++ ){
-			fragmentFriends.addData(data.get(i).getProfilePhotoSrc(), data.get(i).getName().toString() , data.get(i).getEnterDateString().toString() ,data.get(i).getRegiment().toString() ,data.get(i).getCompany().toString() ,data.get(i).getPlatoon().toString() ,data.get(i).getNumber().toString(),data.get(i).getSoldierId());
+			Log.d("aaaa", "서버 회신은 " + response.getResponseCode());
+			try {
+				SoldierListResponsePacket responseSoldierList = (SoldierListResponsePacket) response;
+				List<SoldierData> data = responseSoldierList.getSoldierData();
+
+				Log.d("aaaa", "군인친구 목록 첫번째 친구는" + data.get(0).getName().toString());
+				Log.d("aaaa", "군인 친구 목록 첫번째 친구 프로필 사진 URL은 " + data.get(0).getProfilePhotoSrc());
+				for (SoldierData soldierData : data) {
+					fragmentFriends.addData(soldierData.getProfilePhotoSrc(), soldierData.getName().toString(), soldierData.getEnterDateString().toString(),
+							soldierData.getRegiment().toString(), soldierData.getCompany().toString(), soldierData.getPlatoon().toString(), soldierData
+									.getNumber().toString(), soldierData.getSoldierId());
+				}
+				break;
+			} catch (Exception e) {
+				Log.d("error", "리스트 목록 받아올 때 에러 발생 에러 내용은 " + e.toString());
+			}
+			case BidulgiResponseCode.RESPONSE_NICE_AUTH_FAIL:
+				unlockUI();
+				Toast.makeText(this, "본인인증에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+				if (niceAuthDialog != null) {
+					niceAuthDialog.dismiss();
+					niceAuthDialog = null;
+				}
+				break;
+			case BidulgiResponseCode.RESPONSE_NICE_AUTH_SUCCESS:
+				unlockUI();
+				Toast.makeText(this, "본인인증에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+				if (niceAuthDialog != null) {
+					niceAuthDialog.dismiss();
+					niceAuthDialog = null;
+				}
+				break;
+		case BidulgiResponseCode.RESPONSE_NICE_AUTH_IMAGE:
+			unlockUI();
+			String authImageSrc = ((NiceImageResponsePacket)response).getImageSrc();
+			String niceCookie = ((NiceImageResponsePacket)response).getNiceCookie();
+			Toast.makeText(this, "자동방지 확인 문자를 입력해주세요", Toast.LENGTH_SHORT).show();
+			if (niceAuthDialog != null && niceAuthDialog.isShowing()) {
+				niceAuthDialog.showAuthImage(authImageSrc, niceCookie);
+			}
+			break;
+		case BidulgiResponseCode.RESPONSE_NICE_SMS_SUCCESS:
+			unlockUI();
+			Toast.makeText(this, "본인확인용 SMS 문자를 입력해주세요", Toast.LENGTH_SHORT).show();
+			if (niceAuthDialog != null && niceAuthDialog.isShowing()) {
+				niceAuthDialog.listenSMS();
+			}
+			break;
 		}
-		break;
-		}
-		} catch(Exception e){
-			Log.d("error", "리스트 목록 받아올 때 에러 발생 에러 내용은 " + e.toString());
-		}
+	}
+
+	@Override
+	public void startNiceAuth(NiceAuthRequestPacket request) {
+		lockUI();
+		request.setRequestCode(BidulgiRequestCode.REQUEST_START_NICE_AUTH);
+		HttpRequestThread.getInstance().addRequest(request);
+	}
+
+	@Override
+	public void sendNiceSMS(String authImageNumber) {
+		lockUI();
+		StringRequestPacket request = new StringRequestPacket();
+		request.setRequestCode(BidulgiRequestCode.REQUEST_SEND_NICE_SMS);
+		request.setValue(authImageNumber);
+		HttpRequestThread.getInstance().addRequest(request);
+	}
+
+	@Override
+	public void notifySMSNumber(String smsNumber) {
+		lockUI();
+		StringRequestPacket request = new StringRequestPacket();
+		request.setRequestCode(BidulgiRequestCode.REQUEST_NOTIFY_SMS_NUMBER);
+		request.setValue(smsNumber);
+		HttpRequestThread.getInstance().addRequest(request);
+	}
+
+	public void onNiceAuthStart() {
+		niceAuthDialog = new NiceAuthDialog(this, this);
+		niceAuthDialog.show();
 	}
 }
 

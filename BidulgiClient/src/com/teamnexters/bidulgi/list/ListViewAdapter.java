@@ -28,25 +28,21 @@ public class ListViewAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return data.size();
 	}
 
 	@Override
 	public String getItem(int position) {
-		// TODO Auto-generated method stub
 		return data.get(position).getName();
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return position;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
 		if (convertView == null) {
 			convertView = inflater.inflate(layout, parent, false);
 		}
@@ -75,9 +71,6 @@ public class ListViewAdapter extends BaseAdapter {
 		} else if(position % 2 == 1){
 			convertView.setBackgroundResource(R.drawable.backgroundWhite);
 		}
-			
-		
-
 		return convertView;
 	}
 

@@ -35,7 +35,6 @@ public class BidoolgiFreinds extends Fragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 
 		Log.d("data", "data 값 비었니 " + data.isEmpty());
@@ -98,7 +97,6 @@ public class BidoolgiFreinds extends Fragment {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			// TODO Auto-generated method stub
 			intent = new Intent(getView().getContext(), ClickFriendActivity.class);
 			intent.putExtra("profilePhotoSrc", data.get(position).getProfilePhotoSrc());
 			intent.putExtra("name", data.get(position).getName());

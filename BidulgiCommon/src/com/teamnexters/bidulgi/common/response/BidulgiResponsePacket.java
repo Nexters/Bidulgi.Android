@@ -20,16 +20,15 @@ public abstract class BidulgiResponsePacket implements BidulgiResponseCode{
 		switch (responseCode) {
 		case RESPONSE_REMOVE_FRIEND_SOLDIER_SUCCESS:
 			return LongResponsePacket.class;
-
 		case RESPONSE_REGISTRATION_SUCCESS:
 		case RESPONSE_LOGIN_SUCCESS:
 			return LoginResponsePacket.class;
-
 		case RESPONSE_LIST_FRIEND_SOLDIER:
 			return SoldierListResponsePacket.class;
-
 		case RESPONSE_SOLDIER_INFO:
 			return SoldierResponsePacket.class;
+		case RESPONSE_NICE_AUTH_IMAGE:
+			return NiceImageResponsePacket.class;
 		}
 		return CommonResponsePacket.class;
 	}

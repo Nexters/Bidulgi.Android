@@ -31,4 +31,13 @@
 둘째, 서비스 이용과정에서 아래와 같은 정보들이 생성되어 수집될 수 있습니다.
 이용자 상태정보, 비둘기 이용자 이름, 아이디, 사진, 쿠키, 방문 일시, 서비스 이용 기록, 불량 이용 기록, 이메일 주소, 생년월일</string>
 
+    <string-array name="mobile_co">
+        <item>SKT</item>
+        <item>KT</item>
+        <item>LGU+</item>
+        <item>SKT(알뜰폰)</item>
+        <item>KT(알뜰폰)</item>
+        <item>LGU+(알뜰폰)</item>
+    </string-array>
+
 </resources>

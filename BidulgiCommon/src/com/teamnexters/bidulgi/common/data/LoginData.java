@@ -4,6 +4,8 @@ public class LoginData {
 	private long id;
 	private int point;
 	private String name;
+	private String phoneNumber;
+	private String authHash;
 
 	public long getId() {
 		return id;
@@ -27,5 +29,21 @@ public class LoginData {
 
 	public void setPoint(int point) {
 		this.point = point;
+	}
+
+	public String getAuthHash() {
+		return authHash;
+	}
+
+	public void setAuthHash(String authHash) {
+		this.authHash = authHash;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 }

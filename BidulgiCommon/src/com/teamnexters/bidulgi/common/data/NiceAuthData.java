@@ -3,7 +3,7 @@ package com.teamnexters.bidulgi.common.data;
 
 public class NiceAuthData {
 	
-	//SKT, LGT, KTF, MVN
+	//SKT, LGT, KTF, SKM, LGM, KTM
 	String mobileCorporation;
 	
 	String name;
