@@ -19,6 +19,7 @@ import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
 import com.teamnexters.bidulgi.common.request.MessageRequestPacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.glide.CircleTransform;
 
 public class ClickFriendActivity extends UIHandlingActivity implements OnClickListener {
 
@@ -46,9 +47,7 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 		imgFriend.setId(IMG_BIDOOLGIFRIEND);
 		Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc")).transform(new CircleTransform(getApplicationContext())).into(imgFriend);
 		imgFriend.setImageResource(intent.getExtras().getInt("icon"));
-		
-		
-		
+
 
 		
 		
