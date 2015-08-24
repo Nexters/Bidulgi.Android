@@ -5,6 +5,7 @@ import android.text.Html.ImageGetter;
 import android.util.Log;
 
 import com.bumptech.glide.Glide;
+import com.teamnexters.bidulgi.glide.CircleTransform;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -40,7 +41,7 @@ public class ClickFriendActivity extends Activity {
 		
 		ImageView imgFriend = new ImageView(getApplicationContext());
 		imgFriend.setId(IMG_BIDOOLGIFRIEND);
-		Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc")).into(imgFriend);
+		Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc")).transform(new CircleTransform(getApplicationContext())).into(imgFriend);
 		imgFriend.setImageResource(intent.getExtras().getInt("icon"));
 		
 		
