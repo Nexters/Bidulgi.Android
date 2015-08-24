@@ -11,4 +11,5 @@ public interface BidulgiRequestCode {
 	public int REQUEST_START_NICE_AUTH = 7;
 	public int REQUEST_SEND_NICE_SMS = 8;
 	public int REQUEST_NOTIFY_SMS_NUMBER = 9;
+	public int REQUEST_SEND_MESSAGE = 10;
 }

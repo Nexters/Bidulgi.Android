@@ -101,6 +101,7 @@ public class BidoolgiFreinds extends Fragment {
 			intent.putExtra("profilePhotoSrc", data.get(position).getProfilePhotoSrc());
 			intent.putExtra("name", data.get(position).getName());
 			intent.putExtra("regiment", data.get(position).getRegiment());
+			intent.putExtra("id", data.get(position).getsoldierId());
 			startActivity(intent);
 		}
 

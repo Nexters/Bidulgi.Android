@@ -1,16 +1,9 @@
 package com.teamnexters.bidulgi.client;
 
-import android.support.v7.app.ActionBarActivity;
-import android.text.Html.ImageGetter;
-import android.util.Log;
-
-import com.bumptech.glide.Glide;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -18,14 +11,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class ClickFriendActivity extends Activity {
+import com.bumptech.glide.Glide;
+import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
+import com.teamnexters.bidulgi.common.request.MessageRequestPacket;
+import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
+import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+
+public class ClickFriendActivity extends UIHandlingActivity implements OnClickListener {
 
 	Intent intent;
 	static final int IMG_BIDOOLGIFRIEND = 1;
 	static final int BTN_EDITEMAIL = 2;
 	static final int TXT_FRIENDSADDRESS = 3;
 	String address = "[320-839] 충청남도 논산시 연무읍 득안대로 504번길 사서함 76 - ";
+	
+	private long soldierId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class ClickFriendActivity extends Activity {
 		
 		RelativeLayout rl = new RelativeLayout(getApplicationContext());
 		intent = getIntent();
+		soldierId = intent.getLongExtra("id", -1);
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
 		rl.setLayoutParams(params);
 		
@@ -56,7 +61,7 @@ public class ClickFriendActivity extends Activity {
 		Button btnEditEmail = new Button(getApplicationContext());
 		btnEditEmail.setId(BTN_EDITEMAIL);
 		btnEditEmail.setText("편지쓰기");
-		
+		btnEditEmail.setOnClickListener(this);
 		
 		
 		RelativeLayout.LayoutParams btnEditEmailParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -109,6 +114,34 @@ public class ClickFriendActivity extends Activity {
 		
 		setContentView(rl);
 	}
-	
 
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case BTN_EDITEMAIL:
+			lockUI();
+			MessageRequestPacket messageRequest = new MessageRequestPacket();
+			messageRequest.setArticlePassword("1234");
+			messageRequest.setArticleText("군생활 잘하세요 ^^");
+			messageRequest.setArticleTitle("군생활 잘하세요 ^^");
+			messageRequest.setSoldierId(soldierId);
+			messageRequest.setRequestCode(BidulgiRequestCode.REQUEST_SEND_MESSAGE);
+			HttpRequestThread.getInstance().addRequest(messageRequest);
+			break;
+		}
+	}
+
+	@Override
+	public void onHandleUI(BidulgiResponsePacket response) {
+		switch (response.getResponseCode()) {
+		case BidulgiResponseCode.RESPONSE_SEND_MESSAGE_FAIL:
+			unlockUI();
+			Toast.makeText(this, "편지보내기에 실패하였습니다.",Toast.LENGTH_SHORT).show();
+			break;
+		case BidulgiResponseCode.RESPONSE_SEND_MESSAGE_SUCCESS:
+			unlockUI();
+			Toast.makeText(this, "편지보내기에 성공하였습니다.",Toast.LENGTH_SHORT).show();
+			break;
+		}
+	}
 }

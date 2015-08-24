@@ -17,4 +17,5 @@ public interface BidulgiRequestUri {
 	public String REQUEST_START_NICE_AUTH = "/service/start-nice-auth";
 	public String REQUEST_SEND_NICE_SMS = "/service/send-nice-sms";
 	public String REQUEST_NOTIFY_SMS_NUMBER = "/service/notify-sms-number";
+	public String REQUEST_SEND_MESSAGE = "/service/send-message";
 }

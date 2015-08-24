@@ -20,4 +20,6 @@ public interface BidulgiResponseCode {
 	public int RESPONSE_NICE_SMS_SUCCESS = 16;
 	public int RESPONSE_NICE_SMS_FAIL = 17;
 	public int RESPONSE_NICE_AUTH_SUCCESS = 18;
+	public int RESPONSE_SEND_MESSAGE_SUCCESS = 19;
+	public int RESPONSE_SEND_MESSAGE_FAIL = 20;
 }
