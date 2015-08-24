@@ -1,6 +1,5 @@
 package com.teamnexters.bidulgi.client;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,7 +44,7 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 		
 		ImageView imgFriend = new ImageView(getApplicationContext());
 		imgFriend.setId(IMG_BIDOOLGIFRIEND);
-		Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc")).into(imgFriend);
+		Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc")).transform(new CircleTransform(getApplicationContext())).into(imgFriend);
 		imgFriend.setImageResource(intent.getExtras().getInt("icon"));
 		
 		

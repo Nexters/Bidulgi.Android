@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.bumptech.glide.Glide;
 import com.teamnexters.bidulgi.client.R;
+import com.teamnexters.bidulgi.glide.CircleTransform;
 
 import android.content.Context;
 import android.util.Log;
@@ -53,7 +54,7 @@ public class ListViewAdapter extends BaseAdapter {
 		if(listViewItem.getProfilePhotoSrc() == null){
 			icon.setImageResource(R.drawable.ic_launcher);
 		} else{
-		Glide.with(convertView.getContext()).load(listViewItem.getProfilePhotoSrc()).into(icon);
+		Glide.with(convertView.getContext()).load(listViewItem.getProfilePhotoSrc()).transform(new CircleTransform(convertView.getContext())).into(icon);
 		}
 		//icon.setImageResource(listViewItem.getIcon());
 
