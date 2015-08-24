@@ -15,7 +15,7 @@
 
     <!--
   IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-  to match your app's package name + ".permission.C2D_MESSAGE".
+  to match your app's package name + ".permission.C2D_MESSAGE".
     -->
 
     <uses-sdk
@@ -67,7 +67,7 @@
         <activity
             android:name=".DialogAddFriend"
             android:label="@string/title_activity_dialog_add_friend"
-            android:theme="@style/DialogTheme" >
+            android:theme="@style/DialogAddFriendTheme" >
         </activity>
     </application>
 
