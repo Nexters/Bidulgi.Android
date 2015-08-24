@@ -99,6 +99,7 @@ public class MainActivity extends UIHandlingActivity {
 						request.setPassword(passWord);
 						request.setRequestCode(BidulgiRequestCode.REQUEST_LOGIN);
 						HttpRequestThread.getInstance().addRequest(request);
+						Log.d("aaaa", "버튼 클릭 후 서버에 request 보냄");
 
 					} else {
 						Toast.makeText(getApplicationContext(), "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
