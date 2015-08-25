@@ -56,9 +56,11 @@ public class BidoolgiSetting extends Fragment {
 					startActivity(intent);
 					getActivity().finish();
 					Toast.makeText(getView().getContext(), "둥지를 떠났습니다.. 돌아오라..ㅠㅠ", Toast.LENGTH_SHORT).show();
+					break;
 				} catch (Exception e) {
 					Log.d("aaaa", "error : " + e.toString());
 				}
+				
 			case R.id.btnNiceAuth:
 				((ClientActivity)getActivity()).onNiceAuthStart();
 			}
