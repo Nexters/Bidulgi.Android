@@ -52,7 +52,7 @@ public class ListViewAdapter extends BaseAdapter {
 		ImageView icon = (ImageView) convertView.findViewById(R.id.imgFriends);
 		Log.d("aaaa", "넘어온 프로필 URL은 " + listViewItem.getProfilePhotoSrc());
 		if(listViewItem.getProfilePhotoSrc() == null){
-			icon.setImageResource(R.drawable.ic_launcher);
+			icon.setImageResource(R.drawable.icon_noprofile);
 		} else{
 		Glide.with(convertView.getContext()).load(listViewItem.getProfilePhotoSrc()).transform(new CircleTransform(convertView.getContext())).into(icon);
 		}
