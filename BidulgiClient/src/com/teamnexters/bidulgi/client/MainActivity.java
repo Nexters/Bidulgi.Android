@@ -11,6 +11,7 @@ import android.app.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,8 +46,10 @@ public class MainActivity extends UIHandlingActivity {
 			startActivity(intent);
 			finish();
 		} else {
+			Typeface typeface = Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF");
 			setContentView(R.layout.activity_main);
 			editEmail = (EditText) findViewById(R.id.editEmail);
+			editEmail.setTypeface(typeface);
 			editPassWord = (EditText) findViewById(R.id.editPassWord);
 			btnLogin = (Button) findViewById(R.id.btnLogin);
 			btnSignUp = (Button) findViewById(R.id.btnSignUp);

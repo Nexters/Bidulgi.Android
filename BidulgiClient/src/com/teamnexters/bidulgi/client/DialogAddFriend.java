@@ -2,6 +2,7 @@ package com.teamnexters.bidulgi.client;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,12 +28,15 @@ import com.teamnexters.bidulgi.common.response.SoldierResponsePacket;
 
 public class DialogAddFriend extends UIHandlingActivity {
 
+	TextView txtName;
+	TextView txtBirthDay;
+	TextView txtDate;
 	EditText editName;
 	EditText editBirthDay;
 	TextView editDate;
 	Button btnAddFriend;
 	Button btnNotAddFriend;
-	static final int CHOICE_DATE = 1;
+	final int CHOICE_DATE = 1;
 	Calendar cal = new GregorianCalendar();
 
 	@Override
@@ -40,12 +44,19 @@ public class DialogAddFriend extends UIHandlingActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dialog_add_friend);
 
+		Typeface typeface = Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF");
+		txtName = (TextView) findViewById(R.id.txtName);
+		txtBirthDay = (TextView) findViewById(R.id.txtBirthDay);
+		txtDate = (TextView) findViewById(R.id.txtDate);
 		editName = (EditText) findViewById(R.id.editName);
 		editBirthDay = (EditText) findViewById(R.id.editBirthDay);
 		editDate = (TextView) findViewById(R.id.editDate);
 		btnAddFriend = (Button) findViewById(R.id.btnAddFriend);
 		btnNotAddFriend = (Button) findViewById(R.id.btnNotAddFriend);
 
+		txtName.setTypeface(typeface);
+		txtBirthDay.setTypeface(typeface);
+		txtDate.setTypeface(typeface);
 		btnAddFriend.setOnClickListener(onClickListener);
 		btnNotAddFriend.setOnClickListener(onClickListener);
 		editDate.setOnClickListener(onClickListener);

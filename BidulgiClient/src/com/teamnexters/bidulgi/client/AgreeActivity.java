@@ -1,6 +1,7 @@
 package com.teamnexters.bidulgi.client;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -18,7 +19,10 @@ public class AgreeActivity extends UIHandlingActivity {
 	
 	Intent intent;
 	CheckBox checkBoxAgree;
+	TextView txtBidoolgi;
 	TextView txtAgree;
+	TextView txtCheckBoxAgree;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,13 @@ public class AgreeActivity extends UIHandlingActivity {
 		try{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_agree);
+		Typeface typeface = Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF");
+		txtBidoolgi = (TextView)findViewById(R.id.txtBidoolgi);
+		txtAgree = (TextView)findViewById(R.id.txtAgree);
+		txtCheckBoxAgree = (TextView)findViewById(R.id.txtcheckBoxAgree);
+		txtBidoolgi.setTypeface(typeface);		
+		txtAgree.setTypeface(typeface);
+		txtCheckBoxAgree.setTypeface(typeface);
 		checkBoxAgree = (CheckBox)findViewById(R.id.checkBoxAgree);
 		checkBoxAgree.setOnCheckedChangeListener(onCheckedChangeListener);
 		}catch(Exception e){
@@ -68,7 +79,7 @@ public class AgreeActivity extends UIHandlingActivity {
 		public void onCheckedChanged(CompoundButton buttonView,
 				boolean isChecked) {
 			// TODO Auto-generated method stub
-			
+			Log.d("aaaa", "이용약관 동의 체크박스 리스너 실행");
 			intent = new Intent(getApplicationContext(),SignUpActivity.class);
 			startActivity(intent);
 			finish();
