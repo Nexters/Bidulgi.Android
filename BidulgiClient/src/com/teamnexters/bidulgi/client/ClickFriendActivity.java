@@ -57,8 +57,12 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 		btnEditEmail = (Button) findViewById(R.id.btnEditMail);
 		txtFriendsAddress = (TextView) findViewById(R.id.txtFriendsAddress);
 		txtEnterDate = (TextView) findViewById(R.id.txtEnterDate);
+		if(intent.getExtras().getString("profilePhotoSrc") == null){
+			imgFriend.setImageResource(R.drawable.icon_noprofile);
+		} else{
 		Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc"))
 				.transform(new CircleTransform(getApplicationContext())).into(imgFriend);
+	}
 
 		txtFriendName.setText(intent.getExtras().getString("name") + " " + "훈련병");
 		txtEnterDate.setText(intent.getExtras().getString("enterDate"));

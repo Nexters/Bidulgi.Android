@@ -106,6 +106,7 @@ public class BidoolgiFreinds extends Fragment {
 			intent.putExtra("enterDate", data.get(position).getDate());
 			intent.putExtra("id", data.get(position).getsoldierId());
 			startActivity(intent);
+			getActivity().finish();
 		}
 
 	};

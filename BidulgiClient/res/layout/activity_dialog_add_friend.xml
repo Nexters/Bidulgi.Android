@@ -22,6 +22,7 @@
                     android:id="@+id/txtName"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="이름"
                     android:textColor="#ff6884" />
 
@@ -29,8 +30,10 @@
                     android:id="@+id/editName"
                     android:layout_width="200dp"
                     android:layout_height="40dp"
+                    android:background="@drawable/signup01"
                     android:ems="10"
                     android:hint="비둘기 친구 이름"
+                    android:paddingLeft="10dp"
                     android:textColor="#000000" />
             </LinearLayout>
         </TableRow>
@@ -46,6 +49,7 @@
                     android:id="@+id/txtBirthDay"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="생년월일"
                     android:textColor="#ff6884" />
 
@@ -55,9 +59,11 @@
                     android:layout_height="40dp"
                     android:layout_alignLeft="@+id/editName"
                     android:layout_below="@+id/editName"
+                    android:background="@drawable/signup01"
                     android:ems="10"
                     android:hint="비둘기 친구  생일(6자리)"
                     android:inputType="number"
+                    android:paddingLeft="10dp"
                     android:textColor="#000000" />
             </LinearLayout>
         </TableRow>
@@ -73,6 +79,7 @@
                     android:id="@+id/txtDate"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="입대날짜"
                     android:textColor="#ff6884" />
 
@@ -83,8 +90,8 @@
                     android:layout_alignLeft="@+id/editBirthDay"
                     android:layout_below="@+id/editBirthDay"
                     android:background="@drawable/box_02"
-                    android:gravity="center_vertical"
                     android:ems="10"
+                    android:gravity="center_vertical"
                     android:paddingLeft="10dp"
                     android:textColor="#000000" />
             </LinearLayout>

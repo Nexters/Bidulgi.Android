@@ -165,6 +165,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 							soldierData.getEnterDateString().toString(), soldierData.getRegiment().toString(),
 							soldierData.getCompany().toString(), soldierData.getPlatoon().toString(),
 							soldierData.getNumber().toString(), soldierData.getSoldierId());
+
 				}
 				break;
 			} catch (Exception e) {
