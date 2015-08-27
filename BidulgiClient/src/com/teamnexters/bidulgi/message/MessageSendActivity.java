@@ -18,6 +18,7 @@ import com.teamnexters.bidulgi.client.R;
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
 import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
+import com.teamnexters.bidulgi.common.request.LoginRequestPacket;
 import com.teamnexters.bidulgi.common.request.MessageRequestPacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
@@ -80,15 +81,32 @@ public class MessageSendActivity extends UIHandlingActivity {
 
 		switch (item.getItemId()) {
 		case R.id.itemSendMail:
-			lockUI();
-			MessageRequestPacket messageRequest = new MessageRequestPacket();
-			messageRequest.setArticlePassword(passwordEditText.getText().toString());
-			messageRequest.setArticleText(contentEditText.getText().toString());
-			messageRequest.setArticleTitle(titleEditText.getText().toString());
-			messageRequest.setSoldierId(soldierId);
-			messageRequest.setRequestCode(BidulgiRequestCode.REQUEST_SEND_MESSAGE);
-			HttpRequestThread.getInstance().addRequest(messageRequest);
-			break;
+			
+			if (titleEditText.getText().toString().length() != 0) {
+				if (contentEditText.getText().toString().length() != 0) {
+					if (passwordEditText.getText().toString().length() != 0) {
+
+						lockUI();
+						MessageRequestPacket messageRequest = new MessageRequestPacket();
+						messageRequest.setArticlePassword(passwordEditText.getText().toString());
+						messageRequest.setArticleText(contentEditText.getText().toString());
+						messageRequest.setArticleTitle(titleEditText.getText().toString());
+						messageRequest.setSoldierId(soldierId);
+						messageRequest.setRequestCode(BidulgiRequestCode.REQUEST_SEND_MESSAGE);
+						HttpRequestThread.getInstance().addRequest(messageRequest);
+						break;
+
+					} else {
+						Toast.makeText(getApplicationContext(), "비밀번호를 입력 해 주세요.", Toast.LENGTH_SHORT).show();
+					}
+				} else {
+					Toast.makeText(getApplicationContext(), "편지내용을 입력 해 주세요.", Toast.LENGTH_SHORT).show();
+				}
+			} else {
+				Toast.makeText(getApplicationContext(), "제목을 입력 해 주세요.", Toast.LENGTH_SHORT).show();
+			}
+			
+			
 
 		}
 		return super.onOptionsItemSelected(item);
