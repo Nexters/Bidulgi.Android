@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -63,6 +64,12 @@ public class DialogAddFriend extends UIHandlingActivity {
 		btnNotAddFriend.setOnClickListener(onClickListener);
 		editDate.setOnClickListener(onClickListener);
 
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	public void onBackPressed() {
@@ -138,7 +145,6 @@ public class DialogAddFriend extends UIHandlingActivity {
 
 			return new DatePickerDialog(this, mDateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
 					cal.get(Calendar.DAY_OF_MONTH));
-			
 
 		}
 		return null;
@@ -182,7 +188,7 @@ public class DialogAddFriend extends UIHandlingActivity {
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 			// TODO Auto-generated method stub
-			Date date = new Date(year,monthOfYear,dayOfMonth);
+			Date date = new Date(year, monthOfYear, dayOfMonth);
 			Calendar cal = new GregorianCalendar(Locale.KOREA);
 			cal.set(year, monthOfYear, dayOfMonth);
 			cal.add(Calendar.MONTH, 21);
@@ -190,15 +196,15 @@ public class DialogAddFriend extends UIHandlingActivity {
 			Log.d("aaaa", cal.getTime().toString());
 			if (monthOfYear + 1 < 10 && dayOfMonth >= 10) {
 				editDate.setText(new StringBuilder().append(year).append(0).append(monthOfYear + 1).append(dayOfMonth));
-			} else if(monthOfYear + 1 >= 10 && dayOfMonth < 10){
+			} else if (monthOfYear + 1 >= 10 && dayOfMonth < 10) {
 				editDate.setText(new StringBuilder().append(year).append(monthOfYear + 1).append(0).append(dayOfMonth));
-			} else if(monthOfYear + 1 < 10 && dayOfMonth < 10){
-				editDate.setText(new StringBuilder().append(year).append(0).append(monthOfYear + 1).append(0).append(dayOfMonth));
-			}
-			else {
+			} else if (monthOfYear + 1 < 10 && dayOfMonth < 10) {
+				editDate.setText(new StringBuilder().append(year).append(0).append(monthOfYear + 1).append(0)
+						.append(dayOfMonth));
+			} else {
 				editDate.setText(new StringBuilder().append(year).append(monthOfYear + 1).append(dayOfMonth));
 			}
-			
+
 		}
 	};
 

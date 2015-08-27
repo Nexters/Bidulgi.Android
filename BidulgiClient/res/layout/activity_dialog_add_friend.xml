@@ -8,13 +8,15 @@
         android:id="@+id/addFriendTableLayout"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:paddingRight="10dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp" >
 
         <TableRow
             android:id="@+id/addFriendTableRowTop"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" >
 
             <LinearLayout android:orientation="horizontal" >
 
@@ -28,8 +30,8 @@
 
                 <EditText
                     android:id="@+id/editName"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
+                    android:layout_width="190dp"
+                    android:layout_height="30dp"
                     android:background="@drawable/signup01"
                     android:ems="10"
                     android:hint="비둘기 친구 이름"
@@ -41,7 +43,8 @@
         <TableRow
             android:id="@+id/addFriendTableRowMiddle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" >
 
             <LinearLayout android:orientation="horizontal" >
 
@@ -55,8 +58,8 @@
 
                 <EditText
                     android:id="@+id/editBirthDay"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
+                    android:layout_width="190dp"
+                    android:layout_height="30dp"
                     android:layout_alignLeft="@+id/editName"
                     android:layout_below="@+id/editName"
                     android:background="@drawable/signup01"
@@ -71,7 +74,8 @@
         <TableRow
             android:id="@+id/addFriendTableRowBottom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" >
 
             <LinearLayout android:orientation="horizontal" >
 
@@ -85,8 +89,8 @@
 
                 <TextView
                     android:id="@+id/editDate"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
+                    android:layout_width="190dp"
+                    android:layout_height="30dp"
                     android:layout_alignLeft="@+id/editBirthDay"
                     android:layout_below="@+id/editBirthDay"
                     android:background="@drawable/box_02"

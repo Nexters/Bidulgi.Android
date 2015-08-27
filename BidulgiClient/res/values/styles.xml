@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="Theme.AppCompat">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -24,28 +24,27 @@
     <!-- ActionBar styles -->
     <style name="CustomActionBar" parent="android:style/Widget.Holo.ActionBar">
         <item name="android:titleTextStyle">@style/CustomActionBarTitleText</item>
-       <item name="android:background">@drawable/logo_01</item>
-      <!-- <item name="android:background">#ffffff</item>   -->
+        <item name="android:background">@drawable/logo_01</item>
+
+        <!-- <item name="android:background">#ffffff</item> -->
     </style>
 
     <style name="CustomActionBarTitleText" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
         <item name="android:textColor">#ffffff</item>
+        
     </style>
 
     <!-- ActionBarTab styles -->
     <style name="CustomActionTabBar" parent="android:style/Widget.Holo.ActionBar.TabView">
         <item name="android:background">@drawable/actionbar_tabs_selector</item>
     </style>
-    
+
     <!-- Application theme. -->
     <style name="DialogTheme" parent="@android:style/Theme.Dialog">
         <item name="android:background">#ffffff</item>
         <item name="android:textColor">#ff6884</item>
     </style>
-    
-    <style  name="DialogAddFriendTheme" parent="@android:style/Theme.Holo.Dialog.NoActionBar">
-    </style>
 
-
+    <style name="DialogAddFriendTheme" parent="@android:style/Theme.Holo.Dialog.NoActionBar"></style>
 
 </resources>

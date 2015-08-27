@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -27,14 +28,14 @@ import com.teamnexters.bidulgi.message.MessageSendActivity;
 public class ClickFriendActivity extends UIHandlingActivity implements OnClickListener {
 
 	public static final int REQUEST_CODE_SEND_MESSAGE = 1000;
-	
+
 	Intent intent;
 	ImageView imgFriend;
 	TextView txtFriendName;
 	TextView txtEnterDate;
 	Button btnEditEmail;
 	TextView txtFriendsAddress;
-	String address = "[320-839] 충청남도 논산시 연무읍 득안대로 504번길 사서함 76 - ";
+	String address = "[320-839] 충청남도 논산시 연무읍 \r\n 득안대로 504번길 사서함 76 - ";
 
 	ActionBar actionBar;
 
@@ -60,12 +61,12 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 		btnEditEmail = (Button) findViewById(R.id.btnEditMail);
 		txtFriendsAddress = (TextView) findViewById(R.id.txtFriendsAddress);
 		txtEnterDate = (TextView) findViewById(R.id.txtEnterDate);
-		if(intent.getExtras().getString("profilePhotoSrc") == null){
+		if (intent.getExtras().getString("profilePhotoSrc") == null) {
 			imgFriend.setImageResource(R.drawable.icon_noprofile);
-		} else{
-		Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc"))
-				.transform(new CircleTransform(getApplicationContext())).into(imgFriend);
-	}
+		} else {
+			Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc"))
+					.transform(new CircleTransform(getApplicationContext())).into(imgFriend);
+		}
 
 		txtFriendName.setText(intent.getExtras().getString("name") + " " + "훈련병");
 		txtEnterDate.setText(intent.getExtras().getString("enterDate"));
@@ -75,25 +76,25 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 		switch (Integer.parseInt(intent.getExtras().getString("regiment"))) {
 
 		case 23:
-			txtFriendsAddress.setText(address + "8 " + intent.getExtras().getString("address"));
+			txtFriendsAddress.setText(address + "8 \r\n" + intent.getExtras().getString("address"));
 			break;
 		case 25:
-			txtFriendsAddress.setText(address + "9 " + intent.getExtras().getString("address"));
+			txtFriendsAddress.setText(address + "9 \r\n" + intent.getExtras().getString("address"));
 			break;
 		case 26:
-			txtFriendsAddress.setText(address + "10 " + intent.getExtras().getString("address"));
+			txtFriendsAddress.setText(address + "10 \r\n" + intent.getExtras().getString("address"));
 			break;
 		case 27:
-			txtFriendsAddress.setText(address + "11 " + intent.getExtras().getString("address"));
+			txtFriendsAddress.setText(address + "11 \r\n" + intent.getExtras().getString("address"));
 			break;
 		case 28:
-			txtFriendsAddress.setText(address + "12 " + intent.getExtras().getString("address"));
+			txtFriendsAddress.setText(address + "12 \r\n" + intent.getExtras().getString("address"));
 			break;
 		case 29:
-			txtFriendsAddress.setText(address + "13 " + intent.getExtras().getString("address"));
+			txtFriendsAddress.setText(address + "13 \r\n" + intent.getExtras().getString("address"));
 			break;
 		case 30:
-			txtFriendsAddress.setText(address + "14 " + intent.getExtras().getString("address"));
+			txtFriendsAddress.setText(address + "14 \r\n" + intent.getExtras().getString("address"));
 			break;
 
 		}
@@ -119,7 +120,7 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 
 	public void onBackPressed() {
 		Intent intent = new Intent(getApplicationContext(), ClientActivity.class);
-		
+
 		startActivity(intent);
 		finish();
 	};
@@ -134,7 +135,7 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 			break;
 		}
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);

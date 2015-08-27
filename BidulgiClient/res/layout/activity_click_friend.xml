@@ -13,10 +13,11 @@
 
         <ImageView
             android:id="@+id/imgFriend"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_alignLeft="@+id/txtFriendName"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="40dp" />
 
         <TextView
             android:id="@+id/txtFriendName"
@@ -24,15 +25,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgFriend"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="훈련병 이름"
-            android:textSize="30dp" />
+            android:textSize="25dp" />
     </RelativeLayout>
 
     <TableLayout
         android:id="@+id/tableLayoutData"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:layout_below="@+id/layoutImgFriend"
         android:background="#f4f4f5" >
 
@@ -42,20 +45,24 @@
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:gravity="center" >
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp" >
 
             <TextView
                 android:id="@+id/txtAddress"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="주소" />
+                android:text="주소"
+                android:textColor="#ff6884" />
 
             <TextView
                 android:id="@+id/txtFriendsAddress"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="left"
+                android:lineSpacingExtra="5dp"
                 android:text="훈련병 주소" />
         </TableRow>
 
@@ -65,27 +72,30 @@
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:gravity="center" >
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp" >
 
             <TextView
                 android:id="@+id/txtDate"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="입소일" />
+                android:text="입소일"
+                android:textColor="#ff6884" />
 
             <TextView
                 android:id="@+id/txtEnterDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="left"
                 android:text="훈련병 입소일" />
         </TableRow>
     </TableLayout>
 
     <Button
         android:id="@+id/btnEditMail"
-        android:layout_width="100dp"
+        android:layout_width="130dp"
         android:layout_height="40dp"
         android:layout_below="@+id/tableLayoutData"
         android:layout_centerHorizontal="true"
