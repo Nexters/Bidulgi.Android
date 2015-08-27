@@ -13,8 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import com.bumptech.glide.Glide;
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
@@ -136,6 +138,7 @@ public class DialogAddFriend extends UIHandlingActivity {
 
 			return new DatePickerDialog(this, mDateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
 					cal.get(Calendar.DAY_OF_MONTH));
+			
 
 		}
 		return null;
@@ -179,6 +182,12 @@ public class DialogAddFriend extends UIHandlingActivity {
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 			// TODO Auto-generated method stub
+			Date date = new Date(year,monthOfYear,dayOfMonth);
+			Calendar cal = new GregorianCalendar(Locale.KOREA);
+			cal.set(year, monthOfYear, dayOfMonth);
+			cal.add(Calendar.MONTH, 21);
+			cal.add(Calendar.DAY_OF_MONTH, -1);
+			Log.d("aaaa", cal.getTime().toString());
 			if (monthOfYear + 1 < 10 && dayOfMonth >= 10) {
 				editDate.setText(new StringBuilder().append(year).append(0).append(monthOfYear + 1).append(dayOfMonth));
 			} else if(monthOfYear + 1 >= 10 && dayOfMonth < 10){
@@ -189,6 +198,7 @@ public class DialogAddFriend extends UIHandlingActivity {
 			else {
 				editDate.setText(new StringBuilder().append(year).append(monthOfYear + 1).append(dayOfMonth));
 			}
+			
 		}
 	};
 

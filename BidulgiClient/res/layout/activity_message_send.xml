@@ -2,38 +2,67 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:paddingBottom="30dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="30dp" >
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="제목"
+        android:textColor="#58595b" />
 
     <EditText
         android:id="@+id/sendMessageTitleEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="제목"
-        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/signup01"
         android:maxLength="120"
         android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
         android:text="" />
+
+    <TextView
+        android:id="@+id/txtContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="내용"
+        android:textColor="#58595b" />
+
     <EditText
         android:id="@+id/sendMessageContentEditText"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/agree_border"
+        android:maxLength="800"
+        android:paddingLeft="10dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/txtPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="내용"
-        android:maxLength="800"
-        android:text="" />
+        android:layout_marginBottom="10dp"
+        android:text="비밀번호"
+        android:textColor="#58595b" />
+
     <EditText
         android:id="@+id/sendMessagePasswordEditText"
-        android:inputType="textPassword" 
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="비밀번호"
+        android:layout_height="40dp"
+        android:background="@drawable/signup01"
+        android:inputType="textPassword"
         android:maxLength="120"
+        android:paddingLeft="10dp"
         android:text="" />
-
-
-    <Button
-        android:id="@+id/sendMessageSubmitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="편지 전송" />
 
 </LinearLayout>
