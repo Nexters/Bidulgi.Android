@@ -26,7 +26,8 @@
         android:allowBackup="true"
         android:icon="@drawable/launchericon01"
         android:label="Bidoolgi"
-        android:theme="@style/CustomActionBarTheme" >
+        android:theme="@style/CustomActionBarTheme"
+        android:largeHeap="true" >
         <activity
             android:name=".LoadingActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >

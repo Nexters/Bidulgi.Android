@@ -1,5 +1,7 @@
 package com.teamnexters.bidulgi.client;
 
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,99 +26,101 @@ import com.teamnexters.bidulgi.glide.CircleTransform;
 public class ClickFriendActivity extends UIHandlingActivity implements OnClickListener {
 
 	Intent intent;
-	static final int IMG_BIDOOLGIFRIEND = 1;
-	static final int BTN_EDITEMAIL = 2;
-	static final int TXT_FRIENDSADDRESS = 3;
+	ImageView imgFriend;
+	TextView txtFriendName;
+	TextView txtEnterDate;
+	Button btnEditEmail;
+	TextView txtFriendsAddress;
 	String address = "[320-839] 충청남도 논산시 연무읍 득안대로 504번길 사서함 76 - ";
-	
+
+	ActionBar actionBar;
+
 	private long soldierId;
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-				
-		//setContentView(R.layout.activity_dialog_click_friend);
-		
-		RelativeLayout rl = new RelativeLayout(getApplicationContext());
+		setContentView(R.layout.activity_click_friend);
+
+		actionBar = getActionBar();
+		actionBar.setTitle(null);
+		actionBar.setIcon(null);
+		actionBar.setDisplayHomeAsUpEnabled(false);
+		actionBar.setDisplayUseLogoEnabled(false);
+		actionBar.setHomeButtonEnabled(false);
 		intent = getIntent();
 		soldierId = intent.getLongExtra("id", -1);
-		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
-		rl.setLayoutParams(params);
-		
-		ImageView imgFriend = new ImageView(getApplicationContext());
-		imgFriend.setId(IMG_BIDOOLGIFRIEND);
-		Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc")).transform(new CircleTransform(getApplicationContext())).into(imgFriend);
-		imgFriend.setImageResource(intent.getExtras().getInt("icon"));
 
+		imgFriend = (ImageView) findViewById(R.id.imgFriend);
+		txtFriendName = (TextView) findViewById(R.id.txtFriendName);
+		btnEditEmail = (Button) findViewById(R.id.btnEditMail);
+		txtFriendsAddress = (TextView) findViewById(R.id.txtFriendsAddress);
+		txtEnterDate = (TextView) findViewById(R.id.txtEnterDate);
+		Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc"))
+				.transform(new CircleTransform(getApplicationContext())).into(imgFriend);
 
-		
-		
-		RelativeLayout.LayoutParams imgFriendParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-		imgFriendParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-		imgFriendParams.addRule(RelativeLayout.CENTER_VERTICAL);
-		imgFriend.setLayoutParams(imgFriendParams);
-		
-		Button btnEditEmail = new Button(getApplicationContext());
-		btnEditEmail.setId(BTN_EDITEMAIL);
-		btnEditEmail.setText("편지쓰기");
-		btnEditEmail.setOnClickListener(this);
-		
-		
-		RelativeLayout.LayoutParams btnEditEmailParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-		btnEditEmailParams.addRule(RelativeLayout.BELOW, IMG_BIDOOLGIFRIEND);
-		btnEditEmailParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-		btnEditEmail.setLayoutParams(btnEditEmailParams);
-		
+		txtFriendName.setText(intent.getExtras().getString("name") + " " + "훈련병");
+		txtEnterDate.setText(intent.getExtras().getString("enterDate"));
 		Log.d("aaaa", "친구 클릭 후 넘어온 연대는 " + Integer.parseInt(intent.getExtras().getString("regiment")));
-		
-		
-		TextView txtFriendsAddress = new TextView(getApplicationContext());
-		txtFriendsAddress.setId(TXT_FRIENDSADDRESS);
-		
-		
-		switch(Integer.parseInt(intent.getExtras().getString("regiment"))){
-		
-			case 23:
-				txtFriendsAddress.setText(address + "8");
-				break;
-			case 25:
-				txtFriendsAddress.setText(address + "9");
-				break;
-			case 26:
-				txtFriendsAddress.setText(address + "10");
-				break;
-			case 27:
-				txtFriendsAddress.setText(address + "11");
-				break;
-			case 28:
-				txtFriendsAddress.setText(address + "12");
-				break;
-			case 29:
-				txtFriendsAddress.setText(address + "13");
-				break;
-			case 30:
-				txtFriendsAddress.setText(address + "14");
-				break;
-				
-				
+		Log.d("aaaa", "친구 클릭 후 넘어온 사진 URL은 " + intent.getExtras().getString("profilePhotoSrc"));
+
+		switch (Integer.parseInt(intent.getExtras().getString("regiment"))) {
+
+		case 23:
+			txtFriendsAddress.setText(address + "8 " + intent.getExtras().getString("address"));
+			break;
+		case 25:
+			txtFriendsAddress.setText(address + "9 " + intent.getExtras().getString("address"));
+			break;
+		case 26:
+			txtFriendsAddress.setText(address + "10 " + intent.getExtras().getString("address"));
+			break;
+		case 27:
+			txtFriendsAddress.setText(address + "11 " + intent.getExtras().getString("address"));
+			break;
+		case 28:
+			txtFriendsAddress.setText(address + "12 " + intent.getExtras().getString("address"));
+			break;
+		case 29:
+			txtFriendsAddress.setText(address + "13 " + intent.getExtras().getString("address"));
+			break;
+		case 30:
+			txtFriendsAddress.setText(address + "14 " + intent.getExtras().getString("address"));
+			break;
+
 		}
-		
-		RelativeLayout.LayoutParams txtFriendsAddressParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-		txtFriendsAddressParams.addRule(RelativeLayout.BELOW, BTN_EDITEMAIL);
-		txtFriendsAddressParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-		txtFriendsAddress.setLayoutParams(txtFriendsAddressParams);
-		
-		rl.addView(imgFriend);
-		rl.addView(btnEditEmail);
-		rl.addView(txtFriendsAddress);
-		
-		setContentView(rl);
+
+		btnEditEmail.setOnClickListener(this);
+
+		/*
+		 * RelativeLayout rl = new RelativeLayout(getApplicationContext());
+		 * 
+		 * RelativeLayout.LayoutParams imgFriendParams = new
+		 * RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+		 * ViewGroup.LayoutParams.WRAP_CONTENT);
+		 * imgFriendParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+		 * imgFriendParams.addRule(RelativeLayout.CENTER_VERTICAL);
+		 * imgFriend.setLayoutParams(imgFriendParams);
+		 * 
+		 * rl.addView(imgFriendParams); rl.addView(btnEditEmail);
+		 * rl.addView(txtFriendsAddress);
+		 * 
+		 * setContentView(rl);
+		 */
 	}
+
+	public void onBackPressed() {
+		Intent intent = new Intent(getApplicationContext(), ClientActivity.class);
+		
+		startActivity(intent);
+		finish();
+	};
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case BTN_EDITEMAIL:
+		case R.id.btnEditMail:
 			lockUI();
 			MessageRequestPacket messageRequest = new MessageRequestPacket();
 			messageRequest.setArticlePassword("1234");
@@ -134,11 +138,11 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 		switch (response.getResponseCode()) {
 		case BidulgiResponseCode.RESPONSE_SEND_MESSAGE_FAIL:
 			unlockUI();
-			Toast.makeText(this, "편지보내기에 실패하였습니다.",Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "편지보내기에 실패하였습니다.", Toast.LENGTH_SHORT).show();
 			break;
 		case BidulgiResponseCode.RESPONSE_SEND_MESSAGE_SUCCESS:
 			unlockUI();
-			Toast.makeText(this, "편지보내기에 성공하였습니다.",Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "편지보내기에 성공하였습니다.", Toast.LENGTH_SHORT).show();
 			break;
 		}
 	}

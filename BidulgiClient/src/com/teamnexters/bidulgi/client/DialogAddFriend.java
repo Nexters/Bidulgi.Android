@@ -179,9 +179,14 @@ public class DialogAddFriend extends UIHandlingActivity {
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 			// TODO Auto-generated method stub
-			if (monthOfYear + 1 < 10) {
+			if (monthOfYear + 1 < 10 && dayOfMonth >= 10) {
 				editDate.setText(new StringBuilder().append(year).append(0).append(monthOfYear + 1).append(dayOfMonth));
-			} else {
+			} else if(monthOfYear + 1 >= 10 && dayOfMonth < 10){
+				editDate.setText(new StringBuilder().append(year).append(monthOfYear + 1).append(0).append(dayOfMonth));
+			} else if(monthOfYear + 1 < 10 && dayOfMonth < 10){
+				editDate.setText(new StringBuilder().append(year).append(0).append(monthOfYear + 1).append(0).append(dayOfMonth));
+			}
+			else {
 				editDate.setText(new StringBuilder().append(year).append(monthOfYear + 1).append(dayOfMonth));
 			}
 		}

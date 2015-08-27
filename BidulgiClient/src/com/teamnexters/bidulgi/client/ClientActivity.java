@@ -102,9 +102,9 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 			 */
 
 			return true;
+		} else {
+			return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
-
 	}
 
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
