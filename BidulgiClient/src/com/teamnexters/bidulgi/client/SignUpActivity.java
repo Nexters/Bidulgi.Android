@@ -76,6 +76,7 @@ public class SignUpActivity extends UIHandlingActivity {
 				pref = getSharedPreferences("email", Activity.MODE_PRIVATE);
 				SharedPreferences.Editor editor = pref.edit();
 				editor.putString("email", editEmail.getText().toString());
+				editor.putString("password", editPassWord.getText().toString());
 				Log.d("aaa", "회원가입 email은 " + editEmail.getText().toString());
 				editor.commit();
 

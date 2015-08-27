@@ -42,6 +42,11 @@ public class MainActivity extends UIHandlingActivity {
 		pref = getSharedPreferences("email", Activity.MODE_PRIVATE);
 		Log.d("pref", "pref 값은 " + pref.getString("email", "Nothing"));
 		if (pref.contains("email")) {
+			LoginRequestPacket request = new LoginRequestPacket();
+			request.setEmail(pref.getString("email", null));
+			request.setPassword(pref.getString("password", null));
+			request.setRequestCode(BidulgiRequestCode.REQUEST_LOGIN);
+			HttpRequestThread.getInstance().addRequest(request);
 			intent = new Intent(getApplicationContext(), ClientActivity.class);
 			startActivity(intent);
 			finish();
@@ -70,6 +75,7 @@ public class MainActivity extends UIHandlingActivity {
 			pref = getSharedPreferences("email", Activity.MODE_PRIVATE);
 			SharedPreferences.Editor editor = pref.edit();
 			editor.putString("email", editEmail.getText().toString());
+			editor.putString("password", editPassWord.getText().toString());
 			Log.d("aaaa", "로그인 ID는 " + editEmail.getText().toString());
 			editor.commit();
 			intent = new Intent(getApplicationContext(), ClientActivity.class);
