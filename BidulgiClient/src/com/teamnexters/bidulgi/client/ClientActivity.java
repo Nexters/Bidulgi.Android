@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
-import com.teamnexters.bidulgi.common.data.NiceAuthData;
 import com.teamnexters.bidulgi.common.data.SoldierData;
 import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
 import com.teamnexters.bidulgi.common.request.CommonRequestPacket;
@@ -24,7 +23,6 @@ import com.teamnexters.bidulgi.common.request.NiceAuthRequestPacket;
 import com.teamnexters.bidulgi.common.request.StringRequestPacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
-import com.teamnexters.bidulgi.common.response.NiceImageResponsePacket;
 import com.teamnexters.bidulgi.common.response.SoldierListResponsePacket;
 import com.teamnexters.bidulgi.fragments.BidoolgiFreinds;
 import com.teamnexters.bidulgi.fragments.BidoolgiMail;
@@ -167,6 +165,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 							soldierData.getNumber().toString(), soldierData.getSoldierId());
 
 				}
+				SoldierInfoStore.getInstance().reload(data);
 				break;
 			} catch (Exception e) {
 				Log.d("error", "리스트 목록 받아올 때 에러 발생 에러 내용은 " + e.toString());
@@ -189,11 +188,9 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 			break;
 		case BidulgiResponseCode.RESPONSE_NICE_AUTH_IMAGE:
 			unlockUI();
-			String authImageSrc = ((NiceImageResponsePacket) response).getImageSrc();
-			String niceCookie = ((NiceImageResponsePacket) response).getNiceCookie();
 			Toast.makeText(this, "자동방지 확인 문자를 입력해주세요", Toast.LENGTH_SHORT).show();
 			if (niceAuthDialog != null && niceAuthDialog.isShowing()) {
-				niceAuthDialog.showAuthImage(authImageSrc, niceCookie);
+				niceAuthDialog.showAuthImage();
 			}
 			break;
 		case BidulgiResponseCode.RESPONSE_NICE_SMS_SUCCESS:

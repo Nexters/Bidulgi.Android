@@ -6,6 +6,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
@@ -105,5 +107,14 @@ public class HttpRequestThread extends Thread implements BidulgiRequestCode {
 				} catch (InterruptedException e) {}
 			}
 		}
+	}
+	
+	public String getJSessionId(){
+		for(Cookie cookie : ((DefaultHttpClient)clientManager.getHttpClient()).getCookieStore().getCookies()){
+			if(cookie.getName().equals("JSESSIONID")){
+				return cookie.getValue();
+			}
+		}
+		return null;
 	}
 }

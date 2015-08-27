@@ -1,6 +1,5 @@
 package com.teamnexters.bidulgi.nice;
 
-import com.teamnexters.bidulgi.common.data.NiceAuthData;
 import com.teamnexters.bidulgi.common.request.NiceAuthRequestPacket;
 
 public interface NiceAuthRequester {

@@ -20,4 +20,5 @@ public interface BidulgiRequestUri {
 	public String REQUEST_SEND_MESSAGE = "/service/send-message";
 	public String REQUEST_LIST_SOLDIER_MESSAGE = "/service/list-soldier-message";
 	public String REQUEST_LIST_USER_MESSAGE = "/service/list-user-message";
+	public String REQUEST_NICE_AUTH_IMAGE = "/service/nice-auth-image";
 }
