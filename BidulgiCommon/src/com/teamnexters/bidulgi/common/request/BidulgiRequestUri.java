@@ -18,4 +18,6 @@ public interface BidulgiRequestUri {
 	public String REQUEST_SEND_NICE_SMS = "/service/send-nice-sms";
 	public String REQUEST_NOTIFY_SMS_NUMBER = "/service/notify-sms-number";
 	public String REQUEST_SEND_MESSAGE = "/service/send-message";
+	public String REQUEST_LIST_SOLDIER_MESSAGE = "/service/list-soldier-message";
+	public String REQUEST_LIST_USER_MESSAGE = "/service/list-user-message";
 }

@@ -22,6 +22,7 @@ public abstract class BidulgiResponsePacket implements BidulgiResponseCode{
 			return LongResponsePacket.class;
 		case RESPONSE_REGISTRATION_SUCCESS:
 		case RESPONSE_LOGIN_SUCCESS:
+		case RESPONSE_NICE_AUTH_SUCCESS:
 			return LoginResponsePacket.class;
 		case RESPONSE_LIST_FRIEND_SOLDIER:
 			return SoldierListResponsePacket.class;
@@ -29,6 +30,10 @@ public abstract class BidulgiResponsePacket implements BidulgiResponseCode{
 			return SoldierResponsePacket.class;
 		case RESPONSE_NICE_AUTH_IMAGE:
 			return NiceImageResponsePacket.class;
+		case RESPONSE_LIST_SOLDIER_MESSAGE:
+		case RESPONSE_LIST_USER_MESSAGE:
+		case RESPONSE_SEND_MESSAGE_SUCCESS:
+			return MessageListResponsePacket.class;
 		}
 		return CommonResponsePacket.class;
 	}

@@ -22,4 +22,7 @@ public interface BidulgiResponseCode {
 	public int RESPONSE_NICE_AUTH_SUCCESS = 18;
 	public int RESPONSE_SEND_MESSAGE_SUCCESS = 19;
 	public int RESPONSE_SEND_MESSAGE_FAIL = 20;
+	public int RESPONSE_LIST_SOLDIER_MESSAGE = 21;
+	public int RESPONSE_LIST_USER_MESSAGE = 22;
+	public int RESPONSE_REQUIRE_NICE_AUTH = 23;
 }

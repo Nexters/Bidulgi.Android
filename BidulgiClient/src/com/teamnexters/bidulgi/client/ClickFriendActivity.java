@@ -22,9 +22,12 @@ import com.teamnexters.bidulgi.common.request.MessageRequestPacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 import com.teamnexters.bidulgi.glide.CircleTransform;
+import com.teamnexters.bidulgi.message.MessageSendActivity;
 
 public class ClickFriendActivity extends UIHandlingActivity implements OnClickListener {
 
+	public static final int REQUEST_CODE_SEND_MESSAGE = 1000;
+	
 	Intent intent;
 	ImageView imgFriend;
 	TextView txtFriendName;
@@ -125,29 +128,35 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btnEditMail:
-			lockUI();
-			MessageRequestPacket messageRequest = new MessageRequestPacket();
-			messageRequest.setArticlePassword("1234");
-			messageRequest.setArticleText("군생활 잘하세요 ^^");
-			messageRequest.setArticleTitle("군생활 잘하세요 ^^");
-			messageRequest.setSoldierId(soldierId);
-			messageRequest.setRequestCode(BidulgiRequestCode.REQUEST_SEND_MESSAGE);
-			HttpRequestThread.getInstance().addRequest(messageRequest);
+			Intent i = new Intent(this, MessageSendActivity.class);
+			i.putExtra(MessageSendActivity.INTENT_KEY_SOLDIER_ID, soldierId);
+			startActivityForResult(i, REQUEST_CODE_SEND_MESSAGE);
+			break;
+		}
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case REQUEST_CODE_SEND_MESSAGE:
+			switch (resultCode) {
+			case MessageSendActivity.RESULT_CODE_SEND_SUCCESS:
+				Toast.makeText(this, "편지 전송에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+				break;
+			case MessageSendActivity.RESULT_CODE_SEND_FAIL:
+				Toast.makeText(this, "편지 전송에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+				break;
+			case MessageSendActivity.RESULT_CODE_SEND_NICE_AUTH_REQUIRE:
+				Toast.makeText(this, "본인 인증이 필요합니다.", Toast.LENGTH_SHORT).show();
+				break;
+			}
 			break;
 		}
 	}
 
 	@Override
 	public void onHandleUI(BidulgiResponsePacket response) {
-		switch (response.getResponseCode()) {
-		case BidulgiResponseCode.RESPONSE_SEND_MESSAGE_FAIL:
-			unlockUI();
-			Toast.makeText(this, "편지보내기에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-			break;
-		case BidulgiResponseCode.RESPONSE_SEND_MESSAGE_SUCCESS:
-			unlockUI();
-			Toast.makeText(this, "편지보내기에 성공하였습니다.", Toast.LENGTH_SHORT).show();
-			break;
-		}
+
 	}
 }
