@@ -1,7 +1,9 @@
 package com.teamnexters.bidulgi.client;
 
+import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -135,6 +137,7 @@ public class DialogAddFriend extends UIHandlingActivity {
 
 			return new DatePickerDialog(this, mDateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
 					cal.get(Calendar.DAY_OF_MONTH));
+			
 
 		}
 		return null;
@@ -178,6 +181,12 @@ public class DialogAddFriend extends UIHandlingActivity {
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 			// TODO Auto-generated method stub
+			Date date = new Date(year,monthOfYear,dayOfMonth);
+			Calendar cal = new GregorianCalendar(Locale.KOREA);
+			cal.set(year, monthOfYear, dayOfMonth);
+			cal.add(Calendar.MONTH, 21);
+			cal.add(Calendar.DAY_OF_MONTH, -1);
+			Log.d("aaaa", cal.getTime().toString());
 			if (monthOfYear + 1 < 10 && dayOfMonth >= 10) {
 				editDate.setText(new StringBuilder().append(year).append(0).append(monthOfYear + 1).append(dayOfMonth));
 			} else if(monthOfYear + 1 >= 10 && dayOfMonth < 10){
@@ -188,6 +197,7 @@ public class DialogAddFriend extends UIHandlingActivity {
 			else {
 				editDate.setText(new StringBuilder().append(year).append(monthOfYear + 1).append(dayOfMonth));
 			}
+			
 		}
 	};
 
