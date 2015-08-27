@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.view.ViewPager;
-import android.text.style.TabStopSpan;
 import android.util.Log;
 
 public class BidoolgiActionBar {

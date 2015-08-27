@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/editMails"
+    <ListView
+        android:id="@+id/messageListMessageListView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:ems="300"
-        android:hint="300자 이내로 작성하세요." >
-    </EditText>
+        android:layout_height="wrap_content" >
+    </ListView>
 
-    <Button
-        android:id="@+id/btnSendMail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editMails"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:text="보내기" />
-
-</RelativeLayout>
+</LinearLayout>

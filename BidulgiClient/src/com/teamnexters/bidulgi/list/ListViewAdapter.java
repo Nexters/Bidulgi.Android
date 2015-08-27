@@ -2,10 +2,6 @@ package com.teamnexters.bidulgi.list;
 
 import java.util.ArrayList;
 
-import com.bumptech.glide.Glide;
-import com.teamnexters.bidulgi.client.R;
-import com.teamnexters.bidulgi.glide.CircleTransform;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.teamnexters.bidulgi.client.R;
+import com.teamnexters.bidulgi.glide.CircleTransform;
 
 public class ListViewAdapter extends BaseAdapter {
 

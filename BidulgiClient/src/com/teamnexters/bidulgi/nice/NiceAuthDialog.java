@@ -2,6 +2,7 @@ package com.teamnexters.bidulgi.nice;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -16,8 +17,11 @@ import android.widget.Spinner;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.Headers;
+import com.bumptech.glide.signature.StringSignature;
 import com.teamnexters.bidulgi.client.R;
-import com.teamnexters.bidulgi.common.data.NiceAuthData;
+import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.client.network.NetworkConfiguration;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestUri;
 import com.teamnexters.bidulgi.common.request.NiceAuthRequestPacket;
 
 public class NiceAuthDialog extends Dialog implements android.view.View.OnClickListener {
@@ -66,19 +70,19 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 		smsSubmitButton.setOnClickListener(this);
 	}
 
-	public void showAuthImage(String authImageSrc, final String niceCookie) {
+	public void showAuthImage() {
 		infoLayout.setVisibility(View.GONE);
 		imageLayout.setVisibility(View.VISIBLE);
-		GlideUrl glideUrl = new GlideUrl(authImageSrc, new Headers() {
+		GlideUrl glideUrl = new GlideUrl(NetworkConfiguration.getHost()+BidulgiRequestUri.REQUEST_NICE_AUTH_IMAGE, new Headers() {
 			
 			@Override
 			public Map<String, String> getHeaders() {
 				Map<String,String> returnMap = new HashMap<String, String>();
-				returnMap.put("Cookie", "JSESSIONID="+niceCookie);
+				returnMap.put("Cookie", "JSESSIONID="+HttpRequestThread.getInstance().getJSessionId());
 				return returnMap;
 			}
 		});
-		Glide.with(getContext()).load(glideUrl).into(authImageView);
+		Glide.with(getContext()).load(glideUrl).signature(new StringSignature(UUID.randomUUID().toString())).into(authImageView);
 	}
 
 	public void listenSMS() {

@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.teamnexters.bidulgi.client.R;
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;

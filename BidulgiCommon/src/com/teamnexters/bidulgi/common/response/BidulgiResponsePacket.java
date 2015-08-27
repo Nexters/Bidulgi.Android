@@ -29,7 +29,6 @@ public abstract class BidulgiResponsePacket implements BidulgiResponseCode{
 		case RESPONSE_SOLDIER_INFO:
 			return SoldierResponsePacket.class;
 		case RESPONSE_NICE_AUTH_IMAGE:
-			return NiceImageResponsePacket.class;
 		case RESPONSE_LIST_SOLDIER_MESSAGE:
 		case RESPONSE_LIST_USER_MESSAGE:
 		case RESPONSE_SEND_MESSAGE_SUCCESS:

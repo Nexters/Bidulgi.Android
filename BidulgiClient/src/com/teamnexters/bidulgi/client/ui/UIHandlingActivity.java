@@ -3,11 +3,7 @@ package com.teamnexters.bidulgi.client.ui;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.teamnexters.bidulgi.client.R;
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 

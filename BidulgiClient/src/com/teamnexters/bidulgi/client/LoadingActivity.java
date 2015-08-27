@@ -2,11 +2,9 @@ package com.teamnexters.bidulgi.client;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Paint.Join;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Window;
 import android.widget.ImageView;
 
 public class LoadingActivity extends Activity {

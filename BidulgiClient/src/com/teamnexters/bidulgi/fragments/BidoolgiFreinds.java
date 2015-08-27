@@ -2,15 +2,6 @@ package com.teamnexters.bidulgi.fragments;
 
 import java.util.ArrayList;
 
-import com.teamnexters.bidulgi.client.ClickFriendActivity;
-import com.teamnexters.bidulgi.client.DialogLongClickFriend;
-import com.teamnexters.bidulgi.client.R;
-import com.teamnexters.bidulgi.client.network.HttpRequestThread;
-import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
-import com.teamnexters.bidulgi.common.request.LongRequestPacket;
-import com.teamnexters.bidulgi.list.ListViewAdapter;
-import com.teamnexters.bidulgi.list.ListViewItem;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,10 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ImageView;
+import android.widget.ListView;
+
+import com.teamnexters.bidulgi.client.ClickFriendActivity;
+import com.teamnexters.bidulgi.client.DialogLongClickFriend;
+import com.teamnexters.bidulgi.client.R;
+import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
+import com.teamnexters.bidulgi.common.request.LongRequestPacket;
+import com.teamnexters.bidulgi.list.ListViewAdapter;
+import com.teamnexters.bidulgi.list.ListViewItem;
 
 public class BidoolgiFreinds extends Fragment {
 	ListView listView;

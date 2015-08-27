@@ -1,14 +1,6 @@
 package com.teamnexters.bidulgi.client;
 
-import com.teamnexters.bidulgi.client.network.HttpRequestThread;
-import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
-import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
-import com.teamnexters.bidulgi.common.request.LoginRequestPacket;
-import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
-import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
-
 import android.app.Activity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -19,6 +11,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
+import com.teamnexters.bidulgi.common.request.LoginRequestPacket;
+import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
+import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 
 public class MainActivity extends UIHandlingActivity {
 
