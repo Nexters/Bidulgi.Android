@@ -40,4 +40,6 @@
         <item>LGU+(알뜰폰)</item>
     </string-array>
 
+    <string name="title_activity_click_mail">ClickMailActivity</string>
+
 </resources>

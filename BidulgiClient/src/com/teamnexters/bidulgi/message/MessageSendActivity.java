@@ -81,7 +81,7 @@ public class MessageSendActivity extends UIHandlingActivity {
 
 		switch (item.getItemId()) {
 		case R.id.itemSendMail:
-			
+
 			if (titleEditText.getText().toString().length() != 0) {
 				if (contentEditText.getText().toString().length() != 0) {
 					if (passwordEditText.getText().toString().length() != 0) {
@@ -105,8 +105,6 @@ public class MessageSendActivity extends UIHandlingActivity {
 			} else {
 				Toast.makeText(getApplicationContext(), "제목을 입력 해 주세요.", Toast.LENGTH_SHORT).show();
 			}
-			
-			
 
 		}
 		return super.onOptionsItemSelected(item);

@@ -20,8 +20,8 @@
         android:allowBackup="true"
         android:icon="@drawable/launchericon01"
         android:label="Bidoolgi"
-        android:theme="@style/CustomActionBarTheme"
-        android:largeHeap="true" >
+        android:largeHeap="true"
+        android:theme="@style/CustomActionBarTheme" >
         <activity
             android:name=".LoadingActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
@@ -64,7 +64,12 @@
             android:label="@string/title_activity_dialog_add_friend"
             android:theme="@style/DialogAddFriendTheme" >
         </activity>
-        <activity android:name="com.teamnexters.bidulgi.message.MessageSendActivity"></activity>
+        <activity android:name="com.teamnexters.bidulgi.message.MessageSendActivity" >
+        </activity>
+        <activity
+            android:name=".ClickMailActivity"
+            android:label="@string/title_activity_click_mail" >
+        </activity>
     </application>
 
 </manifest>

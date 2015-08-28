@@ -38,18 +38,18 @@ public class BidoolgiFreinds extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 
 		Log.d("data", "data 값 비었니 " + data.isEmpty());
-		try{
-		ListView listView = (ListView) getView().findViewById(R.id.listview);
-		listView.setBackgroundResource(R.drawable.backgroundWhite);
-		ImageView imgEmpty = (ImageView) getView().findViewById(R.id.imgEmpty);
-		listView.setEmptyView(imgEmpty);
-		adapter = new ListViewAdapter(getView().getContext(), R.layout.fragment_list, data);
-		listView.setAdapter(adapter);
-		listView.setOnItemClickListener(onItemClickListener);
-		listView.setOnItemLongClickListener(onItemLongClickListener);
-		Log.d("data", "data 값 비었니 " + data.isEmpty());
-		} catch(Exception e){
-			Log.d("data", "data 에러는" +  e.toString());
+		try {
+			ListView listView = (ListView) getView().findViewById(R.id.listview);
+			listView.setBackgroundResource(R.drawable.backgroundWhite);
+			ImageView imgEmpty = (ImageView) getView().findViewById(R.id.imgEmpty);
+			listView.setEmptyView(imgEmpty);
+			adapter = new ListViewAdapter(getView().getContext(), R.layout.fragment_list, data);
+			listView.setAdapter(adapter);
+			listView.setOnItemClickListener(onItemClickListener);
+			listView.setOnItemLongClickListener(onItemLongClickListener);
+			Log.d("data", "data 값 비었니 " + data.isEmpty());
+		} catch (Exception e) {
+			Log.d("data", "data 에러는" + e.toString());
 		}
 
 	}
@@ -63,17 +63,19 @@ public class BidoolgiFreinds extends Fragment {
 
 	}
 
-	public void addData(String profilePhotoSrc, String name , String date , String regiment, String company, String platoon, String number, Long soldierId) {
+	public void addData(String profilePhotoSrc, String name, String date, String regiment, String company,
+			String platoon, String number, Long soldierId) {
 
 		Log.d("aaaa", "넘어온 String 값은 " + name);
 		if (name.equals("나둘기")) {
-			ListViewItem test1 = new ListViewItem(profilePhotoSrc, name, "복무중ㅠ.ㅠ","","","","",null);
+			ListViewItem test1 = new ListViewItem(profilePhotoSrc, name, "복무중ㅠ.ㅠ", "", "", "", "", null);
 
 			data.add(test1);
 
 			adapter.notifyDataSetChanged();
 		} else {
-			ListViewItem test1 = new ListViewItem(profilePhotoSrc, name, date , regiment,company, platoon, number, soldierId);
+			ListViewItem test1 = new ListViewItem(profilePhotoSrc, name, date, regiment, company, platoon, number,
+					soldierId);
 
 			data.add(test1);
 
@@ -89,7 +91,6 @@ public class BidoolgiFreinds extends Fragment {
 		HttpRequestThread.getInstance().addRequest(request);
 		data.remove(position);
 		adapter.notifyDataSetChanged();
-		
 
 	}
 
@@ -102,7 +103,8 @@ public class BidoolgiFreinds extends Fragment {
 			intent.putExtra("profilePhotoSrc", data.get(position).getProfilePhotoSrc());
 			intent.putExtra("name", data.get(position).getName());
 			intent.putExtra("regiment", data.get(position).getRegiment());
-			intent.putExtra("address", data.get(position).getRegiment()+"연대 "+data.get(position).getCompany()+"소대 "+data.get(position).getPlatoon()+"분대 "+data.get(position).getNumber()+"번 훈련병");
+			intent.putExtra("address", data.get(position).getRegiment() + "연대 " + data.get(position).getCompany()
+					+ "소대 " + data.get(position).getPlatoon() + "분대 " + data.get(position).getNumber() + "번 훈련병");
 			intent.putExtra("enterDate", data.get(position).getDate());
 			intent.putExtra("id", data.get(position).getsoldierId());
 			startActivity(intent);
@@ -126,6 +128,5 @@ public class BidoolgiFreinds extends Fragment {
 		}
 
 	};
-
 
 }

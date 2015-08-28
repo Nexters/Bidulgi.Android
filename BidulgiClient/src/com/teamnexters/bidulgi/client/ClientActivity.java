@@ -15,14 +15,17 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.common.data.MessageData;
 import com.teamnexters.bidulgi.common.data.SoldierData;
 import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
 import com.teamnexters.bidulgi.common.request.CommonRequestPacket;
 import com.teamnexters.bidulgi.common.request.LongRequestPacket;
+import com.teamnexters.bidulgi.common.request.MessageRequestPacket;
 import com.teamnexters.bidulgi.common.request.NiceAuthRequestPacket;
 import com.teamnexters.bidulgi.common.request.StringRequestPacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.common.response.MessageListResponsePacket;
 import com.teamnexters.bidulgi.common.response.SoldierListResponsePacket;
 import com.teamnexters.bidulgi.fragments.BidoolgiFreinds;
 import com.teamnexters.bidulgi.fragments.BidoolgiMail;
@@ -37,6 +40,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 	private NiceAuthDialog niceAuthDialog;
 
 	BidoolgiFreinds fragmentFriends;
+	BidoolgiMail fragmentMail;
 	Intent intent;
 
 	static int CURRENT_PAGE = 0;
@@ -53,13 +57,23 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 		actionBar.setViewPager(mViewPager);
 
 		fragmentFriends = (BidoolgiFreinds) mSectionsPagerAdapter.fragments.get(0);
+		fragmentMail = (BidoolgiMail) mSectionsPagerAdapter.fragments.get(1);
 
 		try {
 			CommonRequestPacket request = new CommonRequestPacket();
 			request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_FRIEND_SOLDIER);
 			HttpRequestThread.getInstance().addRequest(request);
+
 		} catch (Exception e) {
 			Log.d("error", "군인친구 목록 조회 에러" + e.toString());
+		}
+
+		try {
+			CommonRequestPacket requestMailList = new CommonRequestPacket();
+			requestMailList.setRequestCode(BidulgiRequestCode.REQUEST_LIST_USER_MESSAGE);
+			HttpRequestThread.getInstance().addRequest(requestMailList);
+		} catch (Exception e) {
+			Log.d("error", "편지목록 조회 에러" + e.toString());
 		}
 		/*
 		 * CommonRequestPacket requestAdd = new CommonRequestPacket();
@@ -170,6 +184,22 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 			} catch (Exception e) {
 				Log.d("error", "리스트 목록 받아올 때 에러 발생 에러 내용은 " + e.toString());
 			}
+
+		case BidulgiResponseCode.RESPONSE_LIST_USER_MESSAGE:
+			try {
+				MessageListResponsePacket responseMessageList = (MessageListResponsePacket) response;
+				if (responseMessageList.getMessageData() != null) {
+
+					fragmentMail.refreshList(responseMessageList.getMessageData());
+					Log.d("aaaa", "편지 리스트 목록 회신 내용은" + responseMessageList.getMessageData());
+
+				} else {
+					Log.d("aaaa", "편지 리스트 목록 회신 내용은" + responseMessageList.getMessageData());
+				}
+			} catch (Exception e) {
+				Log.d("aaaa", "리스폰스 에러" + e.toString());
+			}
+			break;
 		case BidulgiResponseCode.RESPONSE_NICE_AUTH_FAIL:
 			unlockUI();
 			Toast.makeText(this, "본인인증에 실패하였습니다.", Toast.LENGTH_SHORT).show();
