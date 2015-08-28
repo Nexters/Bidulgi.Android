@@ -80,6 +80,7 @@ public class BidoolgiFreinds extends Fragment {
 			data.add(test1);
 
 			adapter.notifyDataSetChanged();
+			
 		}
 
 	}

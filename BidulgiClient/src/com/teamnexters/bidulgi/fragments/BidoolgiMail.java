@@ -61,8 +61,7 @@ public class BidoolgiMail extends Fragment {
 			intent.putExtra("id", soldierInfoStore.getData(soldierDataList.get(position).getReceiveSoldierId()).getSoldierId());
 			Log.d("aaaa", "메일 리스트 클릭시 넘어가는 훈련병 이름 " + soldierInfoStore.getData(soldierDataList.get(position).getReceiveSoldierId()).getName());
 			
-			startActivity(intent);
-			getActivity().finish();
+			startActivityForResult(intent, 3);
 			/*intent.putExtra("name", data.get(position).getName());
 			intent.putExtra("regiment", data.get(position).getRegiment());
 			intent.putExtra("address", data.get(position).getRegiment() + "연대 " + data.get(position).getCompany()

@@ -1,14 +1,21 @@
 package com.teamnexters.bidulgi.client;
 
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 
 import com.bumptech.glide.Glide;
+import com.teamnexters.bidulgi.client.network.HttpRequestThread;
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestPacket;
+import com.teamnexters.bidulgi.common.request.LongRequestPacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.common.response.MessageListResponsePacket;
 import com.teamnexters.bidulgi.glide.CircleTransform;
 import com.teamnexters.bidulgi.message.SoldierMessageAdapter;
-
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,22 +31,33 @@ public class ClickMailActivity extends UIHandlingActivity {
 	private TextView txtMailFriendName;
 	private ListView mailListMessageListView;
 	private SoldierMessageAdapter soldierMessageAdapter;
+	private ActionBar actionBar;
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_click_mail);
 
-		intent = getIntent();
-		imgMailFriend = (ImageView) findViewById(R.id.imgMailFriend);
-		txtMailFriendName = (TextView) findViewById(R.id.txtMailFriendName);
+		actionBar = getActionBar();
+		actionBar.setTitle(null);
+		actionBar.setIcon(null);
+		actionBar.setDisplayHomeAsUpEnabled(false);
+		actionBar.setDisplayUseLogoEnabled(false);
 		
-		Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc")).transform(new CircleTransform(getApplicationContext())).into(imgMailFriend);
-		txtMailFriendName.setText(intent.getExtras().getString("name"));
-		mailListMessageListView = (ListView) findViewById(R.id.mailListMessageListView);
-		
+		LongRequestPacket request = new LongRequestPacket();
+		request.setValue(intent.getExtras().getLong("id"));
+		request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_SOLDIER_MESSAGE);
+		HttpRequestThread.getInstance().addRequest(request);
 
 	}
+
+	public void onBackPressed() {
+		Intent intent = new Intent();
+		intent.putExtra("back", true);
+		setResult(3, intent);
+		finish();
+	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,11 +82,25 @@ public class ClickMailActivity extends UIHandlingActivity {
 	@Override
 	public void onHandleUI(BidulgiResponsePacket response) {
 		// TODO Auto-generated method stub
-
-		switch(response.getResponseCode()){
+		Log.d("aaaa", "BidulgiResponseCode는" + response.getResponseCode());
+		switch (response.getResponseCode()) {
 		case BidulgiResponseCode.RESPONSE_LIST_SOLDIER_MESSAGE:
-		mailListMessageListView.setAdapter(soldierMessageAdapter);
-		break;
+
+			MessageListResponsePacket messageListResponsePacket = (MessageListResponsePacket) response;
+			soldierMessageAdapter = new SoldierMessageAdapter(messageListResponsePacket.getMessageData(),
+					getApplication());
+
+			intent = getIntent();
+			imgMailFriend = (ImageView) findViewById(R.id.imgMailFriend);
+			txtMailFriendName = (TextView) findViewById(R.id.txtMailFriendName);
+			Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc"))
+					.transform(new CircleTransform(getApplicationContext())).into(imgMailFriend);
+			txtMailFriendName.setText(intent.getExtras().getString("name"));
+			mailListMessageListView = (ListView) findViewById(R.id.mailListMessageListView);
+
+			mailListMessageListView.setAdapter(soldierMessageAdapter);
+
+			break;
 		}
 	}
 }

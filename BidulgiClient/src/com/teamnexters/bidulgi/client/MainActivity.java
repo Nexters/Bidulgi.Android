@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;

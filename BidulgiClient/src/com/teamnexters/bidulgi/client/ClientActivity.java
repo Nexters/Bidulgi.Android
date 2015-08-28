@@ -133,6 +133,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 
 			} else {
 			}
+			break;
 		case 1:
 			if (data.getBooleanExtra("addFriend", false)) { // 친구추가 여부 확인
 				// 친구추가 시 시행할 동작
@@ -151,12 +152,21 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 
 			} else {
 			}
+			break;
 		case 2:
 			if (data.getBooleanExtra("sendEmail", false)) {
 				Toast.makeText(getApplicationContext(), "편지가 전송 되었습니다.", Toast.LENGTH_SHORT).show();
 			} else {
 
 			}
+			break;
+		case 3:
+			if (data.getBooleanExtra("back", false)) {
+				mViewPager.setCurrentItem(1);
+			} else {
+
+			}
+			break;
 		}
 
 	}
