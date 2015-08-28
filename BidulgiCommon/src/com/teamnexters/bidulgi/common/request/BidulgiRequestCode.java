@@ -12,4 +12,6 @@ public interface BidulgiRequestCode {
 	public int REQUEST_SEND_NICE_SMS = 8;
 	public int REQUEST_NOTIFY_SMS_NUMBER = 9;
 	public int REQUEST_SEND_MESSAGE = 10;
+	public int REQUEST_LIST_SOLDIER_MESSAGE = 11;
+	public int REQUEST_LIST_USER_MESSAGE = 12;
 }
