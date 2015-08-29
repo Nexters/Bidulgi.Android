@@ -44,7 +44,7 @@ public class ClickMailActivity extends UIHandlingActivity {
 		actionBar.setIcon(null);
 		actionBar.setDisplayHomeAsUpEnabled(false);
 		actionBar.setDisplayUseLogoEnabled(false);
-		
+		intent =getIntent();
 		LongRequestPacket request = new LongRequestPacket();
 		request.setValue(intent.getExtras().getLong("id"));
 		request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_SOLDIER_MESSAGE);

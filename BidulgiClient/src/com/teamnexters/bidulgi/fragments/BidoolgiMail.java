@@ -33,6 +33,9 @@ public class BidoolgiMail extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 		listView = (ListView) getView().findViewById(R.id.messageListMessageListView);
 		listView.setBackgroundResource(R.drawable.backgroundWhite);
+		if (soldierDataList != null) {
+			refreshList(soldierDataList);
+		}
 	}
 
 	@Override
@@ -58,18 +61,21 @@ public class BidoolgiMail extends Fragment {
 			intent = new Intent(getView().getContext(), ClickMailActivity.class);
 			intent.putExtra("profilePhotoSrc", soldierInfoStore.getData(soldierDataList.get(position).getReceiveSoldierId()).getProfilePhotoSrc());
 			intent.putExtra("name", soldierInfoStore.getData(soldierDataList.get(position).getReceiveSoldierId()).getName());
-			intent.putExtra("id", soldierInfoStore.getData(soldierDataList.get(position).getReceiveSoldierId()).getSoldierId());
+			intent.putExtra("id", soldierDataList.get(position).getReceiveSoldierId());
 			Log.d("aaaa", "메일 리스트 클릭시 넘어가는 훈련병 이름 " + soldierInfoStore.getData(soldierDataList.get(position).getReceiveSoldierId()).getName());
-			
+
 			startActivityForResult(intent, 3);
-			/*intent.putExtra("name", data.get(position).getName());
-			intent.putExtra("regiment", data.get(position).getRegiment());
-			intent.putExtra("address", data.get(position).getRegiment() + "연대 " + data.get(position).getCompany()
-					+ "소대 " + data.get(position).getPlatoon() + "분대 " + data.get(position).getNumber() + "번 훈련병");
-			intent.putExtra("enterDate", data.get(position).getDate());
-			intent.putExtra("id", data.get(position).getsoldierId());
-			startActivity(intent);
-			getActivity().finish();*/
+			/*
+			 * intent.putExtra("name", data.get(position).getName());
+			 * intent.putExtra("regiment", data.get(position).getRegiment());
+			 * intent.putExtra("address", data.get(position).getRegiment() +
+			 * "연대 " + data.get(position).getCompany() + "소대 " +
+			 * data.get(position).getPlatoon() + "분대 " +
+			 * data.get(position).getNumber() + "번 훈련병");
+			 * intent.putExtra("enterDate", data.get(position).getDate());
+			 * intent.putExtra("id", data.get(position).getsoldierId());
+			 * startActivity(intent); getActivity().finish();
+			 */
 		}
 
 	};

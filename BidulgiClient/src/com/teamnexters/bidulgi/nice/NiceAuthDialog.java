@@ -30,14 +30,17 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 	private NiceAuthRequester requester;
 	private Spinner mobileCoporationSpinner;
 	private ImageView authImageView;
-	private Button infoSubmitButton,imageSubmitButton,smsSubmitButton;
-	private EditText nameEditText, birthYearEditText, birthMonthEditText, birthDayEditText, phoneNumber1EditText, phoneNumber2EditText, phoneNumber3EditText, imageEditText, smsEditText;
+	private Button infoSubmitButton, imageSubmitButton, smsSubmitButton;
+	private EditText nameEditText, birthYearEditText, birthMonthEditText, birthDayEditText, phoneNumber1EditText, phoneNumber2EditText, phoneNumber3EditText,
+			imageEditText, smsEditText;
 	private RadioGroup genderRadioGroup, nationRadioGroup;
+
 	public NiceAuthDialog(Context context, NiceAuthRequester requester) {
 		super(context);
 		setCanceledOnTouchOutside(false);
 		this.requester = requester;
 	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,16 +58,16 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 		phoneNumber3EditText = (EditText) findViewById(R.id.niceAuthPhoneNumber3EditText);
 		genderRadioGroup = (RadioGroup) findViewById(R.id.niceAuthGenderRadioGroup);
 		nationRadioGroup = (RadioGroup) findViewById(R.id.niceAuthNationRadioGroup);
-		
+
 		authImageView = (ImageView) findViewById(R.id.niceAuthAuthImageView);
 		imageEditText = (EditText) findViewById(R.id.niceAuthImageEditText);
-		
+
 		smsEditText = (EditText) findViewById(R.id.niceAuthSMSEditText);
-		
+
 		infoLayout = findViewById(R.id.niceAuthInfoLayout);
 		imageLayout = findViewById(R.id.niceAuthImageLayout);
 		smsLayout = findViewById(R.id.niceAuthSMSLayout);
-		
+
 		infoSubmitButton.setOnClickListener(this);
 		imageSubmitButton.setOnClickListener(this);
 		smsSubmitButton.setOnClickListener(this);
@@ -73,12 +76,12 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 	public void showAuthImage() {
 		infoLayout.setVisibility(View.GONE);
 		imageLayout.setVisibility(View.VISIBLE);
-		GlideUrl glideUrl = new GlideUrl(NetworkConfiguration.getHost()+BidulgiRequestUri.REQUEST_NICE_AUTH_IMAGE, new Headers() {
-			
+		GlideUrl glideUrl = new GlideUrl(NetworkConfiguration.getHost() + BidulgiRequestUri.REQUEST_NICE_AUTH_IMAGE, new Headers() {
+
 			@Override
 			public Map<String, String> getHeaders() {
-				Map<String,String> returnMap = new HashMap<String, String>();
-				returnMap.put("Cookie", "JSESSIONID="+HttpRequestThread.getInstance().getJSessionId());
+				Map<String, String> returnMap = new HashMap<String, String>();
+				returnMap.put("Cookie", "JSESSIONID=" + HttpRequestThread.getInstance().getJSessionId());
 				return returnMap;
 			}
 		});
@@ -88,8 +91,11 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 	public void listenSMS() {
 		imageLayout.setVisibility(View.GONE);
 		smsLayout.setVisibility(View.VISIBLE);
-		
 	}
+	public void fillSMSCode(String authCode) {
+		smsEditText.setText(authCode);
+	}
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -98,18 +104,13 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 			request.setBirthDate1(birthYearEditText.getText().toString());
 			request.setBirthDate2(birthMonthEditText.getText().toString());
 			request.setBirthDate3(birthDayEditText.getText().toString());
-			
-			request.setGender(genderRadioGroup.getCheckedRadioButtonId()==R.id.niceAuthGenderMale?1:0);
-		/*
-		<string-array name="mobile_co">
-	        <item>SKT</item>
-	        <item>KT</item>
-	        <item>LGU+</item>
-	        <item>SKT(알뜰폰)</item>
-	        <item>KT(알뜰폰)</item>
-	        <item>LGU+(알뜰폰)</item>
-	    </string-array>
-	    */
+
+			request.setGender(genderRadioGroup.getCheckedRadioButtonId() == R.id.niceAuthGenderMale ? 1 : 0);
+			/*
+			 * <string-array name="mobile_co"> <item>SKT</item> <item>KT</item>
+			 * <item>LGU+</item> <item>SKT(알뜰폰)</item> <item>KT(알뜰폰)</item>
+			 * <item>LGU+(알뜰폰)</item> </string-array>
+			 */
 			switch (mobileCoporationSpinner.getSelectedItemPosition()) {
 			case 0:
 				request.setMobileCorporation("SKT");
@@ -134,7 +135,7 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 			request.setMobileno2(phoneNumber2EditText.getText().toString());
 			request.setMobileno3(phoneNumber3EditText.getText().toString());
 			request.setName(nameEditText.getText().toString());
-			request.setNationalInfo(nationRadioGroup.getCheckedRadioButtonId()==R.id.niceAuthNationLocal?0:1);
+			request.setNationalInfo(nationRadioGroup.getCheckedRadioButtonId() == R.id.niceAuthNationLocal ? 0 : 1);
 			requester.startNiceAuth(request);
 			break;
 
@@ -147,5 +148,4 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 			break;
 		}
 	}
-
 }

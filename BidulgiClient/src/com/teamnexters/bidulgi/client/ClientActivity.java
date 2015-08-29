@@ -3,8 +3,10 @@ package com.teamnexters.bidulgi.client;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,12 +17,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
-import com.teamnexters.bidulgi.common.data.MessageData;
 import com.teamnexters.bidulgi.common.data.SoldierData;
 import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
 import com.teamnexters.bidulgi.common.request.CommonRequestPacket;
 import com.teamnexters.bidulgi.common.request.LongRequestPacket;
-import com.teamnexters.bidulgi.common.request.MessageRequestPacket;
 import com.teamnexters.bidulgi.common.request.NiceAuthRequestPacket;
 import com.teamnexters.bidulgi.common.request.StringRequestPacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
@@ -33,12 +33,14 @@ import com.teamnexters.bidulgi.fragments.BidoolgiMailList;
 import com.teamnexters.bidulgi.fragments.BidoolgiSetting;
 import com.teamnexters.bidulgi.nice.NiceAuthDialog;
 import com.teamnexters.bidulgi.nice.NiceAuthRequester;
+import com.teamnexters.bidulgi.nice.NiceSMSCallBack;
+import com.teamnexters.bidulgi.nice.SMSReceiver;
 
-public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuthRequester {
+public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuthRequester, NiceSMSCallBack {
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	ViewPager mViewPager;
 	private NiceAuthDialog niceAuthDialog;
-
+	private BroadcastReceiver smsReceiver = new SMSReceiver(this);
 	BidoolgiFreinds fragmentFriends;
 	BidoolgiMail fragmentMail;
 	Intent intent;
@@ -75,6 +77,10 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 		} catch (Exception e) {
 			Log.d("error", "편지목록 조회 에러" + e.toString());
 		}
+
+		IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+
+		registerReceiver(smsReceiver, intentFilter);
 		/*
 		 * CommonRequestPacket requestAdd = new CommonRequestPacket();
 		 * requestAdd.setRequestCode(BidulgiRequestCode.
@@ -137,18 +143,15 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 		case 1:
 			if (data.getBooleanExtra("addFriend", false)) { // 친구추가 여부 확인
 				// 친구추가 시 시행할 동작
-				fragmentFriends.addData(data.getExtras().getString("profilePhotoSrc"),
-						data.getExtras().getString("name"), data.getExtras().getString("enterday"),
-						data.getExtras().getString("regiment"), data.getExtras().getString("company"),
-						data.getExtras().getString("platoon"), data.getExtras().getString("number"),
-						data.getExtras().getLong("soldierId"));
+				fragmentFriends.addData(data.getExtras().getString("profilePhotoSrc"), data.getExtras().getString("name"),
+						data.getExtras().getString("enterday"), data.getExtras().getString("regiment"), data.getExtras().getString("company"), data.getExtras()
+								.getString("platoon"), data.getExtras().getString("number"), data.getExtras().getLong("soldierId"));
 				LongRequestPacket request = new LongRequestPacket();
 				request.setValue(data.getExtras().getLong("soldierId"));
 				request.setRequestCode(BidulgiRequestCode.REQUEST_ADD_FRIEND_SOLDIER);
 				HttpRequestThread.getInstance().addRequest(request);
 
-				Toast.makeText(getApplicationContext(), data.getExtras().getString("name") + " 비둘기가 추가 되었습니다.",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), data.getExtras().getString("name") + " 비둘기가 추가 되었습니다.", Toast.LENGTH_SHORT).show();
 
 			} else {
 			}
@@ -183,10 +186,9 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 				Log.d("aaaa", "군인친구 목록 첫번째 친구는" + data.get(0).getName().toString());
 				Log.d("aaaa", "군인 친구 목록 첫번째 친구 프로필 사진 URL은 " + data.get(0).getProfilePhotoSrc());
 				for (SoldierData soldierData : data) {
-					fragmentFriends.addData(soldierData.getProfilePhotoSrc(), soldierData.getName().toString(),
-							soldierData.getEnterDateString().toString(), soldierData.getRegiment().toString(),
-							soldierData.getCompany().toString(), soldierData.getPlatoon().toString(),
-							soldierData.getNumber().toString(), soldierData.getSoldierId());
+					fragmentFriends.addData(soldierData.getProfilePhotoSrc(), soldierData.getName().toString(), soldierData.getEnterDateString().toString(),
+							soldierData.getRegiment().toString(), soldierData.getCompany().toString(), soldierData.getPlatoon().toString(), soldierData
+									.getNumber().toString(), soldierData.getSoldierId());
 
 				}
 				SoldierInfoStore.getInstance().reload(data);
@@ -271,6 +273,19 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 	public void onNiceAuthStart() {
 		niceAuthDialog = new NiceAuthDialog(this, this);
 		niceAuthDialog.show();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		unregisterReceiver(smsReceiver);
+	}
+
+	@Override
+	public void onNiceSMSReceive(String authCode) {
+		if(niceAuthDialog!=null && niceAuthDialog.isShowing()){
+			niceAuthDialog.fillSMSCode(authCode);
+		}
 	}
 }
 
