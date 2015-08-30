@@ -1,59 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="128dp"
+    android:orientation="horizontal"
+    android:weightSum="100" >
 
-    <ImageView
-        android:id="@+id/imgFriends"
-        android:layout_width="60dp"
-        android:layout_height="60dp" />
-
-    <TextView
-        android:id="@+id/txtFriendsName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imgFriends"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="30"
         android:gravity="center"
-        android:text="이름" />
+        android:orientation="horizontal"
+        android:weightSum="100" >
 
-    <TextView
-        android:id="@+id/txtData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginRight="15dp"
-        android:text="소속" />
+        <ImageView
+            android:id="@+id/friendListProfileImageView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/check_01" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/txtDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignBaseline="@+id/txtData"
-        android:layout_alignBottom="@+id/txtData"
-        android:layout_alignParentRight="true"
-        android:text="입소일" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="50"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="100" >
 
-    <TextView
-        android:id="@+id/txtDateHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtDate"
-        android:layout_alignBaseline="@+id/txtRegimentHint"
-        android:layout_alignBottom="@+id/txtRegimentHint"
-        android:layout_alignParentRight="true"
-        android:text="입소일"
-        android:textColor="#ff6884" />
+        <TextView
+            android:id="@+id/friendListNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:gravity="bottom"
+            android:text="양시영 훈련병"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/txtRegimentHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="소속"
-        android:textColor="#ff6884" />
+        <TextView
+            android:id="@+id/friendListEnterDateTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="70"
+            android:text="입소일 2012.03.26"
+            android:textColor="#58595b"
+            android:textSize="12sp" />
+    </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="20"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/friendListDDayTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="D-30"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

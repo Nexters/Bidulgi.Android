@@ -21,7 +21,7 @@ import com.teamnexters.bidulgi.client.R;
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
 import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
 import com.teamnexters.bidulgi.common.request.LongRequestPacket;
-import com.teamnexters.bidulgi.list.ListViewAdapter;
+import com.teamnexters.bidulgi.list.FriendAdapter;
 import com.teamnexters.bidulgi.list.ListViewItem;
 
 public class BidoolgiFreinds extends Fragment {
@@ -31,7 +31,7 @@ public class BidoolgiFreinds extends Fragment {
 	private boolean isFriendsEmpty = true;
 
 	private ArrayList<ListViewItem> data = new ArrayList<ListViewItem>();
-	private ListViewAdapter adapter;
+	private FriendAdapter adapter;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class BidoolgiFreinds extends Fragment {
 			listView.setBackgroundResource(R.drawable.backgroundWhite);
 			ImageView imgEmpty = (ImageView) getView().findViewById(R.id.imgEmpty);
 			listView.setEmptyView(imgEmpty);
-			adapter = new ListViewAdapter(getView().getContext(), R.layout.fragment_list, data);
+			adapter = new FriendAdapter(getView().getContext(), data);
 			listView.setAdapter(adapter);
 			listView.setOnItemClickListener(onItemClickListener);
 			listView.setOnItemLongClickListener(onItemLongClickListener);

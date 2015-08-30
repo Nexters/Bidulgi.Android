@@ -15,16 +15,14 @@ import com.bumptech.glide.Glide;
 import com.teamnexters.bidulgi.client.R;
 import com.teamnexters.bidulgi.glide.CircleTransform;
 
-public class ListViewAdapter extends BaseAdapter {
+public class FriendAdapter extends BaseAdapter {
 
 	private LayoutInflater inflater;
 	private ArrayList<ListViewItem> data;
-	private int layout;
 
-	public ListViewAdapter(Context context, int layout, ArrayList<ListViewItem> data) {
+	public FriendAdapter(Context context, ArrayList<ListViewItem> data) {
 		this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.data = data;
-		this.layout = layout;
 	}
 
 	@Override
@@ -45,34 +43,33 @@ public class ListViewAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
-			convertView = inflater.inflate(layout, parent, false);
+			convertView = inflater.inflate(R.layout.fragment_list, parent, false);
 		}
-		ListViewItem listViewItem = data.get(position);
-
-		ImageView icon = (ImageView) convertView.findViewById(R.id.imgFriends);
-		Log.d("aaaa", "넘어온 프로필 URL은 " + listViewItem.getProfilePhotoSrc());
-		if(listViewItem.getProfilePhotoSrc() == null){
-			icon.setImageResource(R.drawable.icon_noprofile);
-		} else{
-		Glide.with(convertView.getContext()).load(listViewItem.getProfilePhotoSrc()).transform(new CircleTransform(convertView.getContext())).into(icon);
-		}
-		//icon.setImageResource(listViewItem.getIcon());
-
-		TextView name = (TextView) convertView.findViewById(R.id.txtFriendsName);
-		name.setText(listViewItem.getName());
 		
+		ListViewItem listViewItem = data.get(position);
+		ImageView icon = (ImageView) convertView.findViewById(R.id.friendListProfileImageView);
+		Log.d("aaaa", "넘어온 프로필 URL은 " + listViewItem.getProfilePhotoSrc());
+		if (listViewItem.getProfilePhotoSrc() == null) {
+			icon.setImageResource(R.drawable.icon_noprofile);
+		} else {
+			Glide.with(convertView.getContext()).load(listViewItem.getProfilePhotoSrc()).transform(new CircleTransform(convertView.getContext())).into(icon);
+		}
+		// icon.setImageResource(listViewItem.getIcon());
+
+		TextView name = (TextView) convertView.findViewById(R.id.friendListNameTextView);
+		name.setText(listViewItem.getName()+" 훈련병");
+
 		TextView date = (TextView) convertView.findViewById(R.id.txtDate);
 		date.setText(listViewItem.getDate());
+//
 		
-		TextView data = (TextView) convertView.findViewById(R.id.txtData);
-		data.setText(listViewItem.getRegiment()+"연대 "+listViewItem.getCompany()+"소대 "+listViewItem.getPlatoon()+"분대 "+listViewItem.getNumber()+"번 훈련병");
-		
-		if(position % 2 == 0){
+		if (position % 2 == 0) {
 			convertView.setBackgroundResource(R.drawable.backgroundGray);
-		} else if(position % 2 == 1){
+		} else if (position % 2 == 1) {
 			convertView.setBackgroundResource(R.drawable.backgroundWhite);
 		}
 		return convertView;
 	}
-
+	
+	
 }

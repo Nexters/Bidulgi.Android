@@ -14,7 +14,7 @@ public class LoadingActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_loading);
 
 		ImageView animationImg = (ImageView) findViewById(R.id.animationImg);
@@ -33,9 +33,5 @@ public class LoadingActivity extends Activity {
 				finish(); // 3 초후 이미지를 닫아버림
 			}
 		}, 3200);
-	
-		
-		
 	}
-
 }
