@@ -58,11 +58,10 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 		if (intent.getExtras().getString("profilePhotoSrc") == null) {
 			imgFriend.setImageResource(R.drawable.icon_noprofile);
 		} else {
-			Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc"))
-					.transform(new CircleTransform(getApplicationContext())).into(imgFriend);
+			Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc")).transform(new CircleTransform(getApplicationContext())).into(imgFriend);
 		}
 
-		txtFriendName.setText(intent.getExtras().getString("name") + " " + "훈련병");
+		txtFriendName.setText(intent.getExtras().getString("name"));
 		txtEnterDate.setText(intent.getExtras().getString("enterDate"));
 		Log.d("aaaa", "친구 클릭 후 넘어온 연대는 " + Integer.parseInt(intent.getExtras().getString("regiment")));
 		Log.d("aaaa", "친구 클릭 후 넘어온 사진 URL은 " + intent.getExtras().getString("profilePhotoSrc"));

@@ -9,7 +9,8 @@
         android:id="@+id/layoutImgFriend"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="#f4f4f5" >
+        android:background="#f4f4f5"
+        android:gravity="center" >
 
         <ImageView
             android:id="@+id/imgFriend"
@@ -28,76 +29,142 @@
             android:layout_marginBottom="15dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="훈련병 이름"
+            android:text="나성수"
+            android:textColor="#252525"
             android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_alignBottom="@+id/txtFriendName"
+            android:layout_toRightOf="@+id/txtFriendName"
+            android:gravity="center"
+            android:text=" 훈련병"
+            android:textColor="#252525"
+            android:textSize="16dp" />
     </RelativeLayout>
 
-    <TableLayout
-        android:id="@+id/tableLayoutData"
+    <LinearLayout
+        android:id="@+id/soldierDetailInfoLayout"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/layoutImgFriend"
-        android:background="#f4f4f5" >
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="100" >
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginBottom="1dp"
-            android:layout_weight="1"
+        <LinearLayout
+            android:id="@+id/tableLayoutData"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="80"
             android:background="#ffffff"
-            android:gravity="center"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp" >
+            android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/txtAddress"
-                android:layout_width="100dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="주소"
-                android:textColor="#ff6884" />
+                android:background="#ffffff"
+                android:gravity="top"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:weightSum="100" >
 
-            <TextView
-                android:id="@+id/txtFriendsAddress"
-                android:layout_width="200dp"
+                <TextView
+                    android:id="@+id/txtAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:gravity="left|top"
+                    android:text="주소"
+                    android:textColor="#58595b" />
+
+                <TextView
+                    android:id="@+id/txtFriendsAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="70"
+                    android:gravity="left"
+                    android:lineSpacingExtra="5dp"
+                    android:text="훈련병 주소"
+                    android:textColor="#58595b" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f4f4f5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:lineSpacingExtra="5dp"
-                android:text="훈련병 주소" />
-        </TableRow>
+                android:background="#ffffff"
+                android:gravity="top"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:weightSum="100" >
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="1dp"
-            android:layout_weight="1"
-            android:background="#ffffff"
-            android:gravity="center"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp" >
+                <TextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:gravity="left|top"
+                    android:text="입소일"
+                    android:textColor="#58595b" />
 
-            <TextView
-                android:id="@+id/txtDate"
-                android:layout_width="100dp"
+                <TextView
+                    android:id="@+id/txtEnterDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="70"
+                    android:gravity="left"
+                    android:text="훈련병 입소일"
+                    android:textColor="#58595b" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f4f4f5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="입소일"
-                android:textColor="#ff6884" />
+                android:background="#ffffff"
+                android:gravity="top"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:weightSum="100" >
 
-            <TextView
-                android:id="@+id/txtEnterDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:text="훈련병 입소일" />
-        </TableRow>
-    </TableLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:gravity="left|top"
+                    android:text="수료예정일"
+                    android:textColor="#58595b" />
+
+                <TextView
+                    android:id="@+id/txtExitDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="70"
+                    android:gravity="left"
+                    android:text="2015.09.12"
+                    android:textColor="#58595b" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnEditMail"
         android:layout_width="130dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/tableLayoutData"
+        android:layout_below="@+id/soldierDetailInfoLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/b_write" />

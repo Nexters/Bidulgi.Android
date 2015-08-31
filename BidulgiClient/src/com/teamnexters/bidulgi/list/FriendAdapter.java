@@ -59,8 +59,8 @@ public class FriendAdapter extends BaseAdapter {
 		TextView name = (TextView) convertView.findViewById(R.id.friendListNameTextView);
 		name.setText(listViewItem.getName()+" 훈련병");
 
-		TextView date = (TextView) convertView.findViewById(R.id.txtDate);
-		date.setText(listViewItem.getDate());
+		TextView date = (TextView) convertView.findViewById(R.id.friendListDDayTextView);
+		date.setText("D-40");
 //
 		
 		if (position % 2 == 0) {
