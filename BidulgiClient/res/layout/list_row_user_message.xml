@@ -1,34 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="100dp"
+    android:orientation="vertical"
+    android:padding="10dp" >
 
     <ImageView
         android:id="@+id/userMessageSoldierImageImageView"
         android:layout_width="60dp"
-        android:layout_height="60dp" />
+        android:layout_height="60dp"
+        android:layout_marginRight="30dp"
+        android:layout_centerVertical="true" />
 
-    <TextView
-        android:id="@+id/userMessageSoldierNameTextView"
+    <LinearLayout
+        android:id="@+id/layoutMessageSoldierData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/userMessageSoldierImageImageView"
-        android:gravity="center"
-        android:text="" />
+        android:layout_toRightOf="@+id/userMessageSoldierImageImageView"
+        android:layout_centerVertical="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/userMessageSoldierNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text=""
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/userMessageTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:text=""
+            android:textSize="15dp"
+            android:textColor="#58595b" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/userMessageTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="" />
-    <TextView
-        android:id="@+id/userMessageTitleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginRight="15dp"
+        android:layout_alignTop="@+id/layoutMessageSoldierData"
+        android:layout_toRightOf="@+id/layoutMessageSoldierData"
         android:text="" />
 
 </RelativeLayout>

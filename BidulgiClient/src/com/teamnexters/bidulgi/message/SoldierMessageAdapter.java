@@ -1,5 +1,6 @@
 package com.teamnexters.bidulgi.message;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.bumptech.glide.Glide;
@@ -57,8 +58,14 @@ public class SoldierMessageAdapter extends BaseAdapter {
 
 		MessageData currentMessageData = messageDataList.get(position);
 		SoldierMessageViewHolder viewHolder = (SoldierMessageViewHolder) convertView.getTag();
-		viewHolder.txtMailSendDate.setText("" + currentMessageData.getSendTime());
+		
 		viewHolder.txtMailContent.setText(currentMessageData.getContent());
+		Date date = new Date(currentMessageData.getSendTime());
+		
+		viewHolder.txtMailSendDate.setText("" + date);
+		Log.d("aaaa", "편지보낸 시간은 " + currentMessageData.getSendTime());
+		Log.d("aaaa", "Date에 들어간 시간" + date);
+		Log.d("aaaa", "편지내용은 " + currentMessageData.getContent());
 
 		if (position % 2 == 0) {
 			convertView.setBackgroundResource(R.drawable.backgroundGray);
