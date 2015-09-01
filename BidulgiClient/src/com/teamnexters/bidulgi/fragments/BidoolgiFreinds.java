@@ -99,14 +99,14 @@ public class BidoolgiFreinds extends Fragment {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			Log.d("aaaa", "훈련병 리스트 클릭");
+			String enterDate = data.get(position).getDate();
 			intent = new Intent(getView().getContext(), ClickFriendActivity.class);
 			intent.putExtra("profilePhotoSrc", data.get(position).getProfilePhotoSrc());
 			intent.putExtra("name", data.get(position).getName());
 			intent.putExtra("regiment", data.get(position).getRegiment());
 			intent.putExtra("address", data.get(position).getRegiment() + "연대 " + data.get(position).getCompany()
-					+ "소대 " + data.get(position).getPlatoon() + "분대 " + data.get(position).getNumber() + "번 훈련병");
-			intent.putExtra("enterDate", data.get(position).getDate());
+					+ "소대 " + data.get(position).getPlatoon() + "분대 " + data.get(position).getNumber() + "번");
+			intent.putExtra("enterDate", enterDate.substring(0,4)+"."+enterDate.substring(4,6)+"."+enterDate.substring(6));
 			intent.putExtra("id", data.get(position).getsoldierId());
 			startActivity(intent);
 			getActivity().finish();
