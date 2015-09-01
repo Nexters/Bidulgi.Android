@@ -1,6 +1,7 @@
 package com.teamnexters.bidulgi.message;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.bumptech.glide.Glide;
@@ -61,9 +62,11 @@ public class SoldierMessageAdapter extends BaseAdapter {
 		
 		viewHolder.txtMailContent.setText(currentMessageData.getContent());
 		Date date = new Date(currentMessageData.getSendTime());
-		String[] dateString = date.toString().split("-");
-		viewHolder.txtMailSendDate.setText("" + dateString[0]+"."+dateString[1]+"."+dateString[2]);
-		Log.d("aaaa", "편지보낸 시간은 " + currentMessageData.getSendTime());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm", java.util.Locale.getDefault());
+		String strDate = dateFormat.format(date);
+		
+		viewHolder.txtMailSendDate.setText("" + strDate);
+		Log.d("aaaa", "편지보낸 시간은 " + currentMessageData.getSendTime() + "simpledateformat 변환 시간은 "+ strDate);
 		Log.d("aaaa", "Date에 들어간 시간" + date);
 		Log.d("aaaa", "편지내용은 " + currentMessageData.getContent());
 
