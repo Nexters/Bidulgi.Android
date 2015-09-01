@@ -23,4 +23,5 @@ public interface BidulgiRequestUri {
 	public String REQUEST_NICE_AUTH_IMAGE = "/service/nice-auth-image";
 	public String REQUEST_LOGIN_DUPLICATE = "/login_duplicate";
 	public String REQUEST_KEEP_SESSION = "/keep-session";
+	public String REQUEST_TEST_SLEEP = "/apm-testsleep";
 }
