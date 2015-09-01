@@ -61,8 +61,8 @@ public class SoldierMessageAdapter extends BaseAdapter {
 		
 		viewHolder.txtMailContent.setText(currentMessageData.getContent());
 		Date date = new Date(currentMessageData.getSendTime());
-		
-		viewHolder.txtMailSendDate.setText("" + date);
+		String[] dateString = date.toString().split("-");
+		viewHolder.txtMailSendDate.setText("" + dateString[0]+"."+dateString[1]+"."+dateString[2]);
 		Log.d("aaaa", "편지보낸 시간은 " + currentMessageData.getSendTime());
 		Log.d("aaaa", "Date에 들어간 시간" + date);
 		Log.d("aaaa", "편지내용은 " + currentMessageData.getContent());

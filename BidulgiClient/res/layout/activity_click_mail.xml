@@ -8,8 +8,7 @@
     <RelativeLayout
         android:id="@+id/layoutImgMailFriend"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="#f4f4f5" >
+        android:layout_height="250dp" >
 
         <ImageView
             android:id="@+id/imgMailFriend"
@@ -36,6 +35,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layoutImgMailFriend"
+        android:divider="#f4f4f5"
+        android:dividerHeight="1dp"
+        android:clickable="false"
         android:choiceMode="singleChoice" >
     </ListView>
 

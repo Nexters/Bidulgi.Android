@@ -16,8 +16,7 @@
         <ImageView
             android:id="@+id/friendListProfileImageView"
             android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/check_01" />
+            android:layout_height="64dp" />
     </LinearLayout>
 
     <LinearLayout
