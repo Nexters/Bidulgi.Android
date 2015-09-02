@@ -20,18 +20,18 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class UserMessageAdapter extends BaseAdapter{
+public class UserMessageAdapter extends BaseAdapter {
 
 	private List<MessageData> messageDataList;
 	private LayoutInflater inflater;
 	private SoldierInfoStore soldierInfoStore;
-		
+
 	public UserMessageAdapter(List<MessageData> messageDataList, Context context) {
 		this.messageDataList = messageDataList;
 		this.inflater = LayoutInflater.from(context);
 		soldierInfoStore = SoldierInfoStore.getInstance();
 	}
-	
+
 	@Override
 	public int getCount() {
 		return messageDataList.size();
@@ -49,10 +49,11 @@ public class UserMessageAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		if(convertView==null){
+		if (convertView == null) {
 			UserMessageViewHolder viewHolder = new UserMessageViewHolder();
 			convertView = inflater.inflate(R.layout.list_row_user_message, parent, false);
-			viewHolder.soldierImageImageView = (ImageView) convertView.findViewById(R.id.userMessageSoldierImageImageView);
+			viewHolder.soldierImageImageView = (ImageView) convertView
+					.findViewById(R.id.userMessageSoldierImageImageView);
 			viewHolder.soldierNameTextView = (TextView) convertView.findViewById(R.id.userMessageSoldierNameTextView);
 			viewHolder.titleTextView = (TextView) convertView.findViewById(R.id.userMessageTitleTextView);
 			viewHolder.timeTextView = (TextView) convertView.findViewById(R.id.userMessageTimeTextView);
@@ -61,14 +62,28 @@ public class UserMessageAdapter extends BaseAdapter{
 		MessageData currentMessageData = messageDataList.get(position);
 		SoldierData currentSoldierData = soldierInfoStore.getData(currentMessageData.getReceiveSoldierId());
 		UserMessageViewHolder viewHolder = (UserMessageViewHolder) convertView.getTag();
-		viewHolder.soldierNameTextView.setText(currentSoldierData.getName());
+		viewHolder.soldierNameTextView.setText(currentSoldierData.getName() + " 훈련병");
 		viewHolder.titleTextView.setText(currentMessageData.getTitle());
 		Log.d("aaaa", "메일리스트 출력 어뎁터 들어옴");
-		Glide.with(convertView.getContext()).load(currentSoldierData.getProfilePhotoSrc()).transform(new CircleTransform(convertView.getContext())).into(viewHolder.soldierImageImageView);
-//		viewHolder.soldierImageImageView;
+		if (currentSoldierData.getProfilePhotoSrc()== null) {
+			Log.d("aaaa", "프로필사진이 없는 사람의 프로필 값은 " + currentSoldierData.getProfilePhotoSrc());
+			viewHolder.soldierImageImageView.setImageResource(R.drawable.icon_noprofile);
+		} else {
+			Glide.with(convertView.getContext()).load(currentSoldierData.getProfilePhotoSrc())
+					.transform(new CircleTransform(convertView.getContext())).into(viewHolder.soldierImageImageView);
+			// viewHolder.soldierImageImageView;
+		}
+		
+		if(position % 2 == 0){
+			convertView.setBackgroundResource(R.drawable.backgroundGray);
+		} else if(position % 2 == 1){
+			convertView.setBackgroundResource(R.drawable.backgroundWhite);
+		}
+		
 		return convertView;
 	}
-	class UserMessageViewHolder{
+
+	class UserMessageViewHolder {
 		public ImageView soldierImageImageView;
 		public TextView soldierNameTextView, titleTextView, timeTextView;
 	}

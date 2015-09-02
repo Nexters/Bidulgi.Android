@@ -44,7 +44,7 @@ public class ClickMailActivity extends UIHandlingActivity {
 		actionBar.setIcon(null);
 		actionBar.setDisplayHomeAsUpEnabled(false);
 		actionBar.setDisplayUseLogoEnabled(false);
-		intent =getIntent();
+		intent = getIntent();
 		LongRequestPacket request = new LongRequestPacket();
 		request.setValue(intent.getExtras().getLong("id"));
 		request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_SOLDIER_MESSAGE);
@@ -93,9 +93,13 @@ public class ClickMailActivity extends UIHandlingActivity {
 			intent = getIntent();
 			imgMailFriend = (ImageView) findViewById(R.id.imgMailFriend);
 			txtMailFriendName = (TextView) findViewById(R.id.txtMailFriendName);
-			Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc"))
-					.transform(new CircleTransform(getApplicationContext())).into(imgMailFriend);
-			txtMailFriendName.setText(intent.getExtras().getString("name"));
+			if (intent.getExtras().getString("profilePhotoSrc") == null) {
+				imgMailFriend.setImageResource(R.drawable.icon_noprofile);
+			} else {
+				Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc"))
+						.transform(new CircleTransform(getApplicationContext())).into(imgMailFriend);
+			}
+			txtMailFriendName.setText(intent.getExtras().getString("name") + " 훈련병");
 			mailListMessageListView = (ListView) findViewById(R.id.mailListMessageListView);
 
 			mailListMessageListView.setAdapter(soldierMessageAdapter);
