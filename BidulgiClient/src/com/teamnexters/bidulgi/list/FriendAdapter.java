@@ -1,8 +1,11 @@
 package com.teamnexters.bidulgi.list;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.content.Context;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,9 +61,13 @@ public class FriendAdapter extends BaseAdapter {
 
 		TextView name = (TextView) convertView.findViewById(R.id.friendListNameTextView);
 		name.setText(listViewItem.getName()+" 훈련병");
+		
+		TextView enterDate = (TextView) convertView.findViewById(R.id.friendListEnterDateTextView);
+		enterDate.setText("입소일 "+listViewItem.getDate().substring(0, 4)+ "."+listViewItem.getDate().substring(4, 6)+"."+listViewItem.getDate().substring(6));
+		//enterDate.setText(txtEnterDate);
 
-		TextView date = (TextView) convertView.findViewById(R.id.friendListDDayTextView);
-		date.setText("D-40");
+		TextView DdayDate = (TextView) convertView.findViewById(R.id.friendListDDayTextView);
+		DdayDate.setText("D-40");
 //
 		
 		if (position % 2 == 0) {
