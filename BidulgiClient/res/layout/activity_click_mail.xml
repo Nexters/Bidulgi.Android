@@ -35,8 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/layoutImgMailFriend"
-        android:clickable="false"
-        android:choiceMode="singleChoice" >
+        android:choiceMode="none" >
     </ListView>
 
 </RelativeLayout>
