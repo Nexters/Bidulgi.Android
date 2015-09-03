@@ -33,10 +33,8 @@
     <ListView
         android:id="@+id/mailListMessageListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/layoutImgMailFriend"
-        android:divider="#f4f4f5"
-        android:dividerHeight="1dp"
         android:clickable="false"
         android:choiceMode="singleChoice" >
     </ListView>

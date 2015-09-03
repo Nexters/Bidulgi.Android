@@ -87,7 +87,8 @@ public class FriendAdapter extends BaseAdapter {
 			long longDday = (dateFormat.parse(dischargedDate).getTime() - dateFormat.parse(toDayDate).getTime());
 			long Dday = longDday / (24 * 60 * 60 * 1000);
 			DdayDate.setText("D-"+Dday);
-			Log.d("aaaa", "Dday는 " + Dday);		
+			Log.d("aaaa", "Dday는 " + Dday);
+			Log.d("aaaa", "전역일은 " + dischargedDate);
 			
 			
 		} catch (ParseException e) {
