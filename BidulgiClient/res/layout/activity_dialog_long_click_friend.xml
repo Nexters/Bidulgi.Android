@@ -9,30 +9,35 @@
     android:background="#ffffff"
     tools:context="com.teamnexters.bidulgi.client.DialogLongClickFriend" >
 
-      <TextView
+    <Button
+        android:id="@+id/btnNotDelete"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/cancle"/>
+
+    <TextView
         android:id="@+id/txtAlert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="친구목록을 삭제하시겠습니까?" />
+        android:layout_below="@+id/btnNotDelete"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="친구 리스트에서 \n삭제하시겠습니까?"
+        android:textColor="#59585b"
+        android:textSize="20dp"
+        android:lineSpacingExtra="7dp" />
 
     <Button
         android:id="@+id/btnDelete"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtAlert"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/txtAlert"
-        android:layout_marginTop="67dp"
-        android:text="확인" />
-
-    <Button
-        android:id="@+id/btnNotDelete"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btnDelete"
-        android:layout_marginLeft="56dp"
-        android:layout_toRightOf="@+id/btnDelete"
-        android:text="취소" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/check" />
 
 </RelativeLayout>

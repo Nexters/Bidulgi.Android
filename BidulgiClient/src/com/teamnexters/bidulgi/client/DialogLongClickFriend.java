@@ -1,29 +1,42 @@
 package com.teamnexters.bidulgi.client;
 
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class DialogLongClickFriend extends Activity {
 
 	Intent intent;
-	Button btnDelete;
-	Button btnNotDelete;
+	private Button btnDelete;
+	private Button btnNotDelete;
+	private TextView txtAlert;
 
 	int position;
 	
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dialog_long_click_friend);
 		
+		
 		btnDelete = (Button)findViewById(R.id.btnDelete);
 		btnNotDelete = (Button)findViewById(R.id.btnNotDelete);
+		
+		Typeface typeface = Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF");
+		txtAlert = (TextView)findViewById(R.id.txtAlert);
+		txtAlert.setTypeface(typeface);
 		
 	//	btnDelete.setOnClickListener(onClickDelete);
 	//	btnNotDelete.setOnClickListener(onClickNotDelete);

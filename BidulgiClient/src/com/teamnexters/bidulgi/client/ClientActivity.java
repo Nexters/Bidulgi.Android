@@ -27,9 +27,9 @@ import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 import com.teamnexters.bidulgi.common.response.MessageListResponsePacket;
 import com.teamnexters.bidulgi.common.response.SoldierListResponsePacket;
+import com.teamnexters.bidulgi.fragments.BidoolgiBoard;
 import com.teamnexters.bidulgi.fragments.BidoolgiFreinds;
 import com.teamnexters.bidulgi.fragments.BidoolgiMail;
-import com.teamnexters.bidulgi.fragments.BidoolgiMailList;
 import com.teamnexters.bidulgi.fragments.BidoolgiSetting;
 import com.teamnexters.bidulgi.nice.NiceAuthDialog;
 import com.teamnexters.bidulgi.nice.NiceAuthRequester;
@@ -306,7 +306,7 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
 	private void initFragments() {
 		fragments.add(new BidoolgiFreinds());
 		fragments.add(new BidoolgiMail());
-		fragments.add(new BidoolgiMailList());
+		fragments.add(new BidoolgiBoard());
 		fragments.add(new BidoolgiSetting());
 	}
 

@@ -10,7 +10,7 @@
 
     <!--
   IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-  to match your app's package name + ".permission.C2D_MESSAGE".
+  to match your app's package name + ".permission.C2D_MESSAGE".
     -->
 
     <uses-sdk
@@ -54,7 +54,7 @@
         <activity
             android:name=".DialogLongClickFriend"
             android:label="@string/title_activity_dialog_long_click_friend"
-            android:theme="@android:style/Theme.Dialog" >
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar">
         </activity>
         <activity
             android:name=".ClickFriendActivity"
