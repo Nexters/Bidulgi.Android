@@ -15,7 +15,8 @@
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp" />
+            android:layout_marginTop="40dp"
+            android:src="@drawable/icon_noprofile" />
 
         <TextView
             android:id="@+id/txtMailFriendName"
@@ -28,6 +29,15 @@
             android:gravity="center"
             android:text="훈련병 이름"
             android:textSize="25dp" />
+
+        <Button
+            android:id="@+id/btnLincEditMail"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/imgMailFriend"
+            android:layout_alignRight="@+id/imgMailFriend"
+            android:background="@drawable/link" />
+
     </RelativeLayout>
 
     <ListView

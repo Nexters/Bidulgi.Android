@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="96dp"
-    android:padding="10dp" >
+    android:padding="10dp"
+    android:weightSum="100"
+    android:orientation="horizontal" >
 
     <TextView
         android:id="@+id/txtMailContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="70"
+        android:layout_marginRight="10dp"
         android:maxLines="2"
         android:ellipsize="end"
         android:gravity="center" />
 
     <TextView
         android:id="@+id/txtMailSendDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="30"
         android:layout_alignTop="@+id/txtMailContent"
-        android:layout_marginRight="24dp"
-        android:gravity="right"
+        android:gravity="center"
         android:textSize="10dp" />
 
-</RelativeLayout>
+</LinearLayout>
