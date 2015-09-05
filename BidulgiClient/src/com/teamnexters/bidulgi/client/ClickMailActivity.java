@@ -110,7 +110,7 @@ public class ClickMailActivity extends UIHandlingActivity {
 				Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc"))
 						.transform(new CircleTransform(getApplicationContext())).into(imgMailFriend);
 			}
-			txtMailFriendName.setText(intent.getExtras().getString("name") + " 훈련병");
+			txtMailFriendName.setText(intent.getExtras().getString("name"));
 			mailListMessageListView = (ListView) findViewById(R.id.mailListMessageListView);
 
 			mailListMessageListView.setAdapter(soldierMessageAdapter);

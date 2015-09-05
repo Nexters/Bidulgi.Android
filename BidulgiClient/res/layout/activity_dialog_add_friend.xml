@@ -2,12 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
     android:layout_height="300dp"
-    android:background="@drawable/background_addfriend" >
+    android:background="@drawable/background_round" >
+
+    <TextView
+        android:id="@+id/txtAddFriendTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="친구 추가"
+        android:textColor="#ff6884"
+        android:textSize="20dp" />
 
     <TableLayout
         android:id="@+id/addFriendTableLayout"
         android:layout_width="250dp"
         android:layout_height="150dp"
+        android:layout_below="@+id/txtAddfriendTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:background="#f4f4f5"
@@ -17,106 +29,97 @@
             android:id="@+id/addFriendTableRowTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="30"
-            android:weightSum="100"
-            android:background="#ffffff"
             android:layout_marginBottom="1dp"
-            android:gravity="center" >
+            android:layout_weight="30"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:weightSum="100" >
 
-            
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="30"
+                android:gravity="center"
+                android:text="이름"
+                android:textColor="#ff6884" />
 
-                <TextView
-                    android:id="@+id/txtName"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="30"
-                    android:gravity="center"
-                    android:text="이름"
-                    android:textColor="#ff6884" />
-
-                <EditText
-                    android:id="@+id/editName"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_weight="70"
-                    android:background="@drawable/signup01"
-                    android:ems="10"
-                    android:paddingLeft="10dp"
-                    android:textColor="#000000" />
-            
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="70"
+                android:background="@drawable/signup01"
+                android:ems="10"
+                android:paddingLeft="10dp"
+                android:textColor="#000000" />
         </TableRow>
 
         <TableRow
             android:id="@+id/addFriendTableRowMiddle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ffffff"
             android:layout_marginBottom="1dp"
             android:layout_weight="30"
-            android:weightSum="100"
-            android:gravity="center" >
+            android:background="#ffffff"
+            android:gravity="center"
+            android:weightSum="100" >
 
-            
+            <TextView
+                android:id="@+id/txtBirthDay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="30"
+                android:gravity="center"
+                android:text="생년월일"
+                android:textColor="#ff6884" />
 
-                <TextView
-                    android:id="@+id/txtBirthDay"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="30"
-                    android:gravity="center"
-                    android:text="생년월일"
-                    android:textColor="#ff6884" />
-
-                <EditText
-                    android:id="@+id/editBirthDay"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_weight="70"
-                    android:layout_alignLeft="@+id/editName"
-                    android:layout_below="@+id/editName"
-                    android:background="@drawable/signup01"
-                    android:ems="10"
-                    android:hint="6자리"
-                    android:inputType="number"
-                    android:paddingLeft="10dp"
-                    android:textColor="#000000" />
-            
+            <EditText
+                android:id="@+id/editBirthDay"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_alignLeft="@+id/editName"
+                android:layout_below="@+id/editName"
+                android:layout_weight="70"
+                android:background="@drawable/signup01"
+                android:ems="10"
+                android:hint="6자리"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:textColor="#000000" />
         </TableRow>
 
         <TableRow
             android:id="@+id/addFriendTableRowBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ffffff"
             android:layout_marginBottom="1dp"
             android:layout_weight="30"
-            android:weightSum="100"
-            android:gravity="center" >
+            android:background="#ffffff"
+            android:gravity="center"
+            android:weightSum="100" >
 
-           
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="30"
+                android:gravity="center"
+                android:text="입대날짜"
+                android:textColor="#ff6884" />
 
-                <TextView
-                    android:id="@+id/txtDate"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="30"
-                    android:gravity="center"
-                    android:text="입대날짜"
-                    android:textColor="#ff6884" />
-
-                <TextView
-                    android:id="@+id/editDate"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_weight="70"
-                    android:layout_alignLeft="@+id/editBirthDay"
-                    android:layout_below="@+id/editBirthDay"
-                    android:background="@drawable/box_02"
-                    android:ems="10"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:textColor="#000000" />
-           
+            <TextView
+                android:id="@+id/editDate"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_alignLeft="@+id/editBirthDay"
+                android:layout_below="@+id/editBirthDay"
+                android:layout_weight="70"
+                android:background="@drawable/box_02"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textColor="#000000" />
         </TableRow>
     </TableLayout>
 
@@ -124,10 +127,10 @@
         android:id="@+id/btnNotAddFriend"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:background="@drawable/cancle" />
 
     <Button
@@ -136,7 +139,7 @@
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="23dp"
         android:background="@drawable/btn_addfriend" />
 
 </RelativeLayout>
