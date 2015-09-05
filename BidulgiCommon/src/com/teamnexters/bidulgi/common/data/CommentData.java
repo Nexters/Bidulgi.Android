@@ -4,6 +4,7 @@ public class CommentData {
 	private long commentId;
 	private long articleId;
 	private long writeUserId;
+	private String writeUserName;
 	private String content;
 	
 	public long getCommentId() {
@@ -29,5 +30,11 @@ public class CommentData {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getWriteUserName() {
+		return writeUserName;
+	}
+	public void setWriteUserName(String writeUserName) {
+		this.writeUserName = writeUserName;
 	}
 }
