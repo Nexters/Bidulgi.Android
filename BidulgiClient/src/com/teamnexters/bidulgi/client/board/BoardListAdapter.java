@@ -63,22 +63,17 @@ public class BoardListAdapter extends BaseAdapter{
 		BidoolgiBoardViewHolder viewHolder = (BidoolgiBoardViewHolder) convertView.getTag();
 		
 		viewHolder.boardTitle.setText(currentArticleData.getTitle());
-		viewHolder.boardWriterName.setText(""+currentArticleData.getWriteUserId());
+		viewHolder.boardWriterName.setText(currentArticleData.getWriteUserName());
 		
-		/*Date date = new Date(currentArticleData.get());
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm", java.util.Locale.getDefault());
+		Date date = new Date(currentArticleData.getWriteDate());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일", java.util.Locale.getDefault());
 		String strDate = dateFormat.format(date);
 		
-		viewHolder.txtMailSendDate.setText("" + strDate);
-		Log.d("aaaa", "편지보낸 시간은 " + currentMessageData.getSendTime() + "simpledateformat 변환 시간은 "+ strDate);
-		Log.d("aaaa", "Date에 들어간 시간" + date);
-		Log.d("aaaa", "편지내용은 " + currentMessageData.getContent());*/
+		viewHolder.boardWriteDate.setText(strDate);
+		Log.d("aaaa", "편지보낸 시간은 "+ strDate);
+		
+		viewHolder.boardWatchCount.setText("조화수 : 30");
 
-		if (position % 2 == 0) {
-			convertView.setBackgroundResource(R.drawable.backgroundGray);
-		} else if (position % 2 == 1) {
-			convertView.setBackgroundResource(R.drawable.backgroundWhite);
-		}
 		return convertView;
 	}
 
