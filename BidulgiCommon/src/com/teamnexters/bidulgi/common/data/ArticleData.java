@@ -3,6 +3,8 @@ package com.teamnexters.bidulgi.common.data;
 public class ArticleData {
 	private long articleId;
 	private long writeUserId;
+	private long writeDate;
+	private String writeUserName;
 	private String title;
 	private String content;
 	private int commentCount;
@@ -37,5 +39,17 @@ public class ArticleData {
 	}
 	public void setCommentCount(int commentCount) {
 		this.commentCount = commentCount;
+	}
+	public String getWriteUserName() {
+		return writeUserName;
+	}
+	public void setWriteUserName(String writeUserName) {
+		this.writeUserName = writeUserName;
+	}
+	public long getWriteDate() {
+		return writeDate;
+	}
+	public void setWriteDate(long writeDate) {
+		this.writeDate = writeDate;
 	}
 }
