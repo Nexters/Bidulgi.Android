@@ -27,8 +27,18 @@
             android:layout_marginBottom="15dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="훈련병 이름"
+            android:textColor="#252525"
             android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_alignBottom="@+id/txtMailFriendName"
+            android:layout_toRightOf="@+id/txtMailFriendName"
+            android:gravity="center"
+            android:text=" 훈련병"
+            android:textColor="#252525"
+            android:textSize="16dp" />
 
         <Button
             android:id="@+id/btnLincEditMail"
@@ -37,7 +47,6 @@
             android:layout_alignBottom="@+id/imgMailFriend"
             android:layout_alignRight="@+id/imgMailFriend"
             android:background="@drawable/link" />
-
     </RelativeLayout>
 
     <ListView
