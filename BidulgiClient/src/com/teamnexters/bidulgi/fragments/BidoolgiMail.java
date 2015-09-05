@@ -31,7 +31,9 @@ public class BidoolgiMail extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+		
 		listView = (ListView) getView().findViewById(R.id.messageListMessageListView);
+		listView.addHeaderView(getView().findViewById(R.layout.list_board_header));
 		listView.setBackgroundResource(R.drawable.backgroundWhite);
 		if (soldierDataList != null) {
 			refreshList(soldierDataList);
