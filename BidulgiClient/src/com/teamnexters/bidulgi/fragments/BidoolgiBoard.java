@@ -32,6 +32,8 @@ public class BidoolgiBoard extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		listView = (ListView) getView().findViewById(R.id.listviewBoard);
+		View header = getActivity().getLayoutInflater().inflate(R.layout.list_board_header, null, false);
+		listView.addHeaderView(header);
 		listView.setBackgroundResource(R.drawable.backgroundWhite);
 		if (articleDataList != null) {
 			refreshList(articleDataList);

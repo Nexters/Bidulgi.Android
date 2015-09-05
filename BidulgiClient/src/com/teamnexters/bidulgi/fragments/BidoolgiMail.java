@@ -10,6 +10,7 @@ import com.teamnexters.bidulgi.common.data.MessageData;
 import com.teamnexters.bidulgi.common.data.SoldierData;
 import com.teamnexters.bidulgi.message.UserMessageAdapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -33,7 +34,7 @@ public class BidoolgiMail extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 		
 		listView = (ListView) getView().findViewById(R.id.messageListMessageListView);
-		listView.addHeaderView(getView().findViewById(R.layout.list_board_header));
+
 		listView.setBackgroundResource(R.drawable.backgroundWhite);
 		if (soldierDataList != null) {
 			refreshList(soldierDataList);
