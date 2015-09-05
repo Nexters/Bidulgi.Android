@@ -28,4 +28,11 @@ public interface BidulgiResponseCode {
 	public int RESPONSE_LOGIN_DUPLICATE = 24;
 	public int RESPONSE_KEEP_SESSION = 25;
 	public int RESPONSE_NICE_ALREADY_AUTHED = 26;
+	public int RESPONSE_LIST_ARTICLE = 27;
+	public int RESPONSE_WRITE_ARTICLE_SUCCESS = 28;
+	public int RESPONSE_WRITE_ARTICLE_FAIL = 29;
+	public int RESPONSE_WRITE_COMMENT_SUCCESS = 30;
+	public int RESPONSE_WRITE_COMMENT_FAIL = 31;
+	public int RESPONSE_LIST_COMMENT = 32;
+	public int RESPONSE_READ_ARTICLE = 33;
 }

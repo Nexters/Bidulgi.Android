@@ -1,13 +1,9 @@
 package com.teamnexters.bidulgi.client;
 
-import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-
 import com.bumptech.glide.Glide;
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
 import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
-import com.teamnexters.bidulgi.common.request.BidulgiRequestPacket;
 import com.teamnexters.bidulgi.common.request.LongRequestPacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
@@ -15,11 +11,12 @@ import com.teamnexters.bidulgi.common.response.MessageListResponsePacket;
 import com.teamnexters.bidulgi.glide.CircleTransform;
 import com.teamnexters.bidulgi.message.MessageSendActivity;
 import com.teamnexters.bidulgi.message.SoldierMessageAdapter;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
