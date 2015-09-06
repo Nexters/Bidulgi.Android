@@ -1,44 +1,58 @@
 package com.teamnexters.bidulgi.client;
 
-import android.support.v7.app.ActionBarActivity;
-
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
 
-public class MessageSendCheckActivity extends UIHandlingActivity {
+public class MessageSendCheckActivity extends Activity {
+
+	private Button btnNotSendMail;
+	private Button btnSendMessage;
+	private TextView txtCheckSendMessage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_message_send_check);
+
+		Typeface typeface = Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF");
+		btnNotSendMail = (Button) findViewById(R.id.btnNotSendMail);
+		btnSendMessage = (Button) findViewById(R.id.btnSendMessage);
+		txtCheckSendMessage = (TextView) findViewById(R.id.txtCheckSendMessage);
+		btnNotSendMail.setOnClickListener(onClickListener);
+		btnSendMessage.setOnClickListener(onClickListener);
+		txtCheckSendMessage.setTypeface(typeface);
+
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.message_send_check, menu);
-		return true;
-	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+	OnClickListener onClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			switch (v.getId()) {
+
+			case R.id.btnNotSendMail:
+				Intent resNotIntent = new Intent();
+				setResult(2, resNotIntent);
+				finish();
+				break;
+			case R.id.btnSendMessage:
+				Intent resIntent = new Intent();
+				setResult(1, resIntent);
+				finish();
+				break;
+			}
 		}
-		return super.onOptionsItemSelected(item);
-	}
 
-	@Override
-	public void onHandleUI(BidulgiResponsePacket response) {
-		// TODO Auto-generated method stub
-		
-	}
+	};
 }

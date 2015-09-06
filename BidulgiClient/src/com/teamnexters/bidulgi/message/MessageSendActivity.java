@@ -2,8 +2,10 @@ package com.teamnexters.bidulgi.message;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.teamnexters.bidulgi.client.MessageSendCheckActivity;
 import com.teamnexters.bidulgi.client.R;
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
@@ -85,15 +88,15 @@ public class MessageSendActivity extends UIHandlingActivity {
 			if (titleEditText.getText().toString().length() != 0) {
 				if (contentEditText.getText().toString().length() != 0) {
 					if (passwordEditText.getText().toString().length() != 0) {
+						
+						try{
+						Intent intent = new Intent(getApplicationContext(),MessageSendCheckActivity.class);
+						startActivityForResult(intent, 1);
+						} catch(Exception e){
+							Log.d("error",  "메일보내기 확인 액티비티 에러 내용은 " + e.toString());
+						}
 
-						lockUI();
-						MessageRequestPacket messageRequest = new MessageRequestPacket();
-						messageRequest.setArticlePassword(passwordEditText.getText().toString());
-						messageRequest.setArticleText(contentEditText.getText().toString());
-						messageRequest.setArticleTitle(titleEditText.getText().toString());
-						messageRequest.setSoldierId(soldierId);
-						messageRequest.setRequestCode(BidulgiRequestCode.REQUEST_SEND_MESSAGE);
-						HttpRequestThread.getInstance().addRequest(messageRequest);
+						
 						break;
 
 					} else {
@@ -110,6 +113,27 @@ public class MessageSendActivity extends UIHandlingActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		switch(resultCode){
+		
+		case 1:
+			lockUI();
+			MessageRequestPacket messageRequest = new MessageRequestPacket();
+			messageRequest.setArticlePassword(passwordEditText.getText().toString());
+			messageRequest.setArticleText(contentEditText.getText().toString());
+			messageRequest.setArticleTitle(titleEditText.getText().toString());
+			messageRequest.setSoldierId(soldierId);
+			messageRequest.setRequestCode(BidulgiRequestCode.REQUEST_SEND_MESSAGE);
+			HttpRequestThread.getInstance().addRequest(messageRequest);
+			break;
+		case 2:
+			Toast.makeText(getApplicationContext(), "편지보내기를 취소하였습니다.", Toast.LENGTH_SHORT).show();
+			break;
+		}
+	}
 	@Override
 	public void onHandleUI(BidulgiResponsePacket response) {
 		switch (response.getResponseCode()) {
