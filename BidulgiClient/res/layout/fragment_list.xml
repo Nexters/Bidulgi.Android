@@ -31,6 +31,7 @@
             android:id="@+id/friendListNameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:layout_weight="30"
             android:gravity="bottom"
             android:text="양시영 훈련병"

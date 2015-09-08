@@ -1,5 +1,7 @@
 package com.teamnexters.bidulgi.message;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.bumptech.glide.GenericTranscodeRequest;
@@ -74,6 +76,9 @@ public class UserMessageAdapter extends BaseAdapter {
 			// viewHolder.soldierImageImageView;
 		}
 		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일", java.util.Locale.getDefault());
+		String sendTime = dateFormat.format(new Date(currentMessageData.getSendTime()));
+		viewHolder.timeTextView.setText(sendTime);
 		if(position % 2 == 0){
 			convertView.setBackgroundResource(R.drawable.backgroundGray);
 		} else if(position % 2 == 1){

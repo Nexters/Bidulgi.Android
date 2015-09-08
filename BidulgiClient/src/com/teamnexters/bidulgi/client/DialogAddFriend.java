@@ -30,14 +30,15 @@ import com.teamnexters.bidulgi.common.response.SoldierResponsePacket;
 
 public class DialogAddFriend extends UIHandlingActivity {
 
-	TextView txtName;
-	TextView txtBirthDay;
-	TextView txtDate;
-	EditText editName;
-	EditText editBirthDay;
-	TextView editDate;
-	Button btnAddFriend;
-	Button btnNotAddFriend;
+	private TextView txtAddFriendTitle;
+	private TextView txtName;
+	private TextView txtBirthDay;
+	private TextView txtDate;
+	private EditText editName;
+	private EditText editBirthDay;
+	private TextView editDate;
+	private Button btnAddFriend;
+	private Button btnNotAddFriend;
 	final int CHOICE_DATE = 1;
 	Calendar cal = new GregorianCalendar();
 
@@ -47,20 +48,22 @@ public class DialogAddFriend extends UIHandlingActivity {
 		setContentView(R.layout.activity_dialog_add_friend);
 
 		Typeface typeface = Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF");
+		txtAddFriendTitle = (TextView) findViewById(R.id.txtAddFriendTitle);
 		txtName = (TextView) findViewById(R.id.txtName);
 		txtBirthDay = (TextView) findViewById(R.id.txtBirthDay);
 		txtDate = (TextView) findViewById(R.id.txtDate);
 		editName = (EditText) findViewById(R.id.editName);
 		editBirthDay = (EditText) findViewById(R.id.editBirthDay);
 		editDate = (TextView) findViewById(R.id.editDate);
-		btnAddFriend = (Button) findViewById(R.id.btnAddFriend);
 		btnNotAddFriend = (Button) findViewById(R.id.btnNotAddFriend);
+		btnAddFriend = (Button) findViewById(R.id.btnAddFriend);
 
+		txtAddFriendTitle.setTypeface(typeface, typeface.BOLD);
 		txtName.setTypeface(typeface);
 		txtBirthDay.setTypeface(typeface);
 		txtDate.setTypeface(typeface);
-		btnAddFriend.setOnClickListener(onClickListener);
 		btnNotAddFriend.setOnClickListener(onClickListener);
+		btnAddFriend.setOnClickListener(onClickListener);
 		editDate.setOnClickListener(onClickListener);
 
 	}
@@ -106,6 +109,7 @@ public class DialogAddFriend extends UIHandlingActivity {
 				Log.d("aaaa", "추가할 친구 이름은 " + editName.getText().toString());
 				break;
 			case R.id.btnNotAddFriend:
+				Log.d("aaaa", "친구 추가 취소 ");
 				resIntent.putExtra("addFriend", false);
 				setResult(1, resIntent);
 				finish();
@@ -176,6 +180,7 @@ public class DialogAddFriend extends UIHandlingActivity {
 			setResult(1, resIntent);
 			finish();
 			break;
+
 		case BidulgiResponseCode.RESPONSE_SOLDIER_SEARCH_FAIL:
 			Toast.makeText(getApplicationContext(), "해당 훈련병 정보가 없습니다.", Toast.LENGTH_SHORT).show();
 			break;

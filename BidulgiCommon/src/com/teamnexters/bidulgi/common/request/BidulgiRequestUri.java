@@ -24,6 +24,9 @@ public interface BidulgiRequestUri {
 	public String REQUEST_LOGIN_DUPLICATE = "/login_duplicate";
 	public String REQUEST_KEEP_SESSION = "/keep-session";
 	public String REQUEST_TEST_SLEEP = "/apm-testsleep";
-	public String REQUEST_LIST_BOARD = "/service/list-board";
-	public String REQUEST_WRITE_BOARD = "/service/write-board";
+	public String REQUEST_LIST_ARTICLE = "/service/list-article";
+	public String REQUEST_WRITE_ARTICLE = "/service/write-article";
+	public String REQUEST_LIST_COMMENT= "/service/list-comment";
+	public String REQUEST_WRITE_COMMENT = "/service/write-comment";
+	public String REQUEST_READ_ARTICLE = "/service/read-article";
 }

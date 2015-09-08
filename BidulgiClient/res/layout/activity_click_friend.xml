@@ -29,7 +29,6 @@
             android:layout_marginBottom="15dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="나성수"
             android:textColor="#252525"
             android:textSize="25dp" />
 

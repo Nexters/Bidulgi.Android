@@ -10,6 +10,7 @@ import com.teamnexters.bidulgi.common.data.MessageData;
 import com.teamnexters.bidulgi.common.data.SoldierData;
 import com.teamnexters.bidulgi.message.UserMessageAdapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,10 +32,12 @@ public class BidoolgiMail extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+
 		listView = (ListView) getView().findViewById(R.id.messageListMessageListView);
+
 		listView.setBackgroundResource(R.drawable.backgroundWhite);
 		if (soldierDataList != null) {
-			refreshList(soldierDataList);
+			refreshList(soldierDataList, getActivity());
 		}
 	}
 
@@ -44,12 +47,14 @@ public class BidoolgiMail extends Fragment {
 		return moodView;
 	}
 
-	public void refreshList(List<MessageData> soldierDataList) {
+	public void refreshList(List<MessageData> soldierDataList, Context context) {
 		// userMessageAdapter.notifyDataSetChanged();
 		this.soldierDataList = soldierDataList;
-		userMessageAdapter = new UserMessageAdapter(soldierDataList, getView().getContext());
-		listView.setAdapter(userMessageAdapter);
-		listView.setOnItemClickListener(onItemClickListener);
+		userMessageAdapter = new UserMessageAdapter(soldierDataList, context);
+		if (listView != null) {
+			listView.setAdapter(userMessageAdapter);
+			listView.setOnItemClickListener(onItemClickListener);
+		}
 	}
 
 	OnItemClickListener onItemClickListener = new OnItemClickListener() {
