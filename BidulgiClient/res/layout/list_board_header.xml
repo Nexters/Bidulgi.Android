@@ -21,6 +21,7 @@
             android:textColor="#58595b" />
 
         <Button
+            android:id="@+id/btnEditArticle"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:padding="5dp"

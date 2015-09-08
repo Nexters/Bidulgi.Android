@@ -42,5 +42,6 @@
 
     <string name="title_activity_click_mail">ClickMailActivity</string>
     <string name="title_activity_message_send_check">MessageSendCheckActivity</string>
+    <string name="title_activity_board_edit_article">BoardEditArticleActivity</string>
 
 </resources>

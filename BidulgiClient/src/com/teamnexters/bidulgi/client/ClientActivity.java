@@ -169,6 +169,15 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 
 			}
 			break;
+			
+		case 4:
+			if(data.getBooleanExtra("writeAricle", false)){
+				mViewPager.setCurrentItem(2);
+				Toast.makeText(getApplicationContext(), "게시판 글 등록이 되었습니다.", Toast.LENGTH_SHORT).show();
+			} else{
+				mViewPager.setCurrentItem(2);
+				Toast.makeText(getApplicationContext(), "게시판 글 등록을 실패했습니다ㅠ.ㅠ", Toast.LENGTH_SHORT).show();
+			}
 		}
 
 	}

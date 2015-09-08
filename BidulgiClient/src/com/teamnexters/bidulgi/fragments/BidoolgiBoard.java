@@ -2,6 +2,7 @@ package com.teamnexters.bidulgi.fragments;
 
 import java.util.List;
 
+import com.teamnexters.bidulgi.client.BoardEditArticleActivity;
 import com.teamnexters.bidulgi.client.R;
 import com.teamnexters.bidulgi.client.board.BoardListAdapter;
 import com.teamnexters.bidulgi.common.data.ArticleData;
@@ -12,7 +13,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class BidoolgiBoard extends Fragment {
@@ -20,6 +23,7 @@ public class BidoolgiBoard extends Fragment {
 	private BoardListAdapter boardListAdapter;
 	private List<ArticleData> articleDataList;
 	private ListView listView;
+	private Button btnEditArticle;
 	Intent intent;
 
 	@Override
@@ -32,6 +36,10 @@ public class BidoolgiBoard extends Fragment {
 		if (articleDataList != null) {
 			refreshList(articleDataList, getActivity());
 		}
+		
+		btnEditArticle = (Button) getView().findViewById(R.id.btnEditArticle);
+		btnEditArticle.setOnClickListener(onClickListener);
+		
 	}
 
 	@Override
@@ -50,6 +58,16 @@ public class BidoolgiBoard extends Fragment {
 		// listView.setOnItemClickListener(onItemClickListener);
 	}
 
+	OnClickListener onClickListener = new OnClickListener(){
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Intent intent = new Intent(getView().getContext(), BoardEditArticleActivity.class);
+			startActivityForResult(intent, 1);
+		}
+		
+	};
 	/*
 	 * OnItemClickListener onItemClickListener = new OnItemClickListener() {
 	 * 
