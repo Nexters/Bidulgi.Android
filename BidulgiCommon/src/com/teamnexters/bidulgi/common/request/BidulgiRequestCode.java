@@ -14,4 +14,6 @@ public interface BidulgiRequestCode {
 	public int REQUEST_SEND_MESSAGE = 10;
 	public int REQUEST_LIST_SOLDIER_MESSAGE = 11;
 	public int REQUEST_LIST_USER_MESSAGE = 12;
+	public int REQUEST_LIST_BOARD = 13;
+	public int REQUEST_WRITE_BOARD = 14;
 }

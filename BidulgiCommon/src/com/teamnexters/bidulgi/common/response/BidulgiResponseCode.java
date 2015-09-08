@@ -28,4 +28,5 @@ public interface BidulgiResponseCode {
 	public int RESPONSE_LOGIN_DUPLICATE = 24;
 	public int RESPONSE_KEEP_SESSION = 25;
 	public int RESPONSE_NICE_ALREADY_AUTHED = 26;
+	public int RESPONSE_LIST_BOARD = 27;
 }
