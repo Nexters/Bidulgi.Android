@@ -8,6 +8,7 @@ public class ArticleData {
 	private String title;
 	private String content;
 	private int commentCount;
+	private int viewCount;
 	
 	
 	public long getArticleId() {
@@ -51,5 +52,11 @@ public class ArticleData {
 	}
 	public void setWriteDate(long writeDate) {
 		this.writeDate = writeDate;
+	}
+	public int getViewCount() {
+		return viewCount;
+	}
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
 	}
 }

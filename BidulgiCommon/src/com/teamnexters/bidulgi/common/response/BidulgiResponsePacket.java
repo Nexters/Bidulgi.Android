@@ -36,6 +36,7 @@ public abstract class BidulgiResponsePacket implements BidulgiResponseCode{
 		case RESPONSE_READ_ARTICLE:
 			return ArticleResponsePacket.class;
 		case RESPONSE_LIST_COMMENT:
+		case RESPONSE_WRITE_COMMENT_SUCCESS:
 			return CommentListResponsePacket.class;
 		}
 		return CommonResponsePacket.class;
