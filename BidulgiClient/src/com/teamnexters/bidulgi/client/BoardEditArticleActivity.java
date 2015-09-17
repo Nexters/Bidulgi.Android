@@ -58,6 +58,14 @@ public class BoardEditArticleActivity extends UIHandlingActivity {
 		btnSendArticle.setOnClickListener(onClickListener);
 
 	}
+	
+	public void onBackPressed() {
+		Intent resIntent = new Intent();
+		resIntent.putExtra("cancel", true);
+		setResult(5, resIntent);
+		finish();
+	};
+	
 
 	@Override
 	public void onHandleUI(BidulgiResponsePacket response) {

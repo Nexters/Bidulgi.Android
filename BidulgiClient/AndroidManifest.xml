@@ -10,7 +10,7 @@
 
     <!--
   IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-  to match your app's package name + ".permission.C2D_MESSAGE".
+  to match your app's package name + ".permission.C2D_MESSAGE".
     -->
 
     <uses-sdk
@@ -79,6 +79,10 @@
         <activity
             android:name=".BoardEditArticleActivity"
             android:label="@string/title_activity_board_edit_article" >
+        </activity>
+        <activity
+            android:name=".ClickArticleActivity"
+            android:label="@string/title_activity_click_article" >
         </activity>
     </application>
 

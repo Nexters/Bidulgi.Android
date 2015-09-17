@@ -1,0 +1,186 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:weightSum="100" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:background="#f4f4f5"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:weightSum="100" >
+
+        <TextView
+            android:id="@+id/articleBidoolgi"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="20"
+            android:gravity="left|center_vertical"
+            android:text="비둘기 둥지"
+            android:textColor="#58595b" />
+
+        <TextView
+            android:id="@+id/articleTitle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="45"
+            android:gravity="left|center_vertical"
+            android:text="오늘따라 아들이 더 보고싶네요."
+            android:textColor="#58595b"
+            android:textSize="15sp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="35" >
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#58595b"
+                android:weightSum="100" >
+
+                <TextView
+                    android:id="@+id/articleWriterName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="17"
+                    android:background="#f4f4f5"
+                    android:gravity="left|center_vertical"
+                    android:text="조나은"
+                    android:textColor="#58595b" />
+
+                <TextView
+                    android:id="@+id/articleWriteDate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="32"
+                    android:background="#f4f4f5"
+                    android:gravity="center"
+                    android:paddingRight="1dp"
+                    android:text="2015.07.27"
+                    android:textColor="#58595b" />
+
+                <TextView
+                    android:id="@+id/articleWatchCount"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="51"
+                    android:background="#f4f4f5"
+                    android:gravity="left|center"
+                    android:paddingLeft="10dp"
+                    android:text="조회수 : 20"
+                    android:textColor="#58595b" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/articleContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="#58595b" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="#f4f4f5"
+        android:paddingBottom="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp" >
+
+        <TextView
+            android:id="@+id/txtComentTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="댓글"
+            android:textColor="#58595b"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtComentCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/txtComentTitle"
+            android:text="[2]"
+            android:textColor="#58595b"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnWriteComent"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/reply"
+            android:gravity="center" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/listViewComents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:choiceMode="none" >
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/layoutEditReply"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="40"
+        android:paddingTop="12dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="#f4f4f5"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:weightSum="100" >
+        
+        <TextView 
+            android:id="@+id/txtEditReply"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="20"
+            android:layout_marginBottom="10dp"
+            android:text="댓글 쓰기"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="16sp"
+            android:textColor="#58595b"/>
+        
+        <EditText 
+            android:id="@+id/editReply"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/agree_border"/>
+        
+        <Button
+            android:id="@+id/btnSendReply" 
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/replyupload_"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -9,4 +9,6 @@
     <drawable name="white">#ffffff</drawable>
     <drawable name="backgroundGray">#f4f4f5</drawable>
     <drawable name="backgroundWhite">#ffffff</drawable>
+    <drawable name="gray">#f4f4f5</drawable>
+    <drawable name="bidoolgi_pink">#ff6884</drawable>
 </resources>

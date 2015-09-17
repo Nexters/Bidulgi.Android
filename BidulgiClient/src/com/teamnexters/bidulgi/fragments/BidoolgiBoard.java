@@ -3,6 +3,7 @@ package com.teamnexters.bidulgi.fragments;
 import java.util.List;
 
 import com.teamnexters.bidulgi.client.BoardEditArticleActivity;
+import com.teamnexters.bidulgi.client.ClickArticleActivity;
 import com.teamnexters.bidulgi.client.R;
 import com.teamnexters.bidulgi.client.board.BoardListAdapter;
 import com.teamnexters.bidulgi.common.data.ArticleData;
@@ -15,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -32,14 +35,15 @@ public class BidoolgiBoard extends Fragment {
 		listView = (ListView) getView().findViewById(R.id.listviewBoard);
 		View header = getActivity().getLayoutInflater().inflate(R.layout.list_board_header, null, false);
 		listView.addHeaderView(header);
+		listView.setOnItemClickListener(onItemClickListener);
 		listView.setBackgroundResource(R.drawable.backgroundWhite);
 		if (articleDataList != null) {
 			refreshList(articleDataList, getActivity());
 		}
-		
+
 		btnEditArticle = (Button) getView().findViewById(R.id.btnEditArticle);
 		btnEditArticle.setOnClickListener(onClickListener);
-		
+
 	}
 
 	@Override
@@ -58,7 +62,7 @@ public class BidoolgiBoard extends Fragment {
 		// listView.setOnItemClickListener(onItemClickListener);
 	}
 
-	OnClickListener onClickListener = new OnClickListener(){
+	OnClickListener onClickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
@@ -66,37 +70,32 @@ public class BidoolgiBoard extends Fragment {
 			Intent intent = new Intent(getView().getContext(), BoardEditArticleActivity.class);
 			startActivityForResult(intent, 1);
 		}
-		
+
 	};
-	/*
-	 * OnItemClickListener onItemClickListener = new OnItemClickListener() {
-	 * 
-	 * @Override public void onItemClick(AdapterView<?> parent, View view, int
-	 * position, long id) { Log.d("aaaa", "메일 리스트 클릭"); SoldierInfoStore
-	 * soldierInfoStore = SoldierInfoStore.getInstance(); intent = new
-	 * Intent(getView().getContext(), ClickMailActivity.class);
-	 * intent.putExtra("profilePhotoSrc",
-	 * soldierInfoStore.getData(soldierDataList.get(position).
-	 * getReceiveSoldierId()).getProfilePhotoSrc()); intent.putExtra("name",
-	 * soldierInfoStore.getData(soldierDataList.get(position).
-	 * getReceiveSoldierId()).getName()); intent.putExtra("id",
-	 * soldierDataList.get(position).getReceiveSoldierId()); Log.d("aaaa",
-	 * "메일 리스트 클릭시 넘어가는 훈련병 이름 " +
-	 * soldierInfoStore.getData(soldierDataList.get(position).
-	 * getReceiveSoldierId()).getName());
-	 * 
-	 * startActivityForResult(intent, 3); /* intent.putExtra("name",
-	 * data.get(position).getName()); intent.putExtra("regiment",
-	 * data.get(position).getRegiment()); intent.putExtra("address",
-	 * data.get(position).getRegiment() + "연대 " +
-	 * data.get(position).getCompany() + "소대 " + data.get(position).getPlatoon()
-	 * + "분대 " + data.get(position).getNumber() + "번 훈련병");
-	 * intent.putExtra("enterDate", data.get(position).getDate());
-	 * intent.putExtra("id", data.get(position).getsoldierId());
-	 * startActivity(intent); getActivity().finish();
-	 * 
-	 * }
-	 * 
-	 * };
-	 */
+
+	 OnItemClickListener onItemClickListener =  new OnItemClickListener(){
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			// TODO Auto-generated method stub
+		
+			intent = new Intent(getView().getContext(), ClickArticleActivity.class);
+			
+			intent.putExtra("articleId", articleDataList.get(position - 1).getArticleId());
+			intent.putExtra("articleTitle", articleDataList.get(position - 1).getTitle());
+			intent.putExtra("writeUserName", articleDataList.get(position - 1).getWriteUserName());
+			intent.putExtra("writeDate", articleDataList.get(position - 1).getWriteDate());
+			intent.putExtra("articleContent",articleDataList.get(position - 1).getContent());
+			intent.putExtra("commentCount", articleDataList.get(position - 1).getCommentCount());
+			intent.putExtra("watchCount", articleDataList.get(position - 1).getViewCount());
+			
+			startActivityForResult(intent, 1);
+			
+			
+			
+			
+		}
+		
+	}; 
+
 }

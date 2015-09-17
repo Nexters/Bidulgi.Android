@@ -80,9 +80,9 @@ public class UserMessageAdapter extends BaseAdapter {
 		String sendTime = dateFormat.format(new Date(currentMessageData.getSendTime()));
 		viewHolder.timeTextView.setText(sendTime);
 		if(position % 2 == 0){
-			convertView.setBackgroundResource(R.drawable.backgroundGray);
+			convertView.setBackgroundResource(R.drawable.list_click_color_gray);
 		} else if(position % 2 == 1){
-			convertView.setBackgroundResource(R.drawable.backgroundWhite);
+			convertView.setBackgroundResource(R.drawable.list_click_color);
 		}
 		
 		return convertView;

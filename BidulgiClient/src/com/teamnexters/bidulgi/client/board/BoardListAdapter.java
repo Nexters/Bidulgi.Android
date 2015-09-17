@@ -63,7 +63,7 @@ public class BoardListAdapter extends BaseAdapter{
 		
 		viewHolder.boardWriteDate.setText(strDate);
 		
-		viewHolder.boardWatchCount.setText("조화수 : 30");
+		viewHolder.boardWatchCount.setText("조회수 : "+currentArticleData.getCommentCount());
 
 		return convertView;
 	}

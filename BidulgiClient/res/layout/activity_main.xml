@@ -4,23 +4,23 @@
     android:layout_height="match_parent"
     android:background="@drawable/loadingbackground" >
 
-    
-     <EditText
+    <EditText
         android:id="@+id/editEmail"
         android:layout_width="200dp"
         android:layout_height="30dp"
         android:layout_above="@+id/editPassWord"
         android:layout_alignLeft="@+id/editPassWord"
-        android:background="@drawable/blank_01"
         android:layout_marginBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:background="@drawable/blank_01"
         android:ems="10"
         android:hint="E-mail"
-        android:textColorHint="#ffffff"
-        android:inputType="textEmailAddress" />
-     
-      <EditText
+        android:inputType="textEmailAddress"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff" />
+
+    <EditText
         android:id="@+id/editPassWord"
         android:layout_width="200dp"
         android:layout_height="30dp"
@@ -28,14 +28,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:background="@drawable/blank_01"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:ems="10"
         android:hint="Password"
-        android:textColorHint="#ffffff"
-        android:inputType="textPassword" />
-      
-      
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -53,10 +52,5 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
         android:background="@drawable/signup_01" />
-
-   
-
-
-
 
 </RelativeLayout>

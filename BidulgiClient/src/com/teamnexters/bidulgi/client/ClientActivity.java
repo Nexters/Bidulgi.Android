@@ -178,6 +178,26 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 				mViewPager.setCurrentItem(2);
 				Toast.makeText(getApplicationContext(), "게시판 글 등록을 실패했습니다ㅠ.ㅠ", Toast.LENGTH_SHORT).show();
 			}
+			break;
+			
+		case 5:
+			if(data.getBooleanExtra("cancel", false)){			
+					mViewPager.setCurrentItem(2);
+					Toast.makeText(getApplicationContext(), "게시판 글 등록을 취소하였습니다.", Toast.LENGTH_SHORT).show();
+				
+			}else{
+				
+			}
+			break;
+		case 6:
+			if(data.getBooleanExtra("writeComment", false)){
+				mViewPager.setCurrentItem(2);
+				Toast.makeText(getApplicationContext(), "댓글 등록이 되었습니다.", Toast.LENGTH_SHORT).show();
+			} else if(data.getBooleanExtra("backPress", false)){
+				mViewPager.setCurrentItem(2);
+			} else{
+				
+			}
 		}
 
 	}
