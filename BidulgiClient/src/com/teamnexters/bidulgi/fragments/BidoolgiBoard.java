@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -86,6 +87,7 @@ public class BidoolgiBoard extends Fragment {
 			intent.putExtra("writeUserName", articleDataList.get(position - 1).getWriteUserName());
 			intent.putExtra("writeDate", articleDataList.get(position - 1).getWriteDate());
 			intent.putExtra("articleContent",articleDataList.get(position - 1).getContent());
+			Log.d("aaaa", "게시판 글 클릭시 넘겨주는 내용은 " + articleDataList.get(position - 1).getContent());
 			intent.putExtra("commentCount", articleDataList.get(position - 1).getCommentCount());
 			intent.putExtra("watchCount", articleDataList.get(position - 1).getViewCount());
 			

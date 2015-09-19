@@ -8,6 +8,7 @@ import com.teamnexters.bidulgi.client.R;
 import com.teamnexters.bidulgi.common.data.ArticleData;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +65,7 @@ public class BoardListAdapter extends BaseAdapter{
 		viewHolder.boardWriteDate.setText(strDate);
 		
 		viewHolder.boardWatchCount.setText("조회수 : "+currentArticleData.getCommentCount());
+		
 
 		return convertView;
 	}

@@ -11,6 +11,7 @@ import com.teamnexters.bidulgi.common.data.CommentData;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,13 +64,14 @@ public class BoardReplyListAdapter extends BaseAdapter{
 		
 		viewHolder.txtReplyContent.setText(currentCommentData.getContent());
 		viewHolder.txtReplyWriterName.setText(currentCommentData.getWriteUserName());
+		Log.d("aaaa", "댓글 단 사람 이름은 " + currentCommentData.getWriteUserName());
 		
 		/*Date date = new Date(currentCommentData.get);
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일", java.util.Locale.getDefault());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd일", java.util.Locale.getDefault());
 		String strDate = dateFormat.format(date);
 		
-		viewHolder.boardWriteDate.setText(strDate);
-		*/
+		viewHolder.boardWriteDate.setText(strDate);*/
+		
 
 		return convertView;
 	}
