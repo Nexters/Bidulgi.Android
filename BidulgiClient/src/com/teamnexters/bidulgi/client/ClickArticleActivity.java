@@ -53,13 +53,14 @@ public class ClickArticleActivity extends UIHandlingActivity {
 	private Button btnSendReply;
 	private Long articleId;
 	private ActionBar actionBar;
-	private static int count = 0;
+	private static boolean PAGE_END = true;
 
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		lockUI();
+		
 		setContentView(R.layout.activity_click_article);
 
 		intent = getIntent();
@@ -107,12 +108,22 @@ public class ClickArticleActivity extends UIHandlingActivity {
 
 			listViewComents = (ListView) findViewById(R.id.listViewComents);
 			listViewComents.setAdapter(boardReplyListAdapter);
+			unlockUI();
+			Log.d("aaaa","댓글 리스트 가져옴");
 			break;
 		case BidulgiResponseCode.RESPONSE_WRITE_COMMENT_SUCCESS:
-			intent.putExtra("writeComment", true);
-			setResult(6, intent);
+			/*intent.putExtra("writeComment", true);
+			setResult(6, intent);*/
+			lockUI();
+			
+			LongRequestPacket request = new LongRequestPacket();
+			request.setValue(intent.getExtras().getLong("articleId"));
+			request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_COMMENT);
+			HttpRequestThread.getInstance().addRequest(request);
+			layoutEditReply.setVisibility(View.GONE);
+			PAGE_END = true;
 			Toast.makeText(getApplicationContext(), "댓글을 등록하였습니다.", Toast.LENGTH_SHORT).show();
-			finish();
+			//finish();
 			break;
 
 		case BidulgiResponseCode.RESPONSE_WRITE_COMMENT_FAIL:
@@ -153,7 +164,7 @@ public class ClickArticleActivity extends UIHandlingActivity {
 			articleContent.setText(responseArticle.getArticleData().getContent());
 			Log.d("aaaa", "게시판 글 내용은 " + responseArticle.getArticleData().getContent());
 			articleContent.setTypeface(typeface);
-			unlockUI();
+			
 			} catch(Exception e){
 				Log.d("error", "게시판 글 가져오는데 왜 실패하는지..." + e.toString());
 			}
@@ -163,19 +174,17 @@ public class ClickArticleActivity extends UIHandlingActivity {
 	}
 
 	public void onBackPressed() {
-		switch (count) {
-		case 0:
+		if(PAGE_END == true){
 			intent.putExtra("backPress", true);
 			setResult(6, intent);
 			finish();
-			break;
-
-		case 1:
-			layoutEditReply.setVisibility(View.GONE);
-			count--;
-			break;
 		}
-	};
+
+		else if(PAGE_END == false){
+			layoutEditReply.setVisibility(View.GONE);
+			PAGE_END = true;
+		}
+	}
 
 	OnClickListener onClickListener = new OnClickListener() {
 
@@ -185,7 +194,7 @@ public class ClickArticleActivity extends UIHandlingActivity {
 			switch (v.getId()) {
 			case R.id.btnWriteComent:
 				layoutEditReply.setVisibility(View.VISIBLE);
-				count++;
+				PAGE_END = false;
 				break;
 
 			case R.id.btnSendReply:

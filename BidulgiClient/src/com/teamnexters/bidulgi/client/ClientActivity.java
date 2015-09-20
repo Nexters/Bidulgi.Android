@@ -172,6 +172,12 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 			
 		case 4:
 			if(data.getBooleanExtra("writeAricle", false)){
+				
+				LongRequestPacket requestArticleList = new LongRequestPacket();
+				requestArticleList.setValue(Integer.MAX_VALUE);
+				requestArticleList.setRequestCode(BidulgiRequestCode.REQUEST_LIST_ARTICLE);
+				HttpRequestThread.getInstance().addRequest(requestArticleList);
+				
 				mViewPager.setCurrentItem(2);
 				Toast.makeText(getApplicationContext(), "게시판 글 등록이 되었습니다.", Toast.LENGTH_SHORT).show();
 			} else{
@@ -206,6 +212,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 	public void onHandleUI(BidulgiResponsePacket response) {
 		switch (response.getResponseCode()) {
 		case BidulgiResponseCode.RESPONSE_LIST_FRIEND_SOLDIER:
+			
 			Log.d("aaaa", "서버 회신은 " + response.getResponseCode());
 			try {
 				SoldierListResponsePacket responseSoldierList = (SoldierListResponsePacket) response;
@@ -220,6 +227,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 
 				}
 				SoldierInfoStore.getInstance().reload(data);
+				unlockUI();
 				break;
 			} catch (Exception e) {
 				Log.d("error", "리스트 목록 받아올 때 에러 발생 에러 내용은 " + e.toString());

@@ -51,6 +51,7 @@ public class MainActivity extends UIHandlingActivity {
 			startActivity(intent);
 			finish();
 		} else {
+			unlockUI();
 			Typeface typeface = Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF");
 			setContentView(R.layout.activity_main);
 			editEmail = (EditText) findViewById(R.id.editEmail);

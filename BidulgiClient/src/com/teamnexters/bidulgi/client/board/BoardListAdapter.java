@@ -67,6 +67,7 @@ public class BoardListAdapter extends BaseAdapter{
 		viewHolder.boardWatchCount.setText("조회수 : "+currentArticleData.getCommentCount());
 		
 
+		convertView.setBackgroundResource(R.drawable.list_click_color);
 		return convertView;
 	}
 
