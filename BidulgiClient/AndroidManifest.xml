@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.teamnexters.bidulgi.client"
-    android:versionCode="3"
-    android:versionName="0.13" >
+    android:versionCode="1"
+    android:versionName="0.01" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -25,7 +25,7 @@
         android:theme="@style/CustomActionBarTheme" >
         <activity
             android:name=".LoadingActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Holo.NoActionBar"   >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,17 +35,17 @@
         <activity
             android:name=".MainActivity"
             android:label="MainActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Holo.NoActionBar"  >
         </activity>
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Holo.NoActionBar"   >
         </activity>
         <activity
             android:name=".AgreeActivity"
             android:label="@string/title_activity_agree"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Holo.NoActionBar"  >
         </activity>
         <activity
             android:name=".ClientActivity"
@@ -74,7 +74,7 @@
         <activity
             android:name=".MessageSendCheckActivity"
             android:label="@string/title_activity_message_send_check"
-            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" >
+            android:theme="@android:style/Theme.Holo.NoActionBar"  >
         </activity>
         <activity
             android:name=".BoardEditArticleActivity"
@@ -82,8 +82,7 @@
         </activity>
         <activity
             android:name=".ClickArticleActivity"
-            android:label="@string/title_activity_click_article"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:label="@string/title_activity_click_article" >
         </activity>
     </application>
 

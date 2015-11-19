@@ -1,79 +1,91 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="100"
     tools:context="com.teamnexters.bidulgi.client.AgreeActivity" >
 
     <TextView
         android:id="@+id/txtBidoolgi"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
         android:gravity="center"
         android:text="BIDOOLGI"
-        android:textSize="20dp"
-        android:textColor="#ff6884" />
-    
+        android:textColor="#ff6884"
+        android:textSize="20dp" />
+
     <TextView
         android:id="@+id/txtAgree"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtBidoolgi"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="50dp"
-        android:layout_alignLeft="@+id/layoutAgree"
-        android:text="개인정보 수집 및  이용 안내"
+        android:text="약관 / 개인정보 수집 및 이용 안내"
         android:textColor="#ff6884" />
 
     <LinearLayout
-        android:id="@+id/layoutAgree"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_below="@+id/txtAgree"
-        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30"
         android:background="@drawable/box_agree"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/txtAgreeMent"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:background="#ffffff"
-            android:text="@string/text_agree"
-            android:textColor="#000000" />
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="1dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-            android:background="#f4f4f5" >
-
-            <CheckBox
-                android:id="@+id/checkBoxAgree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:button="@drawable/checkbox_agree" />
+            android:background="#ffffff" >
 
             <TextView
-                android:id="@+id/txtcheckBoxAgree"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/checkBoxAgree"
-                android:text="개인정보 수집에 동의합니다."
-                android:textColor="#ff6884" />
-        </RelativeLayout>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/terms_bidoolgi1"
+                android:textColor="#000000" />
+        </ScrollView>
     </LinearLayout>
 
-</RelativeLayout>
+    <CheckBox
+        android:id="@+id/terms_checkbox1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="약관 동의"
+        android:textColor="#ff6884"  />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30"
+        android:background="@drawable/box_agree"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/terms_bidoolgi2"
+                android:textColor="#000000" />
+        </ScrollView>
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/terms_checkbox2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="개인정보 수집 정책 동의"
+        android:textColor="#ff6884" />
+
+    <Button
+        android:id="@+id/terms_signup_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="회원가입" />
+
+</LinearLayout>

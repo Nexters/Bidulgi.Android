@@ -13,6 +13,7 @@ import com.teamnexters.bidulgi.common.request.StringRequestPacket;
 import com.teamnexters.bidulgi.common.response.ArticleListResponsePacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.common.response.LoginResponsePacket;
 import com.teamnexters.bidulgi.common.response.MessageListResponsePacket;
 import com.teamnexters.bidulgi.common.response.SoldierListResponsePacket;
 import com.teamnexters.bidulgi.fragments.BidoolgiBoard;
@@ -182,7 +183,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 				Toast.makeText(getApplicationContext(), "게시판 글 등록이 되었습니다.", Toast.LENGTH_SHORT).show();
 			} else{
 				mViewPager.setCurrentItem(2);
-				Toast.makeText(getApplicationContext(), "게시판 글 등록을 실패했습니다ㅠ.ㅠ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "포인트가 부족하여 게시글을 작성할 수 없습니다.", Toast.LENGTH_SHORT).show();
 			}
 			break;
 			
@@ -232,7 +233,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 			} catch (Exception e) {
 				Log.d("error", "리스트 목록 받아올 때 에러 발생 에러 내용은 " + e.toString());
 			}
-
+			break;
 		case BidulgiResponseCode.RESPONSE_LIST_USER_MESSAGE:
 			MessageListResponsePacket responseMessageList = (MessageListResponsePacket) response;
 			fragmentMail.refreshList(responseMessageList.getMessageData(), this);
@@ -251,6 +252,8 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 			break;
 		case BidulgiResponseCode.RESPONSE_NICE_AUTH_SUCCESS:
 			unlockUI();
+			LoginUserInfo.getInstance().setLoginData(((LoginResponsePacket)response).getLoginData());
+			((BidoolgiSetting)mSectionsPagerAdapter.getItem(3)).onAuthSuccess();
 			Toast.makeText(this, "본인인증에 성공하였습니다.", Toast.LENGTH_SHORT).show();
 			if (niceAuthDialog != null) {
 				niceAuthDialog.dismiss();
@@ -353,10 +356,10 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
 		}
 
 		Fragment fragment = fragments.get(position);
-		Bundle args = new Bundle();
-		args.putInt("position", position + 1); // tab의 인덱스는 항상 position으로
-												// Bundle에 넘김.
-		fragment.setArguments(args);
+//		Bundle args = new Bundle();
+//		args.putInt("position", position + 1); // tab의 인덱스는 항상 position으로
+//												// Bundle에 넘김.
+//		fragment.setArguments(args);
 
 		return fragment;
 	}

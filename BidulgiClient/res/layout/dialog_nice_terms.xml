@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:weightSum="10"
+    android:gravity="center">
+
+    <ScrollView
+        android:layout_weight="9"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" >
+
+        <TextView
+            android:id="@+id/nice_terms_textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/nice_terms1_skt" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/nice_terms_close_button"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="닫기" />
+
+</LinearLayout>
