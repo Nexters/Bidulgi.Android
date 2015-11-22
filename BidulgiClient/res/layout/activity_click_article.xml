@@ -29,15 +29,20 @@
                 android:text="비둘기 둥지"
                 android:textColor="#58595b" />
 
-            <TextView
-                android:id="@+id/articleTitle"
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="45"
-                android:gravity="left|center_vertical"
-                android:text="오늘따라 아들이 더 보고싶네요."
-                android:textColor="#58595b"
-                android:textSize="15sp" />
+                android:layout_weight="45" >
+
+                <TextView
+                    android:id="@+id/articleTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|center_vertical"
+                    android:text="오늘따라 아들이 더 보고싶네요."
+                    android:textColor="#58595b"
+                    android:textSize="15sp" />
+            </ScrollView>
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -91,10 +96,10 @@
             android:id="@+id/articleContent"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:textColor="#58595b" />
 
         <RelativeLayout
@@ -141,9 +146,9 @@
             android:id="@+id/listViewComents"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:choiceMode="none"
             android:divider="#f4f4f5"
-            android:dividerHeight="1dp"
-            android:choiceMode="none" >
+            android:dividerHeight="1dp" >
         </ListView>
 
         <LinearLayout
@@ -174,10 +179,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
-                android:padding="10dp"
                 android:layout_marginBottom="15dp"
                 android:layout_weight="70"
                 android:background="@drawable/agree_border"
+                android:padding="10dp"
                 android:textColor="#58595b" />
 
             <Button
