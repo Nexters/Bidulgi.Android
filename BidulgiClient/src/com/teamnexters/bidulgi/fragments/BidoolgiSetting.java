@@ -8,6 +8,7 @@ import com.teamnexters.bidulgi.client.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -24,31 +25,35 @@ public class BidoolgiSetting extends Fragment {
 	Intent intent;
 	private SharedPreferences pref;
 	private Button niceAuthButton;
-	private TextView nameView;
+	private TextView txtDescribe;
+	private TextView txtBidoolgiPoint;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
+		Typeface typeface = Typeface.createFromAsset(getView().getContext().getAssets(), "NANUMGOTHIC.TTF");
+		txtDescribe = (TextView) getView().findViewById(R.id.txtDescribe);
+		txtDescribe.setTypeface(typeface);
 		Button btnLogout = (Button) getView().findViewById(R.id.btnLogout);
-		nameView = (TextView) getView().findViewById(R.id.settingNameTextView);
+		txtBidoolgiPoint = (TextView) getView().findViewById(R.id.txtBidoolgiPoint);
+		txtBidoolgiPoint.setTypeface(typeface);
 		niceAuthButton = (Button) getView().findViewById(R.id.btnNiceAuth);
 		niceAuthButton.setOnClickListener(onClickLogout);
 		btnLogout.setOnClickListener(onClickLogout);
 		if (LoginUserInfo.getInstance().getLoginData().getName() == null) {
-			niceAuthButton.setVisibility(View.VISIBLE);
-			nameView.setVisibility(View.GONE);
+			txtDescribe.setText("미인증유저님 \n 편지를 보내기 위해서는 \n 인증이 필요합니다.");
 		} else {
-			niceAuthButton.setVisibility(View.GONE);
-			nameView.setVisibility(View.VISIBLE);
-			nameView.setText(LoginUserInfo.getInstance().getLoginData().getName()+"님의 비둘기 포인트는 "+LoginUserInfo.getInstance().getLoginData().getPoint()+"p입니다!");
+			niceAuthButton.setBackgroundResource(R.drawable.certifi_n_btn);
+			txtDescribe.setText(LoginUserInfo.getInstance().getLoginData().getName()+"님 \n 안녕하세요! 비둘기로 편리하게 \n 인터넷편지를 보내세요. ");
+			txtBidoolgiPoint.setText("현재 "+LoginUserInfo.getInstance().getLoginData().getPoint()+"point 보유중");
 		}
 	}
 
 	public void onAuthSuccess() {
 		niceAuthButton.setVisibility(View.GONE);
-		nameView.setVisibility(View.VISIBLE);
-		nameView.setText(LoginUserInfo.getInstance().getLoginData().getName()+"님의 비둘기 포인트는 "+LoginUserInfo.getInstance().getLoginData().getPoint()+"p입니다!");
+		txtBidoolgiPoint.setVisibility(View.VISIBLE);
+		txtBidoolgiPoint.setText(LoginUserInfo.getInstance().getLoginData().getName()+"님의 비둘기 포인트는 "+LoginUserInfo.getInstance().getLoginData().getPoint()+"p입니다!");
 	}
 
 	@Override

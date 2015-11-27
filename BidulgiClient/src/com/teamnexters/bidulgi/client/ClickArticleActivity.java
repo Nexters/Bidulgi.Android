@@ -62,12 +62,14 @@ public class ClickArticleActivity extends UIHandlingActivity {
 		super.onCreate(savedInstanceState);
 		lockUI();
 
-		actionBar = getActionBar();
+		Log.d("aaaa", "게시판 글 클릭하고 넘어옴");
+		try{
+		/*actionBar = getActionBar();
 		actionBar.setTitle(null);
 		actionBar.setIcon(null);
 		actionBar.setDisplayHomeAsUpEnabled(false);
 		actionBar.setDisplayUseLogoEnabled(false);
-		actionBar.setHomeButtonEnabled(false);
+		actionBar.setHomeButtonEnabled(false);*/
 		setContentView(R.layout.activity_click_article);
 
 		intent = getIntent();
@@ -90,11 +92,16 @@ public class ClickArticleActivity extends UIHandlingActivity {
 
 		btnSendReply = (Button) findViewById(R.id.btnSendReply);
 		btnSendReply.setOnClickListener(onClickListener);
+		}catch(Exception e){
+			Log.d("error", "게시판 초기화 작업 진행 중 에러 내용은 "+e.toString());
+		}
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
+		
+		try{
 		LongRequestPacket request = new LongRequestPacket();
 		request.setValue(intent.getExtras().getLong("articleId"));
 		request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_COMMENT);
@@ -104,6 +111,9 @@ public class ClickArticleActivity extends UIHandlingActivity {
 		requestRead.setValue(intent.getExtras().getLong("articleId"));
 		requestRead.setRequestCode(BidulgiRequestCode.REQUEST_READ_ARTICLE);
 		HttpRequestThread.getInstance().addRequest(requestRead);
+		}catch(Exception e){
+			Log.d("error", "게시판 글 가져오는 네트워크 작업 중 에러 내용은 " + e.toString());
+		}
 	}
 
 	@Override

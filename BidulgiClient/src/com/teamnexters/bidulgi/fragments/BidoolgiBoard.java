@@ -68,8 +68,12 @@ public class BidoolgiBoard extends Fragment {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			Intent intent = new Intent(getView().getContext(), BoardEditArticleActivity.class);
-			startActivityForResult(intent, 1);
+			try {
+				Intent intent = new Intent(getView().getContext(), BoardEditArticleActivity.class);
+				startActivityForResult(intent, 1);
+			} catch (Exception e) {
+				Log.d("error", "글쓰기 에러는 " + e.toString());
+			}
 		}
 
 	};
@@ -80,9 +84,11 @@ public class BidoolgiBoard extends Fragment {
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			// TODO Auto-generated method stub
 
+			try{
 			intent = new Intent(getView().getContext(), ClickArticleActivity.class);
 
 			intent.putExtra("articleId", articleDataList.get(position - 1).getArticleId());
+			Log.d("aaaa", "게시판 글 클릭시 넘겨주는 아이디는 " + articleDataList.get(position - 1).getArticleId());
 			intent.putExtra("articleTitle", articleDataList.get(position - 1).getTitle());
 			intent.putExtra("writeUserName", articleDataList.get(position - 1).getWriteUserName());
 			intent.putExtra("writeDate", articleDataList.get(position - 1).getWriteDate());
@@ -92,6 +98,10 @@ public class BidoolgiBoard extends Fragment {
 			intent.putExtra("watchCount", articleDataList.get(position - 1).getViewCount());
 
 			startActivityForResult(intent, 1);
+			Log.d("aaaa", "게시판 클릭");
+			}catch(Exception e){
+				Log.d("error", "게시판 클릭 에러는 "+ e.toString());
+			}
 
 		}
 
