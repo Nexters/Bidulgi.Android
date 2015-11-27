@@ -38,6 +38,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuthRequester, NiceSMSCallBack {
+	
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	ViewPager mViewPager;
 	private NiceAuthDialog niceAuthDialog;

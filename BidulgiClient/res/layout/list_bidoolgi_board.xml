@@ -57,7 +57,7 @@
                 android:gravity="left|center_vertical"
                 android:padding="10dp"
                 android:paddingRight="1dp"
-                android:text="조회수 : 20" />
+                android:text="조회수 : 0" />
         </TableRow>
     </TableLayout>
 

@@ -35,17 +35,17 @@
         <activity
             android:name=".MainActivity"
             android:label="MainActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
         <activity
             android:name=".AgreeActivity"
             android:label="@string/title_activity_agree"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
         <activity
             android:name=".ClientActivity"
@@ -83,7 +83,7 @@
         <activity
             android:name=".ClickArticleActivity"
             android:label="@string/title_activity_click_article"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
     </application>
 
