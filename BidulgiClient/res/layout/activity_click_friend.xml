@@ -1,14 +1,18 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
+    android:orientation="vertical"
+    android:weightSum="100"
+    android:gravity="center"
     tools:context="com.teamnexters.bidulgi.client.ClickFriendActivity" >
 
     <RelativeLayout
         android:id="@+id/layoutImgFriend"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="0dp"
+        android:layout_weight="50"
         android:background="#f4f4f5"
         android:gravity="center" >
 
@@ -46,7 +50,8 @@
     <LinearLayout
         android:id="@+id/soldierDetailInfoLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="40"
         android:layout_below="@+id/layoutImgFriend"
         android:gravity="center"
         android:orientation="horizontal"
@@ -76,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
                     android:gravity="left|top"
-                    android:text="주소"
+                    android:text="부대"
                     android:textColor="#58595b" />
 
                 <TextView
@@ -130,6 +135,7 @@
                 android:background="#f4f4f5" />
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
@@ -168,4 +174,4 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/b_write" />
 
-</RelativeLayout>
+</LinearLayout>

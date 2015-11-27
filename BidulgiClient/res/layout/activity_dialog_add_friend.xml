@@ -19,7 +19,6 @@
         android:id="@+id/addFriendTableLayout"
         android:layout_width="250dp"
         android:layout_height="150dp"
-        android:layout_below="@+id/txtAddfriendTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:background="#f4f4f5"

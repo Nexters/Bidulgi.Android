@@ -74,30 +74,27 @@ public class BidoolgiBoard extends Fragment {
 
 	};
 
-	 OnItemClickListener onItemClickListener =  new OnItemClickListener(){
+	OnItemClickListener onItemClickListener = new OnItemClickListener() {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			// TODO Auto-generated method stub
-		
+
 			intent = new Intent(getView().getContext(), ClickArticleActivity.class);
-			
+
 			intent.putExtra("articleId", articleDataList.get(position - 1).getArticleId());
 			intent.putExtra("articleTitle", articleDataList.get(position - 1).getTitle());
 			intent.putExtra("writeUserName", articleDataList.get(position - 1).getWriteUserName());
 			intent.putExtra("writeDate", articleDataList.get(position - 1).getWriteDate());
-			intent.putExtra("articleContent",articleDataList.get(position - 1).getContent());
+			intent.putExtra("articleContent", articleDataList.get(position - 1).getContent());
 			Log.d("aaaa", "게시판 글 클릭시 넘겨주는 내용은 " + articleDataList.get(position - 1).getContent());
 			intent.putExtra("commentCount", articleDataList.get(position - 1).getCommentCount());
 			intent.putExtra("watchCount", articleDataList.get(position - 1).getViewCount());
-			
+
 			startActivityForResult(intent, 1);
-			
-			
-			
-			
+
 		}
-		
-	}; 
+
+	};
 
 }

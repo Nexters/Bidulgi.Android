@@ -17,7 +17,9 @@ import com.teamnexters.bidulgi.client.network.HttpRequestThread;
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
 import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
 import com.teamnexters.bidulgi.common.request.LoginRequestPacket;
+import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.common.response.LoginResponsePacket;
 
 public class SignUpActivity extends UIHandlingActivity {
 	EditText editEmail;
@@ -30,9 +32,6 @@ public class SignUpActivity extends UIHandlingActivity {
 
 	Intent intent;
 	private SharedPreferences pref;
-	private static final int RESPONSE_REGISTRATION_FAIL = 4;
-	private static final int RESPONSE_REGISTRATION_SUCCESS = 5;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,7 +69,8 @@ public class SignUpActivity extends UIHandlingActivity {
 		// TODO Auto-generated method stub
 		// 회원가입 성공시 로그인 화면으로 이동
 		try {
-			if (response.getResponseCode() == RESPONSE_REGISTRATION_SUCCESS) {
+			if (response.getResponseCode() == BidulgiResponseCode.RESPONSE_REGISTRATION_SUCCESS) {
+				LoginUserInfo.getInstance().setLoginData(((LoginResponsePacket)response).getLoginData());
 				Toast.makeText(getApplicationContext(), "회원가입 성공", Toast.LENGTH_SHORT).show();
 				Log.d("aaa", "회원가입 성공");
 				pref = getSharedPreferences("email", Activity.MODE_PRIVATE);
@@ -83,7 +83,7 @@ public class SignUpActivity extends UIHandlingActivity {
 				intent = new Intent(getApplicationContext(), ClientActivity.class);
 				startActivity(intent);
 				finish();
-			} else if (response.getResponseCode() == RESPONSE_REGISTRATION_FAIL) {
+			} else if (response.getResponseCode() == BidulgiResponseCode.RESPONSE_REGISTRATION_FAIL) {
 				Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_SHORT).show();
 			}
 		} catch (Exception e) {

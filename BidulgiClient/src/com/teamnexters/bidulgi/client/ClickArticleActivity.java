@@ -45,6 +45,7 @@ public class ClickArticleActivity extends UIHandlingActivity {
 	private TextView articleWriteDate;
 	private TextView articleWatchCount;
 	private TextView articleContent;
+	private TextView commentCount;
 	private Button btnWriteComent;
 	private ListView listViewComents;
 	private LinearLayout layoutEditReply;
@@ -60,27 +61,22 @@ public class ClickArticleActivity extends UIHandlingActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		lockUI();
-		
+
+		actionBar = getActionBar();
+		actionBar.setTitle(null);
+		actionBar.setIcon(null);
+		actionBar.setDisplayHomeAsUpEnabled(false);
+		actionBar.setDisplayUseLogoEnabled(false);
+		actionBar.setHomeButtonEnabled(false);
 		setContentView(R.layout.activity_click_article);
 
 		intent = getIntent();
-
-		LongRequestPacket request = new LongRequestPacket();
-		request.setValue(intent.getExtras().getLong("articleId"));
-		request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_COMMENT);
-		HttpRequestThread.getInstance().addRequest(request);
-
-		LongRequestPacket requestRead = new LongRequestPacket();
-		requestRead.setValue(intent.getExtras().getLong("articleId"));
-		requestRead.setRequestCode(BidulgiRequestCode.REQUEST_READ_ARTICLE);
-		HttpRequestThread.getInstance().addRequest(requestRead);
-
 
 		articleId = intent.getExtras().getLong("articleId");
 
 		Typeface typeface = Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF");
 		articleBidoolgi = (TextView) findViewById(R.id.articleBidoolgi);
-
+		commentCount = (TextView) findViewById(R.id.txtComentCount);
 		btnWriteComent = (Button) findViewById(R.id.btnWriteComent);
 		btnWriteComent.setOnClickListener(onClickListener);
 
@@ -94,7 +90,20 @@ public class ClickArticleActivity extends UIHandlingActivity {
 
 		btnSendReply = (Button) findViewById(R.id.btnSendReply);
 		btnSendReply.setOnClickListener(onClickListener);
+	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		LongRequestPacket request = new LongRequestPacket();
+		request.setValue(intent.getExtras().getLong("articleId"));
+		request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_COMMENT);
+		HttpRequestThread.getInstance().addRequest(request);
+
+		LongRequestPacket requestRead = new LongRequestPacket();
+		requestRead.setValue(intent.getExtras().getLong("articleId"));
+		requestRead.setRequestCode(BidulgiRequestCode.REQUEST_READ_ARTICLE);
+		HttpRequestThread.getInstance().addRequest(requestRead);
 	}
 
 	@Override
@@ -109,13 +118,14 @@ public class ClickArticleActivity extends UIHandlingActivity {
 			listViewComents = (ListView) findViewById(R.id.listViewComents);
 			listViewComents.setAdapter(boardReplyListAdapter);
 			unlockUI();
-			Log.d("aaaa","댓글 리스트 가져옴");
+			Log.d("aaaa", "댓글 리스트 가져옴");
 			break;
 		case BidulgiResponseCode.RESPONSE_WRITE_COMMENT_SUCCESS:
-			/*intent.putExtra("writeComment", true);
-			setResult(6, intent);*/
+			/*
+			 * intent.putExtra("writeComment", true); setResult(6, intent);
+			 */
 			lockUI();
-			
+
 			LongRequestPacket request = new LongRequestPacket();
 			request.setValue(intent.getExtras().getLong("articleId"));
 			request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_COMMENT);
@@ -123,49 +133,48 @@ public class ClickArticleActivity extends UIHandlingActivity {
 			layoutEditReply.setVisibility(View.GONE);
 			PAGE_END = true;
 			Toast.makeText(getApplicationContext(), "댓글을 등록하였습니다.", Toast.LENGTH_SHORT).show();
-			//finish();
+			// finish();
 			break;
 
 		case BidulgiResponseCode.RESPONSE_WRITE_COMMENT_FAIL:
-			Toast.makeText(getApplicationContext(), "댓글에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "포인트가 부족하여 댓글을 쓸 수 없습니다.", Toast.LENGTH_SHORT).show();
 			break;
 
 		case BidulgiResponseCode.RESPONSE_READ_ARTICLE:
 
-			
 			ArticleResponsePacket responseArticle = (ArticleResponsePacket) response;
 			Typeface typeface = Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF");
 
-			try{
-			articleTitle = (TextView) findViewById(R.id.articleTitle);
-			articleTitle.setText(responseArticle.getArticleData().getTitle());
-			Log.d("aaaa", "게시판 클릭 후 넘어온 제목은 " + responseArticle.getArticleData().getTitle());
-			articleTitle.setTypeface(typeface);
+			try {
+				articleTitle = (TextView) findViewById(R.id.articleTitle);
+				articleTitle.setText(responseArticle.getArticleData().getTitle());
+				Log.d("aaaa", "게시판 클릭 후 넘어온 제목은 " + responseArticle.getArticleData().getTitle());
+				articleTitle.setTypeface(typeface);
 
-			articleWriterName = (TextView) findViewById(R.id.articleWriterName);
-			articleWriterName.setText(responseArticle.getArticleData().getWriteUserName());
-			articleWriterName.setTypeface(typeface);
+				articleWriterName = (TextView) findViewById(R.id.articleWriterName);
+				articleWriterName.setText(responseArticle.getArticleData().getWriteUserName());
+				articleWriterName.setTypeface(typeface);
 
-			articleWriteDate = (TextView) findViewById(R.id.articleWriteDate);
-			Date date = new Date(responseArticle.getArticleData().getWriteDate());
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", java.util.Locale.getDefault());
-			String strDate = dateFormat.format(date);
-			
-			articleWriteDate.setText(strDate);
-			Log.d("aaaa", "게시판 작성날짜는 " + strDate);
-			articleWriteDate.setTypeface(typeface);
+				articleWriteDate = (TextView) findViewById(R.id.articleWriteDate);
+				Date date = new Date(responseArticle.getArticleData().getWriteDate());
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", java.util.Locale.getDefault());
+				String strDate = dateFormat.format(date);
 
-			articleWatchCount = (TextView) findViewById(R.id.articleWatchCount);
-			articleWatchCount.setText("조회수 : "+responseArticle.getArticleData().getViewCount());
-			Log.d("aaaa", "게시판 글 조회수는 " + responseArticle.getArticleData().getViewCount());
-			articleWatchCount.setTypeface(typeface);
+				articleWriteDate.setText(strDate);
+				Log.d("aaaa", "게시판 작성날짜는 " + strDate);
+				articleWriteDate.setTypeface(typeface);
 
-			articleContent = (TextView) findViewById(R.id.articleContent);
-			articleContent.setText(responseArticle.getArticleData().getContent());
-			Log.d("aaaa", "게시판 글 내용은 " + responseArticle.getArticleData().getContent());
-			articleContent.setTypeface(typeface);
-			
-			} catch(Exception e){
+				articleWatchCount = (TextView) findViewById(R.id.articleWatchCount);
+				articleWatchCount.setText("조회수 : " + responseArticle.getArticleData().getViewCount());
+				Log.d("aaaa", "게시판 글 조회수는 " + responseArticle.getArticleData().getViewCount());
+				articleWatchCount.setTypeface(typeface);
+				commentCount.setText("["+responseArticle.getArticleData().getCommentCount()+"]");
+				articleContent = (TextView) findViewById(R.id.articleContent);
+				articleContent.setText(responseArticle.getArticleData().getContent());
+				Log.d("aaaa", "게시판 글 내용은 " + responseArticle.getArticleData().getContent());
+				articleContent.setTypeface(typeface);
+
+			} catch (Exception e) {
 				Log.d("error", "게시판 글 가져오는데 왜 실패하는지..." + e.toString());
 			}
 			break;
@@ -174,13 +183,13 @@ public class ClickArticleActivity extends UIHandlingActivity {
 	}
 
 	public void onBackPressed() {
-		if(PAGE_END == true){
+		if (PAGE_END == true) {
 			intent.putExtra("backPress", true);
 			setResult(6, intent);
 			finish();
 		}
 
-		else if(PAGE_END == false){
+		else if (PAGE_END == false) {
 			layoutEditReply.setVisibility(View.GONE);
 			PAGE_END = true;
 		}

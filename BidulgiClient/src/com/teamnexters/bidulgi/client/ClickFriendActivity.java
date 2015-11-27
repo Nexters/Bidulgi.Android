@@ -29,7 +29,7 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 	TextView txtEnterDate;
 	Button btnEditEmail;
 	TextView txtFriendsAddress;
-	String address = "[320-839] 충청남도 논산시 연무읍 \r\n 득안대로 504번길 사서함 76 - ";
+//	String address = "[320-839] 충청남도 논산시 연무읍 \r\n 득안대로 504번길 사서함 76 - ";
 
 	ActionBar actionBar;
 
@@ -69,25 +69,26 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 		switch (Integer.parseInt(intent.getExtras().getString("regiment"))) {
 
 		case 23:
-			txtFriendsAddress.setText(address + "8 \r\n" + intent.getExtras().getString("address"));
-			break;
+//			txtFriendsAddress.setText(address + "8 \r\n" + intent.getExtras().getString("address"));
+//			break;
 		case 25:
-			txtFriendsAddress.setText(address + "9 \r\n" + intent.getExtras().getString("address"));
-			break;
+//			txtFriendsAddress.setText(address + "9 \r\n" + intent.getExtras().getString("address"));
+//			break;
 		case 26:
-			txtFriendsAddress.setText(address + "10 \r\n" + intent.getExtras().getString("address"));
-			break;
+//			txtFriendsAddress.setText(address + "10 \r\n" + intent.getExtras().getString("address"));
+//			break;
 		case 27:
-			txtFriendsAddress.setText(address + "11 \r\n" + intent.getExtras().getString("address"));
-			break;
+//			txtFriendsAddress.setText(address + "11 \r\n" + intent.getExtras().getString("address"));
+//			break;
 		case 28:
-			txtFriendsAddress.setText(address + "12 \r\n" + intent.getExtras().getString("address"));
-			break;
+//			txtFriendsAddress.setText(address + "12 \r\n" + intent.getExtras().getString("address"));
+//			break;
 		case 29:
-			txtFriendsAddress.setText(address + "13 \r\n" + intent.getExtras().getString("address"));
-			break;
+//			txtFriendsAddress.setText(address + "13 \r\n" + intent.getExtras().getString("address"));
+//			break;
 		case 30:
-			txtFriendsAddress.setText(address + "14 \r\n" + intent.getExtras().getString("address"));
+//			txtFriendsAddress.setText(address + "14 \r\n" + intent.getExtras().getString("address"));
+			txtFriendsAddress.setText(intent.getExtras().getString("address"));
 			break;
 
 		}

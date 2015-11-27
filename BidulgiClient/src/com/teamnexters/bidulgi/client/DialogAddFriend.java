@@ -5,9 +5,19 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
+import com.teamnexters.bidulgi.common.data.SoldierData;
+import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
+import com.teamnexters.bidulgi.common.request.SoldierRequestPacket;
+import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
+import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
+import com.teamnexters.bidulgi.common.response.SoldierResponsePacket;
+
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -18,15 +28,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.teamnexters.bidulgi.client.network.HttpRequestThread;
-import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
-import com.teamnexters.bidulgi.common.data.SoldierData;
-import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
-import com.teamnexters.bidulgi.common.request.SoldierRequestPacket;
-import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
-import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
-import com.teamnexters.bidulgi.common.response.SoldierResponsePacket;
 
 public class DialogAddFriend extends UIHandlingActivity {
 
