@@ -8,6 +8,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -47,7 +49,10 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		//requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.dialog_nice_auth);
+		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setTitle("실명 인증");
 		mobileCoporationSpinner = (Spinner) findViewById(R.id.niceAuthMobileCoporationSpinner);
 		infoSubmitButton = (Button) findViewById(R.id.niceAuthInfoSubmitButton);

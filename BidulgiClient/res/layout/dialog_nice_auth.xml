@@ -11,14 +11,38 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:padding="20dp" >
+
+            <TextView
+                android:id="@+id/txtAuthDescribe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="본인인증"
+                android:textColor="#ff6885"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/txtAuthContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="본 인증은 오직 편지보내는 용도로만 쓰이며 \n다른곳에 사용되지 않습니다."
+                android:textColor="#58595b"
+                android:textSize="10dp" />
 
             <LinearLayout
                 android:id="@+id/niceAuthInfoLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/roundingbox"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="50dp"
                 android:visibility="visible" >
 
                 <LinearLayout
@@ -327,49 +351,58 @@
                 android:id="@+id/niceAuthImageLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/roundingbox02"
                 android:orientation="vertical"
+                android:paddingTop="50dp"
                 android:visibility="gone" >
 
                 <ImageView
                     android:id="@+id/niceAuthAuthImageView"
                     android:layout_width="128dp"
                     android:layout_height="128dp"
+                    android:layout_gravity="center"
                     android:src="@drawable/box_agree" />
 
                 <EditText
                     android:id="@+id/niceAuthImageEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:ems="10" >
                 </EditText>
 
                 <Button
                     android:id="@+id/niceAuthImageSubmitButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="전송" />
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/next" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/niceAuthSMSLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/roundingbox03"
                 android:orientation="vertical"
+                android:paddingTop="50dp"
                 android:visibility="gone" >
 
                 <EditText
                     android:id="@+id/niceAuthSMSEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:ems="10" >
                 </EditText>
 
                 <Button
                     android:id="@+id/niceAuthSMSSubmitButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="전송" />
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/next" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
