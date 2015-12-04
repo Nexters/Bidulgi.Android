@@ -1,8 +1,11 @@
 package com.teamnexters.bidulgi.client;
 
+import java.util.List;
+
 import com.bumptech.glide.Glide;
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
+import com.teamnexters.bidulgi.common.data.MessageData;
 import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
 import com.teamnexters.bidulgi.common.request.LongRequestPacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
@@ -21,6 +24,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -37,6 +42,7 @@ public class ClickMailActivity extends UIHandlingActivity {
 	private ActionBar actionBar;
 	private Button btnLincEditMail;
 	private long soldierId;
+	private List<MessageData> messageData;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -97,6 +103,7 @@ public class ClickMailActivity extends UIHandlingActivity {
 			MessageListResponsePacket messageListResponsePacket = (MessageListResponsePacket) response;
 			soldierMessageAdapter = new SoldierMessageAdapter(messageListResponsePacket.getMessageData(),
 					getApplication());
+			messageData = messageListResponsePacket.getMessageData();
 
 			intent = getIntent();
 			imgMailFriend = (ImageView) findViewById(R.id.imgMailFriend);
@@ -111,27 +118,40 @@ public class ClickMailActivity extends UIHandlingActivity {
 			mailListMessageListView = (ListView) findViewById(R.id.mailListMessageListView);
 
 			mailListMessageListView.setAdapter(soldierMessageAdapter);
+			mailListMessageListView.setOnItemClickListener(onMessageClickListener);
 
 			break;
 		}
 	}
-	
-	OnClickListener onClickListener = new OnClickListener(){
+
+	OnClickListener onClickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			
-			intent = new Intent(getApplicationContext(),MessageSendActivity.class);
+
+			intent = new Intent(getApplicationContext(), MessageSendActivity.class);
 			intent.putExtra("soldier_id", soldierId);
 			Log.d("aaaa", "군인 ID는 " + soldierId);
 			startActivityForResult(intent, 1);
 		}
+
+	};
+
+	OnItemClickListener onMessageClickListener = new OnItemClickListener(){
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			// TODO Auto-generated method stub
+			Intent intent = new Intent(getApplicationContext(),ViewMessageActivity.class);
+			intent.putExtra("title", messageData.get(position).getTitle());
+			intent.putExtra("content", messageData.get(position).getContent());
+			startActivity(intent);
+		}
 		
 	};
-	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		
+
 		switch (resultCode) {
 		case MessageSendActivity.RESULT_CODE_SEND_SUCCESS:
 			Toast.makeText(this, "편지 전송에 성공하였습니다.", Toast.LENGTH_SHORT).show();

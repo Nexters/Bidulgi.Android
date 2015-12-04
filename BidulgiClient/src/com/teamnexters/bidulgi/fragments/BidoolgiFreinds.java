@@ -1,6 +1,7 @@
 package com.teamnexters.bidulgi.fragments;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.teamnexters.bidulgi.client.ClickFriendActivity;
 import com.teamnexters.bidulgi.client.DialogLongClickFriend;
 import com.teamnexters.bidulgi.client.R;
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.common.data.MessageData;
 import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
 import com.teamnexters.bidulgi.common.request.LongRequestPacket;
 import com.teamnexters.bidulgi.list.FriendAdapter;
@@ -105,7 +107,7 @@ public class BidoolgiFreinds extends Fragment {
 			intent.putExtra("name", data.get(position).getName());
 			intent.putExtra("regiment", data.get(position).getRegiment());
 			intent.putExtra("address", data.get(position).getRegiment() + "연대 " + data.get(position).getCompany()
-					+ "소대 " + data.get(position).getPlatoon() + "분대 " + data.get(position).getNumber() + "번");
+					+ "중대 " + data.get(position).getPlatoon() + "소대 " + data.get(position).getNumber() + "번");
 			intent.putExtra("enterDate", enterDate.substring(0,4)+"."+enterDate.substring(4,6)+"."+enterDate.substring(6));
 			intent.putExtra("id", data.get(position).getsoldierId());
 			startActivity(intent);
