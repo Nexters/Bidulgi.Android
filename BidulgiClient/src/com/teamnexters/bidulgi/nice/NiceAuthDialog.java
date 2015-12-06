@@ -41,7 +41,7 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 	private CheckBox niceTermsCheckbox1, niceTermsCheckbox2, niceTermsCheckbox3, niceTermsCheckbox4;
 
 	public NiceAuthDialog(Context context, NiceAuthRequester requester) {
-		super(context);
+		super(context, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
 		setCanceledOnTouchOutside(false);
 		this.requester = requester;
 	}
