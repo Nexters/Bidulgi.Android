@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:padding="10dp"
+    tools:context="com.teamnexters.bidulgi.client.RequstAuthActivity" >
+
+    <TextView
+        android:id="@+id/txtRequestAuth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="편지를 보내기 위해서는 \n본인인증이 필요합니다."
+        android:textSize="20dp"
+        android:textColor="#58595b"
+        android:lineSpacingExtra="5dp" />
+
+    <Button
+        android:id="@+id/btnRequestCancel"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/cancle" />
+
+    <Button
+        android:id="@+id/btnRequestAuth"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/txtRequestAuth"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:background="@drawable/btn_cer" />
+
+</RelativeLayout>

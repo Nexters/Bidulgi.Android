@@ -41,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left|center_vertical"
-                    android:text="오늘따라 아들이 더 보고싶네요."
+                    android:text=""
                     android:textColor="#58595b"
                     android:textSize="15sp" />
             </ScrollView>
@@ -65,7 +65,7 @@
                         android:layout_weight="17"
                         android:background="#f4f4f5"
                         android:gravity="left|center_vertical"
-                        android:text="조나은"
+                        android:text=""
                         android:textColor="#58595b" />
 
                     <TextView
@@ -77,7 +77,7 @@
                         android:background="#f4f4f5"
                         android:gravity="center"
                         android:paddingRight="1dp"
-                        android:text="2015.07.27"
+                        android:text=""
                         android:textColor="#58595b" />
 
                     <TextView
@@ -88,7 +88,7 @@
                         android:background="#f4f4f5"
                         android:gravity="left|center"
                         android:paddingLeft="10dp"
-                        android:text="조회수 : 20"
+                        android:text=""
                         android:textColor="#58595b" />
                 </TableRow>
             </TableLayout>

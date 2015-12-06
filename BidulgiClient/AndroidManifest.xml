@@ -10,14 +10,7 @@
 
     <!--
   IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-  to match your app's package name + ".permission.C2D_MESSAGE".
-
-
-
-
-
-
-
+  to match your app's package name + ".permission.C2D_MESSAGE".
     -->
 
     <uses-sdk
@@ -32,7 +25,7 @@
         android:theme="@style/CustomActionBarTheme" >
         <activity
             android:name=".LoadingActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar"   >
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,17 +35,17 @@
         <activity
             android:name=".MainActivity"
             android:label="MainActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar"  >
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up"
-            android:theme="@android:style/Theme.Holo.NoActionBar"   >
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
         <activity
             android:name=".AgreeActivity"
             android:label="@string/title_activity_agree"
-            android:theme="@android:style/Theme.Holo.NoActionBar"  >
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
         <activity
             android:name=".ClientActivity"
@@ -81,7 +74,7 @@
         <activity
             android:name=".MessageSendCheckActivity"
             android:label="@string/title_activity_message_send_check"
-            android:theme="@android:style/Theme.Holo.NoActionBar"  >
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
         <activity
             android:name=".BoardEditArticleActivity"
@@ -90,6 +83,19 @@
         <activity
             android:name=".ClickArticleActivity"
             android:label="@string/title_activity_click_article" >
+        </activity>
+        <activity
+            android:name=".ViewMessageActivity"
+            android:label="@string/title_activity_view_message" >
+        </activity>
+        <activity
+            android:name=".RequstAuthActivity"
+            android:label="@string/title_activity_requst_auth" >
+        </activity>
+        <activity
+            android:name=".RequestAuthActivity"
+            android:label="@string/title_activity_request_auth"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" >
         </activity>
     </application>
 

@@ -2,9 +2,12 @@ package com.teamnexters.bidulgi.message;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.teamnexters.bidulgi.client.MainActivity;
 import com.teamnexters.bidulgi.client.MessageSendCheckActivity;
 import com.teamnexters.bidulgi.client.R;
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
@@ -37,12 +41,16 @@ public class MessageSendActivity extends UIHandlingActivity {
 	private TextView txtTitle;
 	private TextView txtContent;
 	private TextView txtPassword;
+	private static boolean backPressFinish = false;
+
+	private SharedPreferences prefLastEditMail;
 
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_message_send);
+
 		Typeface typeface = Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF");
 		ActionBar actionBar = getActionBar();
 		actionBar.setTitle(null);
@@ -67,6 +75,47 @@ public class MessageSendActivity extends UIHandlingActivity {
 		passwordEditText.setTypeface(typeface);
 
 		soldierId = getIntent().getLongExtra(INTENT_KEY_SOLDIER_ID, -1);
+
+		prefLastEditMail = getSharedPreferences("lastMail", Activity.MODE_PRIVATE);
+		if (prefLastEditMail.contains("title")) {
+			titleEditText.setText(prefLastEditMail.getString("title", null));
+			contentEditText.setText(prefLastEditMail.getString("content", null));
+		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+
+		if (backPressFinish == true) {
+
+			prefLastEditMail = getSharedPreferences("lastMail", Activity.MODE_PRIVATE);
+			SharedPreferences.Editor editor = prefLastEditMail.edit();
+			editor.putString("title", titleEditText.getText().toString());
+			editor.putString("content", contentEditText.getText().toString());
+			Log.d("aaa", "작성 중 이던 편지 내용은 " + titleEditText.getText().toString());
+			editor.commit();
+			Toast.makeText(getApplicationContext(), "편지쓰기를 종료합니다.", Toast.LENGTH_SHORT).show();
+			backPressFinish = false;
+			finish();
+
+		} else if (backPressFinish == false) {
+			Toast.makeText(getApplicationContext(), "뒤로가기 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+
+			backPressFinish = true;
+			Handler hd = new Handler();
+			hd.postDelayed(new Runnable() {
+
+				@Override
+				public void run() {
+
+					backPressFinish = false;
+
+				}
+			}, 1000);
+
+		}
+
 	}
 
 	@Override
@@ -88,15 +137,14 @@ public class MessageSendActivity extends UIHandlingActivity {
 			if (titleEditText.getText().toString().length() != 0) {
 				if (contentEditText.getText().toString().length() != 0) {
 					if (passwordEditText.getText().toString().length() != 0) {
-						
-						try{
-						Intent intent = new Intent(getApplicationContext(),MessageSendCheckActivity.class);
-						startActivityForResult(intent, 1);
-						} catch(Exception e){
-							Log.d("error",  "메일보내기 확인 액티비티 에러 내용은 " + e.toString());
+
+						try {
+							Intent intent = new Intent(getApplicationContext(), MessageSendCheckActivity.class);
+							startActivityForResult(intent, 1);
+						} catch (Exception e) {
+							Log.d("error", "메일보내기 확인 액티비티 에러 내용은 " + e.toString());
 						}
 
-						
 						break;
 
 					} else {
@@ -113,12 +161,11 @@ public class MessageSendActivity extends UIHandlingActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
-		switch(resultCode){
-		
+		switch (resultCode) {
+
 		case 1:
 			lockUI();
 			MessageRequestPacket messageRequest = new MessageRequestPacket();
@@ -134,6 +181,7 @@ public class MessageSendActivity extends UIHandlingActivity {
 			break;
 		}
 	}
+
 	@Override
 	public void onHandleUI(BidulgiResponsePacket response) {
 		switch (response.getResponseCode()) {
@@ -144,6 +192,10 @@ public class MessageSendActivity extends UIHandlingActivity {
 			break;
 		case BidulgiResponseCode.RESPONSE_SEND_MESSAGE_SUCCESS:
 			unlockUI();
+			prefLastEditMail = getSharedPreferences("lastMail", Activity.MODE_PRIVATE);
+			SharedPreferences.Editor editor = prefLastEditMail.edit();
+			editor.clear();
+			editor.commit();
 			setResult(RESULT_CODE_SEND_SUCCESS);
 			finish();
 			break;
