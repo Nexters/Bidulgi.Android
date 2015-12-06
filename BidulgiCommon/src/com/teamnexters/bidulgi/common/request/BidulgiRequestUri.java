@@ -29,4 +29,5 @@ public interface BidulgiRequestUri {
 	public String REQUEST_LIST_COMMENT= "/service/list-comment";
 	public String REQUEST_WRITE_COMMENT = "/service/write-comment";
 	public String REQUEST_READ_ARTICLE = "/service/read-article";
+	public String REQUEST_LOGIN_FAIL_KATC = "/login-fail-katc";
 }

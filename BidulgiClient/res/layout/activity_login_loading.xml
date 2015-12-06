@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/loadingbackground"
+    android:orientation="vertical" 
+    android:gravity="center_horizontal"
+    android:weightSum="100">
+
+    <View
+        android:layout_weight="70"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/login_loading_text"
+        android:textColor="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="로그인중입니다" />
+
+</LinearLayout>

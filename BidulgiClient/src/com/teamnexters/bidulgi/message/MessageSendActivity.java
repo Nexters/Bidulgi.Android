@@ -187,8 +187,7 @@ public class MessageSendActivity extends UIHandlingActivity {
 		switch (response.getResponseCode()) {
 		case BidulgiResponseCode.RESPONSE_SEND_MESSAGE_FAIL:
 			unlockUI();
-			setResult(RESULT_CODE_SEND_SUCCESS);
-			finish();
+			Toast.makeText(getApplicationContext(), "육군훈련소 서버가 불안정하여 편지보내기에 실패하였습니다.\n추후에 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
 			break;
 		case BidulgiResponseCode.RESPONSE_SEND_MESSAGE_SUCCESS:
 			unlockUI();

@@ -9,6 +9,8 @@ import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 import com.teamnexters.bidulgi.common.response.LoginResponsePacket;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends UIHandlingActivity {
@@ -31,9 +34,6 @@ public class MainActivity extends UIHandlingActivity {
 	String email;
 	String passWord;
 	private SharedPreferences pref;
-	private static final int RESPONSE_LOGIN_FAIL = 3;
-	private static final int RESPONSE_LOGIN_SUCCESS = 2;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,6 +43,8 @@ public class MainActivity extends UIHandlingActivity {
 		Log.d("pref", "pref 값은 " + pref.getString("email", "Nothing"));
 		if (pref.contains("email")) {
 			lockUI();
+			setContentView(R.layout.activity_login_loading);
+			((TextView)findViewById(R.id.login_loading_text)).setTypeface(Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF"));
 			LoginRequestPacket request = new LoginRequestPacket();
 			request.setEmail(pref.getString("email", null));
 			request.setPassword(pref.getString("password", null));
@@ -69,7 +71,7 @@ public class MainActivity extends UIHandlingActivity {
 		Log.d("aaa", "res : " + String.valueOf(response.getResponseCode()));
 		Log.d("aaa", "val : " + String.valueOf(BidulgiResponseCode.RESPONSE_LOGIN_SUCCESS));
 		switch (response.getResponseCode()) {
-		case RESPONSE_LOGIN_SUCCESS:
+		case BidulgiResponseCode.RESPONSE_LOGIN_SUCCESS:
 			LoginUserInfo.getInstance().setLoginData(((LoginResponsePacket) response).getLoginData());
 			Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
 			if (editEmail != null) {
@@ -84,9 +86,23 @@ public class MainActivity extends UIHandlingActivity {
 			startActivity(intent);
 			finish();
 			break;
-
-		case RESPONSE_LOGIN_FAIL:
+		case BidulgiResponseCode.RESPONSE_LOGIN_FAIL_AUTH:
+			unlockUI();
 			Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호를 잘못 입력하셨습니다. ", Toast.LENGTH_SHORT).show();
+			break;
+		case BidulgiResponseCode.RESPONSE_LOGIN_FAIL_KATC:
+			unlockUI();
+			Toast.makeText(getApplicationContext(), ".", Toast.LENGTH_SHORT).show();
+		       AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		        builder.setTitle("로그인 실패");
+		        builder.setMessage("현재 육군훈련소 홈페이지의 문제로 인해 로그인을 할 수 없습니다.\n잠시 후에 접속해주시기 바랍니다.");
+		        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		            public void onClick(DialogInterface dialog, int id) {
+		            	finish();
+		            	System.exit(0);
+		            }
+		        });
+		        builder.create().show();
 			break;
 		}
 	}
@@ -102,6 +118,7 @@ public class MainActivity extends UIHandlingActivity {
 
 				if (editEmail.getText().toString().length() != 0) {
 					if (editPassWord.getText().toString().length() != 0) {
+						lockUI();
 						email = editEmail.getText().toString();
 						passWord = editPassWord.getText().toString();
 
