@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,7 +32,7 @@ import com.teamnexters.bidulgi.common.request.MessageRequestPacket;
 import com.teamnexters.bidulgi.common.response.BidulgiResponseCode;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 
-public class MessageSendActivity extends UIHandlingActivity {
+public class MessageSendActivity extends UIHandlingActivity implements TextWatcher {
 	public static final String INTENT_KEY_SOLDIER_ID = "soldier_id";
 	public static final int RESULT_CODE_SEND_SUCCESS = 1000;
 	public static final int RESULT_CODE_SEND_FAIL = 1001;
@@ -41,6 +43,7 @@ public class MessageSendActivity extends UIHandlingActivity {
 	private TextView txtTitle;
 	private TextView txtContent;
 	private TextView txtPassword;
+	private TextView txtContentLength;
 	private static boolean backPressFinish = false;
 
 	private SharedPreferences prefLastEditMail;
@@ -61,6 +64,7 @@ public class MessageSendActivity extends UIHandlingActivity {
 		txtTitle = (TextView) findViewById(R.id.txtTitle);
 		txtContent = (TextView) findViewById(R.id.txtContent);
 		txtPassword = (TextView) findViewById(R.id.txtPassword);
+		txtContentLength = (TextView) findViewById(R.id.txtContentLength);
 
 		txtTitle.setTypeface(typeface);
 		txtContent.setTypeface(typeface);
@@ -68,6 +72,7 @@ public class MessageSendActivity extends UIHandlingActivity {
 
 		titleEditText = (EditText) findViewById(R.id.sendMessageTitleEditText);
 		contentEditText = (EditText) findViewById(R.id.sendMessageContentEditText);
+		contentEditText.addTextChangedListener(this);
 		passwordEditText = (EditText) findViewById(R.id.sendMessagePasswordEditText);
 
 		titleEditText.setTypeface(typeface);
@@ -204,6 +209,23 @@ public class MessageSendActivity extends UIHandlingActivity {
 			finish();
 			break;
 		}
+	}
+
+	@Override
+	public void afterTextChanged(Editable s) {
+		txtContentLength.setText(String.valueOf(s.length()));
+		
+	}
+
+	@Override
+	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTextChanged(CharSequence s, int start, int before, int count) {
+		
 	}
 
 	/*

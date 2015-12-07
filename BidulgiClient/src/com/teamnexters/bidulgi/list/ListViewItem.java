@@ -9,6 +9,7 @@ public class ListViewItem {
 	private String platoon;
 	private String number;
 	private Long soldierId;
+	private String birth;
 
 	public String getProfilePhotoSrc() {
 		return profilePhotoSrc;
@@ -17,27 +18,40 @@ public class ListViewItem {
 	public String getName() {
 		return name;
 	}
-	
-	public String getDate(){
+
+	public String getDate() {
 		return date;
 	}
 
-	public String getRegiment(){
+	public String getRegiment() {
 		return regiment;
 	}
-	public String getCompany(){
+
+	public String getCompany() {
 		return company;
 	}
-	public String getPlatoon(){
+
+	public String getPlatoon() {
 		return platoon;
 	}
-	public String getNumber(){
+
+	public String getNumber() {
 		return number;
 	}
-	public Long getsoldierId(){
+
+	public Long getsoldierId() {
 		return soldierId;
 	}
-	public ListViewItem(String profilePhotoSrc, String name, String date , String regiment, String company, String platoon, String number, Long soldierId) {
+
+	public String getBirth() {
+		return birth;
+	}
+
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+
+	public ListViewItem(String profilePhotoSrc, String name, String date, String regiment, String company, String platoon, String number, Long soldierId, String birth) {
 		this.profilePhotoSrc = profilePhotoSrc;
 		this.name = name;
 		this.date = date;
@@ -46,5 +60,6 @@ public class ListViewItem {
 		this.platoon = platoon;
 		this.number = number;
 		this.soldierId = soldierId;
+		this.birth=birth;
 	}
 }

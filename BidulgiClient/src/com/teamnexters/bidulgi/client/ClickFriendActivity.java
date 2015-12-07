@@ -31,6 +31,7 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 	TextView txtEnterDate;
 	Button btnEditEmail;
 	TextView txtFriendsAddress;
+	TextView txtFriendBirth;
 	//String address = "[320-839] 충청남도 논산시 연무읍 \r\n 득안대로 504번길 사서함 76 - ";
 
 	ActionBar actionBar;
@@ -57,6 +58,7 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 		btnEditEmail = (Button) findViewById(R.id.btnEditMail);
 		txtFriendsAddress = (TextView) findViewById(R.id.txtFriendsAddress);
 		txtEnterDate = (TextView) findViewById(R.id.txtEnterDate);
+		txtFriendBirth = (TextView) findViewById(R.id.txtBirth);
 		if (intent.getExtras().getString("profilePhotoSrc") == null) {
 			imgFriend.setImageResource(R.drawable.icon_noprofile);
 		} else {
@@ -66,6 +68,7 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 
 		txtFriendName.setText(intent.getExtras().getString("name"));
 		txtEnterDate.setText(intent.getExtras().getString("enterDate"));
+		txtFriendBirth.setText(intent.getExtras().getString("birth"));
 		Log.d("aaaa", "친구 클릭 후 넘어온 연대는 " + Integer.parseInt(intent.getExtras().getString("regiment")));
 		Log.d("aaaa", "친구 클릭 후 넘어온 사진 URL은 " + intent.getExtras().getString("profilePhotoSrc"));
 

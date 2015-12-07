@@ -162,7 +162,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 						data.getExtras().getString("name"), data.getExtras().getString("enterday"),
 						data.getExtras().getString("regiment"), data.getExtras().getString("company"),
 						data.getExtras().getString("platoon"), data.getExtras().getString("number"),
-						data.getExtras().getLong("soldierId"));
+						data.getExtras().getLong("soldierId"), data.getExtras().getString("birth"));
 				LongRequestPacket request = new LongRequestPacket();
 				request.setValue(data.getExtras().getLong("soldierId"));
 				request.setRequestCode(BidulgiRequestCode.REQUEST_ADD_FRIEND_SOLDIER);
@@ -243,7 +243,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 					fragmentFriends.addData(soldierData.getProfilePhotoSrc(), soldierData.getName().toString(),
 							soldierData.getEnterDateString().toString(), soldierData.getRegiment().toString(),
 							soldierData.getCompany().toString(), soldierData.getPlatoon().toString(),
-							soldierData.getNumber().toString(), soldierData.getSoldierId());
+							soldierData.getNumber().toString(), soldierData.getSoldierId(), soldierData.getBirthString());
 
 				}
 				SoldierInfoStore.getInstance().reload(data);

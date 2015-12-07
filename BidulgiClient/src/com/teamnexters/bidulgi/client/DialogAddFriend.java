@@ -178,6 +178,7 @@ public class DialogAddFriend extends UIHandlingActivity {
 			resIntent.putExtra("platoon", data.getPlatoon());
 			resIntent.putExtra("number", data.getNumber());
 			resIntent.putExtra("soldierId", data.getSoldierId());
+			resIntent.putExtra("birth", data.getBirthString());
 			setResult(1, resIntent);
 			finish();
 			break;

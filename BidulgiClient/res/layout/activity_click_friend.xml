@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
+    android:gravity="center"
     android:orientation="vertical"
     android:weightSum="100"
-    android:gravity="center"
     tools:context="com.teamnexters.bidulgi.client.ClickFriendActivity" >
 
     <RelativeLayout
@@ -51,8 +51,8 @@
         android:id="@+id/soldierDetailInfoLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="40"
         android:layout_below="@+id/layoutImgFriend"
+        android:layout_weight="40"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="100" >
@@ -129,13 +129,7 @@
                     android:textColor="#58595b" />
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#f4f4f5" />
-
             <LinearLayout
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
@@ -143,6 +137,40 @@
                 android:orientation="horizontal"
                 android:paddingBottom="15dp"
                 android:paddingTop="15dp"
+                android:weightSum="100" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:gravity="left|top"
+                    android:text="생년월일"
+                    android:textColor="#58595b" />
+
+                <TextView
+                    android:id="@+id/txtBirth"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="70"
+                    android:gravity="left"
+                    android:text="훈련병 입소일"
+                    android:textColor="#58595b" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f4f4f5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:gravity="top"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:visibility="gone"
                 android:weightSum="100" >
 
                 <TextView

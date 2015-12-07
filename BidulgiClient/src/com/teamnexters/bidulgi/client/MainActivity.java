@@ -1,3 +1,4 @@
+
 package com.teamnexters.bidulgi.client;
 
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
@@ -34,6 +35,7 @@ public class MainActivity extends UIHandlingActivity {
 	String email;
 	String passWord;
 	private SharedPreferences pref;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,7 +46,7 @@ public class MainActivity extends UIHandlingActivity {
 		if (pref.contains("email")) {
 			lockUI();
 			setContentView(R.layout.activity_login_loading);
-			((TextView)findViewById(R.id.login_loading_text)).setTypeface(Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF"));
+			((TextView) findViewById(R.id.login_loading_text)).setTypeface(Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF"));
 			LoginRequestPacket request = new LoginRequestPacket();
 			request.setEmail(pref.getString("email", null));
 			request.setPassword(pref.getString("password", null));
@@ -92,17 +94,16 @@ public class MainActivity extends UIHandlingActivity {
 			break;
 		case BidulgiResponseCode.RESPONSE_LOGIN_FAIL_KATC:
 			unlockUI();
-			Toast.makeText(getApplicationContext(), ".", Toast.LENGTH_SHORT).show();
-		       AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		        builder.setTitle("로그인 실패");
-		        builder.setMessage("현재 육군훈련소 홈페이지의 문제로 인해 로그인을 할 수 없습니다.\n잠시 후에 접속해주시기 바랍니다.");
-		        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		            public void onClick(DialogInterface dialog, int id) {
-		            	finish();
-		            	System.exit(0);
-		            }
-		        });
-		        builder.create().show();
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("로그인 실패");
+			builder.setMessage("현재 육군훈련소 홈페이지의 문제로 인해 로그인을 할 수 없습니다.\n잠시 후에 접속해주시기 바랍니다.");
+			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					finish();
+					System.exit(0);
+				}
+			});
+			builder.create().show();
 			break;
 		}
 	}

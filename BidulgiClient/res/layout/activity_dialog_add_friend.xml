@@ -1,26 +1,58 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="200dp"
-    android:background="@drawable/background_round" >
+    android:layout_height="300dp"
+    android:background="@drawable/background_round"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:weightSum="100" >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
+        android:gravity="right" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6.5"
+        android:gravity="right"
+        android:weightSum="100" >
+
+        <Button
+            android:id="@+id/btnNotAddFriend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5.5"
+            android:background="@drawable/cancle" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/txtAddFriendTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="친구 추가"
         android:textColor="#ff6884"
         android:textSize="20dp" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5" />
+
     <TableLayout
         android:id="@+id/addFriendTableLayout"
-        android:layout_width="250dp"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_weight="50"
         android:background="#f4f4f5"
         android:weightSum="90" >
 
@@ -47,7 +79,7 @@
                 android:id="@+id/editName"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_weight="70"
+                android:layout_weight="60"
                 android:background="@drawable/signup01"
                 android:ems="10"
                 android:paddingLeft="10dp"
@@ -79,7 +111,7 @@
                 android:layout_height="30dp"
                 android:layout_alignLeft="@+id/editName"
                 android:layout_below="@+id/editName"
-                android:layout_weight="70"
+                android:layout_weight="60"
                 android:background="@drawable/signup01"
                 android:ems="10"
                 android:hint="6자리"
@@ -113,7 +145,7 @@
                 android:layout_height="30dp"
                 android:layout_alignLeft="@+id/editBirthDay"
                 android:layout_below="@+id/editBirthDay"
-                android:layout_weight="70"
+                android:layout_weight="60"
                 android:background="@drawable/box_02"
                 android:ems="10"
                 android:gravity="center_vertical"
@@ -122,23 +154,36 @@
         </TableRow>
     </TableLayout>
 
-    <Button
-        android:id="@+id/btnNotAddFriend"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/cancle" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5" />
 
-    <Button
-        android:id="@+id/btnAddFriend"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="23dp"
-        android:background="@drawable/btn_addfriend" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="-훈련병 조회는 입소 다음주\n화요일부터 가능합니다."
+        android:textColor="#ff6884" />
 
-</RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:gravity="center"
+        android:weightSum="100" >
+
+        <Button
+            android:id="@+id/btnAddFriend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="40"
+            android:background="@drawable/btn_addfriend" />
+    </LinearLayout>
+
+</LinearLayout>

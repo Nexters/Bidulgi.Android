@@ -65,24 +65,22 @@ public class BidoolgiFreinds extends Fragment {
 
 	}
 
-	public void addData(String profilePhotoSrc, String name, String date, String regiment, String company,
-			String platoon, String number, Long soldierId) {
+	public void addData(String profilePhotoSrc, String name, String date, String regiment, String company, String platoon, String number, Long soldierId, String birth) {
 
 		Log.d("aaaa", "넘어온 String 값은 " + name);
 		if (name.equals("나둘기")) {
-			ListViewItem test1 = new ListViewItem(profilePhotoSrc, name, "복무중ㅠ.ㅠ", "", "", "", "", null);
+			ListViewItem test1 = new ListViewItem(profilePhotoSrc, name, "복무중ㅠ.ㅠ", "", "", "", "", null, birth);
 
 			data.add(test1);
 
 			adapter.notifyDataSetChanged();
 		} else {
-			ListViewItem test1 = new ListViewItem(profilePhotoSrc, name, date, regiment, company, platoon, number,
-					soldierId);
+			ListViewItem test1 = new ListViewItem(profilePhotoSrc, name, date, regiment, company, platoon, number, soldierId, birth);
 
 			data.add(test1);
 
 			adapter.notifyDataSetChanged();
-			
+
 		}
 
 	}
@@ -103,13 +101,14 @@ public class BidoolgiFreinds extends Fragment {
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			String enterDate = data.get(position).getDate();
 			intent = new Intent(getView().getContext(), ClickFriendActivity.class);
+			intent.putExtra("birth", data.get(position).getDate());
 			intent.putExtra("profilePhotoSrc", data.get(position).getProfilePhotoSrc());
 			intent.putExtra("name", data.get(position).getName());
 			intent.putExtra("regiment", data.get(position).getRegiment());
-			intent.putExtra("address", data.get(position).getRegiment() + "연대 " + data.get(position).getCompany()
-					+ "중대 " + data.get(position).getPlatoon() + "소대 " + data.get(position).getNumber() + "번");
-			intent.putExtra("enterDate", enterDate.substring(0,4)+"."+enterDate.substring(4,6)+"."+enterDate.substring(6));
+			intent.putExtra("address", data.get(position).getRegiment() + "연대 " + data.get(position).getCompany() + "중대 " + data.get(position).getPlatoon() + "소대 " + data.get(position).getNumber() + "번");
+			intent.putExtra("enterDate", enterDate.substring(0, 4) + "." + enterDate.substring(4, 6) + "." + enterDate.substring(6));
 			intent.putExtra("id", data.get(position).getsoldierId());
+			intent.putExtra("birth", data.get(position).getBirth());
 			startActivity(intent);
 			getActivity().finish();
 		}
