@@ -13,12 +13,13 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="@android:style/Theme.Holo.Light"></style>
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light">@style/TextAppearance.Holo.Widget.ActionBar.Menu</style>
 
     <!-- Application theme. -->
     <style name="CustomActionBarTheme" parent="android:style/Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/CustomActionBar</item>
         <item name="android:actionBarTabStyle">@style/CustomActionTabBar</item>
+        <item name="android:actionMenuTextAppearance">@style/TextAppearance.Holo.Widget.ActionBar.Menu</item>
     </style>
 
     <!-- ActionBar styles -->
@@ -42,6 +43,10 @@
     <!-- Application theme. -->
     <style name="DialogTheme" parent="@android:style/Theme.Dialog">
         <item name="android:background">#ffffff</item>
+        <item name="android:textColor">#ff6884</item>
+    </style>
+    
+    <style name="TextAppearance.Holo.Widget.ActionBar.Menu" parent="@android:style/TextAppearance">
         <item name="android:textColor">#ff6884</item>
     </style>
 

@@ -56,38 +56,42 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_client);
-		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-		mViewPager = (ViewPager) findViewById(R.id.pager);
-		mViewPager.setAdapter(mSectionsPagerAdapter);
-		actionBar.setViewPager(mViewPager);
+		try {
+			mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+			mViewPager = (ViewPager) findViewById(R.id.pager);
+			mViewPager.setAdapter(mSectionsPagerAdapter);
+			actionBar.setViewPager(mViewPager);
 
-		fragmentFriends = (BidoolgiFreinds) mSectionsPagerAdapter.fragments.get(0);
-		fragmentMail = (BidoolgiMail) mSectionsPagerAdapter.fragments.get(1);
-		fragmentBoard = (BidoolgiBoard) mSectionsPagerAdapter.fragments.get(2);
+			fragmentFriends = (BidoolgiFreinds) mSectionsPagerAdapter.fragments.get(0);
+			fragmentMail = (BidoolgiMail) mSectionsPagerAdapter.fragments.get(1);
+			fragmentBoard = (BidoolgiBoard) mSectionsPagerAdapter.fragments.get(2);
 
-		CommonRequestPacket request = new CommonRequestPacket();
-		request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_FRIEND_SOLDIER);
-		HttpRequestThread.getInstance().addRequest(request);
+			CommonRequestPacket request = new CommonRequestPacket();
+			request.setRequestCode(BidulgiRequestCode.REQUEST_LIST_FRIEND_SOLDIER);
+			HttpRequestThread.getInstance().addRequest(request);
 
-		CommonRequestPacket requestMailList = new CommonRequestPacket();
-		requestMailList.setRequestCode(BidulgiRequestCode.REQUEST_LIST_USER_MESSAGE);
-		HttpRequestThread.getInstance().addRequest(requestMailList);
+			CommonRequestPacket requestMailList = new CommonRequestPacket();
+			requestMailList.setRequestCode(BidulgiRequestCode.REQUEST_LIST_USER_MESSAGE);
+			HttpRequestThread.getInstance().addRequest(requestMailList);
 
-		LongRequestPacket requestArticleList = new LongRequestPacket();
-		requestArticleList.setValue(Integer.MAX_VALUE);
-		requestArticleList.setRequestCode(BidulgiRequestCode.REQUEST_LIST_ARTICLE);
-		HttpRequestThread.getInstance().addRequest(requestArticleList);
+			LongRequestPacket requestArticleList = new LongRequestPacket();
+			requestArticleList.setValue(Integer.MAX_VALUE);
+			requestArticleList.setRequestCode(BidulgiRequestCode.REQUEST_LIST_ARTICLE);
+			HttpRequestThread.getInstance().addRequest(requestArticleList);
 
-		IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+			IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
 
-		registerReceiver(smsReceiver, intentFilter);
+			registerReceiver(smsReceiver, intentFilter);
+		} catch (Exception e) {
+			Log.d("error", "ClientActivity 시작 에러 내용은 " + e.toString());
+		}
 
 		try {
 			Intent intent = getIntent();
 			if (intent.hasExtra("requestAuth")) {
 				if (intent.getExtras().getBoolean("requestAuth")) {
 
-					//mViewPager.setCurrentItem(3);
+					// mViewPager.setCurrentItem(3);
 					onNiceAuthStart();
 				}
 			}
@@ -243,7 +247,8 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 					fragmentFriends.addData(soldierData.getProfilePhotoSrc(), soldierData.getName().toString(),
 							soldierData.getEnterDateString().toString(), soldierData.getRegiment().toString(),
 							soldierData.getCompany().toString(), soldierData.getPlatoon().toString(),
-							soldierData.getNumber().toString(), soldierData.getSoldierId(), soldierData.getBirthString());
+							soldierData.getNumber().toString(), soldierData.getSoldierId(),
+							soldierData.getBirthString());
 
 				}
 				SoldierInfoStore.getInstance().reload(data);

@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,12 +33,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ClickArticleActivity extends UIHandlingActivity {
 
 	Intent intent;
+	private ScrollView scrollView;
 	private BoardReplyListAdapter boardReplyListAdapter;
 	private TextView articleBidoolgi;
 	private TextView articleTitle;
@@ -64,12 +67,13 @@ public class ClickArticleActivity extends UIHandlingActivity {
 
 		Log.d("aaaa", "게시판 글 클릭하고 넘어옴");
 		try{
-		/*actionBar = getActionBar();
+		actionBar = getActionBar();
 		actionBar.setTitle(null);
 		actionBar.setIcon(null);
 		actionBar.setDisplayHomeAsUpEnabled(false);
 		actionBar.setDisplayUseLogoEnabled(false);
-		actionBar.setHomeButtonEnabled(false);*/
+		actionBar.setHomeButtonEnabled(false);
+		
 		setContentView(R.layout.activity_click_article);
 
 		intent = getIntent();
@@ -77,6 +81,7 @@ public class ClickArticleActivity extends UIHandlingActivity {
 		articleId = intent.getExtras().getLong("articleId");
 
 		Typeface typeface = Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF");
+		scrollView = (ScrollView) findViewById(R.id.scrollView);
 		articleBidoolgi = (TextView) findViewById(R.id.articleBidoolgi);
 		commentCount = (TextView) findViewById(R.id.txtComentCount);
 		btnWriteComent = (Button) findViewById(R.id.btnWriteComent);
@@ -212,7 +217,24 @@ public class ClickArticleActivity extends UIHandlingActivity {
 			// TODO Auto-generated method stub
 			switch (v.getId()) {
 			case R.id.btnWriteComent:
+				listViewComents.setFocusable(true);
+				listViewComents.setSelected(true);
+				listViewComents.setSelection(listViewComents.getCount()-1);
 				layoutEditReply.setVisibility(View.VISIBLE);
+				//layoutEditReply.requestFocus();
+				
+				Handler hd = new Handler();
+				hd.postDelayed(new Runnable() {
+
+					@Override
+					public void run() {
+						scrollView.fullScroll(View.FOCUS_DOWN);
+						
+					}
+				}, 150);
+				
+				
+				
 				PAGE_END = false;
 				break;
 
