@@ -102,6 +102,10 @@
                 android:id="@+id/articleContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="15dp"
                 android:textColor="#58595b" />
         </ScrollView>
 
@@ -145,14 +149,21 @@
                 android:gravity="center" />
         </RelativeLayout>
 
-        <ListView
-            android:id="@+id/listViewComents"
+        <ScrollView
+            android:id="@+id/scrollListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:choiceMode="none"
-            android:divider="#f4f4f5"
-            android:dividerHeight="1dp" >
-        </ListView>
+            android:fillViewport="true" >
+
+            <ListView
+                android:id="@+id/listViewComents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:choiceMode="none"
+                android:divider="#f4f4f5"
+                android:dividerHeight="1dp" >
+            </ListView>
+        </ScrollView>
 
         <LinearLayout
             android:id="@+id/layoutEditReply"
@@ -194,7 +205,6 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/replyupload_" />
-                
         </LinearLayout>
     </LinearLayout>
 

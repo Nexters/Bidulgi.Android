@@ -27,8 +27,10 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -50,6 +52,7 @@ public class ClickArticleActivity extends UIHandlingActivity {
 	private TextView articleContent;
 	private TextView commentCount;
 	private Button btnWriteComent;
+	private ScrollView scrollListView;
 	private ListView listViewComents;
 	private LinearLayout layoutEditReply;
 	private TextView txtEditReply;
@@ -86,6 +89,7 @@ public class ClickArticleActivity extends UIHandlingActivity {
 		commentCount = (TextView) findViewById(R.id.txtComentCount);
 		btnWriteComent = (Button) findViewById(R.id.btnWriteComent);
 		btnWriteComent.setOnClickListener(onClickListener);
+		scrollListView = (ScrollView) findViewById(R.id.scrollListView);
 
 		layoutEditReply = (LinearLayout) findViewById(R.id.layoutEditReply);
 
@@ -196,6 +200,17 @@ public class ClickArticleActivity extends UIHandlingActivity {
 		}
 
 	}
+	
+	OnTouchListener onTouchListener = new OnTouchListener(){
+
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			// TODO Auto-generated method stub
+			scrollListView.requestDisallowInterceptTouchEvent(true);
+			return false;
+		}
+		
+	};
 
 	public void onBackPressed() {
 		if (PAGE_END == true) {
@@ -217,6 +232,7 @@ public class ClickArticleActivity extends UIHandlingActivity {
 			// TODO Auto-generated method stub
 			switch (v.getId()) {
 			case R.id.btnWriteComent:
+				listViewComents.setOnTouchListener(onTouchListener);
 				listViewComents.setFocusable(true);
 				listViewComents.setSelected(true);
 				listViewComents.setSelection(listViewComents.getCount()-1);
