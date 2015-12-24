@@ -18,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class BoardEditArticleActivity extends UIHandlingActivity {
 
@@ -58,14 +59,13 @@ public class BoardEditArticleActivity extends UIHandlingActivity {
 		btnSendArticle.setOnClickListener(onClickListener);
 
 	}
-	
+
 	public void onBackPressed() {
 		Intent resIntent = new Intent();
 		resIntent.putExtra("cancel", true);
 		setResult(5, resIntent);
 		finish();
 	};
-	
 
 	@Override
 	public void onHandleUI(BidulgiResponsePacket response) {
@@ -92,14 +92,22 @@ public class BoardEditArticleActivity extends UIHandlingActivity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			try{
+			try {
 				Log.d("aaaa", "게시판 글쓰기 버튼 눌렀어~!! ");
-			BoardRequestPacket requestEditArticle = new BoardRequestPacket();
-			requestEditArticle.setTitle(editArticleTitle.getText().toString());
-			requestEditArticle.setContent(editArticleContent.getText().toString());
-			requestEditArticle.setRequestCode(BidulgiRequestCode.REQUEST_WRITE_ARTICLE);
-			HttpRequestThread.getInstance().addRequest(requestEditArticle);
-			}catch(Exception e){
+				if (editArticleTitle.getText().toString().length() != 0) {
+					if (editArticleContent.getText().toString().length() != 0) {
+						BoardRequestPacket requestEditArticle = new BoardRequestPacket();
+						requestEditArticle.setTitle(editArticleTitle.getText().toString());
+						requestEditArticle.setContent(editArticleContent.getText().toString());
+						requestEditArticle.setRequestCode(BidulgiRequestCode.REQUEST_WRITE_ARTICLE);
+						HttpRequestThread.getInstance().addRequest(requestEditArticle);
+					} else {
+						Toast.makeText(getApplicationContext(), "내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
+					}
+				} else {
+					Toast.makeText(getApplicationContext(), "제목을 입력해주세요.", Toast.LENGTH_SHORT).show();
+				}
+			} catch (Exception e) {
 				Log.d("error", "게시판 글쓰기 에러내용은 " + e.toString());
 			}
 		}

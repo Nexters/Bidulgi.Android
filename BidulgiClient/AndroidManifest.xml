@@ -10,7 +10,7 @@
 
     <!--
   IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-  to match your app's package name + ".permission.C2D_MESSAGE".
+  to match your app's package name + ".permission.C2D_MESSAGE".
     -->
 
     <uses-sdk
@@ -74,7 +74,7 @@
         <activity
             android:name=".MessageSendCheckActivity"
             android:label="@string/title_activity_message_send_check"
-            android:theme="@android:style/Theme.Holo.NoActionBar" >
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" >
         </activity>
         <activity
             android:name=".BoardEditArticleActivity"

@@ -44,7 +44,8 @@ public class BidoolgiSetting extends Fragment {
 		if (LoginUserInfo.getInstance().getLoginData().getName() == null) {
 			txtDescribe.setText("미인증유저님 \n 편지를 보내기 위해서는 \n 인증이 필요합니다.");
 		} else {
-			niceAuthButton.setBackgroundResource(R.drawable.certifi_n_btn);
+			//niceAuthButton.setBackgroundResource(R.drawable.certifi_n_btn);
+			niceAuthButton.setVisibility(View.GONE);
 			txtDescribe.setText(LoginUserInfo.getInstance().getLoginData().getName()+"님 \n 안녕하세요! 비둘기로 편리하게 \n 인터넷편지를 보내세요. ");
 			txtBidoolgiPoint.setText("현재 "+LoginUserInfo.getInstance().getLoginData().getPoint()+"point 보유중");
 		}
