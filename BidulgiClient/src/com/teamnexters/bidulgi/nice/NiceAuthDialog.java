@@ -3,7 +3,7 @@ package com.teamnexters.bidulgi.nice;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -35,13 +35,16 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 	private NiceAuthRequester requester;
 	private Spinner mobileCoporationSpinner;
 	private ImageView authImageView;
-	private Button infoSubmitButton, imageSubmitButton, smsSubmitButton, niceTermsButton1, niceTermsButton2, niceTermsButton3, niceTermsButton4;
-	private EditText nameEditText, birthYearEditText, birthMonthEditText, birthDayEditText, phoneNumber1EditText, phoneNumber2EditText, phoneNumber3EditText, imageEditText, smsEditText;
+	private Button infoSubmitButton, imageSubmitButton, smsSubmitButton, niceTermsButton1, niceTermsButton2,
+			niceTermsButton3, niceTermsButton4;
+	private EditText nameEditText, birthYearEditText, birthMonthEditText, birthDayEditText, phoneNumber1EditText,
+			phoneNumber2EditText, phoneNumber3EditText, imageEditText, smsEditText;
 	private RadioGroup genderRadioGroup, nationRadioGroup;
 	private CheckBox niceTermsCheckbox1, niceTermsCheckbox2, niceTermsCheckbox3, niceTermsCheckbox4;
 
+	@SuppressLint("InlinedApi")
 	public NiceAuthDialog(Context context, NiceAuthRequester requester) {
-		super(context,android.R.style.Theme_Holo_Light_NoActionBar_Fullscreen);
+		super(context, android.R.style.Theme_Holo_Light_NoActionBar_Fullscreen);
 		setCanceledOnTouchOutside(false);
 		this.requester = requester;
 	}
@@ -49,10 +52,10 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		//requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.dialog_nice_auth);
-		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setTitle("실명 인증");
 		mobileCoporationSpinner = (Spinner) findViewById(R.id.niceAuthMobileCoporationSpinner);
 		infoSubmitButton = (Button) findViewById(R.id.niceAuthInfoSubmitButton);
@@ -98,20 +101,26 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 
 	public void showAuthImage() {
 		infoLayout.setVisibility(View.GONE);
+		infoSubmitButton.setVisibility(View.GONE);
+		imageSubmitButton.setVisibility(View.VISIBLE);
 		imageLayout.setVisibility(View.VISIBLE);
-		GlideUrl glideUrl = new GlideUrl(NetworkConfiguration.getHost() + BidulgiRequestUri.REQUEST_NICE_AUTH_IMAGE, new Headers() {
+		GlideUrl glideUrl = new GlideUrl(NetworkConfiguration.getHost() + BidulgiRequestUri.REQUEST_NICE_AUTH_IMAGE,
+				new Headers() {
 
-			@Override
-			public Map<String, String> getHeaders() {
-				Map<String, String> returnMap = new HashMap<String, String>();
-				returnMap.put("Cookie", "JSESSIONID=" + HttpRequestThread.getInstance().getJSessionId());
-				return returnMap;
-			}
-		});
-		Glide.with(getContext()).load(glideUrl).signature(new StringSignature(UUID.randomUUID().toString())).into(authImageView);
+					@Override
+					public Map<String, String> getHeaders() {
+						Map<String, String> returnMap = new HashMap<String, String>();
+						returnMap.put("Cookie", "JSESSIONID=" + HttpRequestThread.getInstance().getJSessionId());
+						return returnMap;
+					}
+				});
+		Glide.with(getContext()).load(glideUrl).signature(new StringSignature(UUID.randomUUID().toString()))
+				.into(authImageView);
 	}
 
 	public void listenSMS() {
+		imageSubmitButton.setVisibility(View.GONE);
+		smsSubmitButton.setVisibility(View.VISIBLE);
 		imageLayout.setVisibility(View.GONE);
 		smsLayout.setVisibility(View.VISIBLE);
 	}
@@ -124,7 +133,8 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.niceAuthInfoSubmitButton:
-			if (!niceTermsCheckbox1.isChecked() || !niceTermsCheckbox2.isChecked() || !niceTermsCheckbox3.isChecked() || !niceTermsCheckbox4.isChecked()) {
+			if (!niceTermsCheckbox1.isChecked() || !niceTermsCheckbox2.isChecked() || !niceTermsCheckbox3.isChecked()
+					|| !niceTermsCheckbox4.isChecked()) {
 				Toast.makeText(getContext(), "약관에 동의해주세요.", Toast.LENGTH_SHORT).show();
 				return;
 			}
@@ -182,25 +192,30 @@ public class NiceAuthDialog extends Dialog implements android.view.View.OnClickL
 			break;
 
 		case R.id.nice_terms1_button1:
-			if (mobileCoporationSpinner.getSelectedItemPosition() == 0 || mobileCoporationSpinner.getSelectedItemPosition() == 3) {
+			if (mobileCoporationSpinner.getSelectedItemPosition() == 0
+					|| mobileCoporationSpinner.getSelectedItemPosition() == 3) {
 				showTermsDialog(niceTermsCheckbox1.getText(), R.string.nice_terms1_skt);
-			} else if (mobileCoporationSpinner.getSelectedItemPosition() == 1 || mobileCoporationSpinner.getSelectedItemPosition() == 4) {
+			} else if (mobileCoporationSpinner.getSelectedItemPosition() == 1
+					|| mobileCoporationSpinner.getSelectedItemPosition() == 4) {
 				showTermsDialog(niceTermsCheckbox1.getText(), R.string.nice_terms1_kt);
 			} else {
 				showTermsDialog(niceTermsCheckbox1.getText(), R.string.nice_terms1_nice);
 			}
 			break;
 		case R.id.nice_terms1_button2:
-			if (mobileCoporationSpinner.getSelectedItemPosition() == 0 || mobileCoporationSpinner.getSelectedItemPosition() == 3) {
+			if (mobileCoporationSpinner.getSelectedItemPosition() == 0
+					|| mobileCoporationSpinner.getSelectedItemPosition() == 3) {
 				showTermsDialog(niceTermsCheckbox1.getText(), R.string.nice_terms2_skt);
 			} else {
 				showTermsDialog(niceTermsCheckbox1.getText(), R.string.nice_terms2_nice);
 			}
 			break;
 		case R.id.nice_terms1_button3:
-			if (mobileCoporationSpinner.getSelectedItemPosition() == 0 || mobileCoporationSpinner.getSelectedItemPosition() == 3) {
+			if (mobileCoporationSpinner.getSelectedItemPosition() == 0
+					|| mobileCoporationSpinner.getSelectedItemPosition() == 3) {
 				showTermsDialog(niceTermsCheckbox1.getText(), R.string.nice_terms3_skt);
-			} else if (mobileCoporationSpinner.getSelectedItemPosition() == 1 || mobileCoporationSpinner.getSelectedItemPosition() == 4) {
+			} else if (mobileCoporationSpinner.getSelectedItemPosition() == 1
+					|| mobileCoporationSpinner.getSelectedItemPosition() == 4) {
 				showTermsDialog(niceTermsCheckbox1.getText(), R.string.nice_terms3_kt);
 			} else {
 				showTermsDialog(niceTermsCheckbox1.getText(), R.string.nice_terms3_lg);
