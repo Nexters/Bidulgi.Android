@@ -162,18 +162,13 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 		case 1:
 			if (data.getBooleanExtra("addFriend", false)) { // 친구추가 여부 확인
 				// 친구추가 시 시행할 동작
-				fragmentFriends.addData(data.getExtras().getString("profilePhotoSrc"),
-						data.getExtras().getString("name"), data.getExtras().getString("enterday"),
-						data.getExtras().getString("regiment"), data.getExtras().getString("company"),
-						data.getExtras().getString("platoon"), data.getExtras().getString("number"),
-						data.getExtras().getLong("soldierId"), data.getExtras().getString("birth"));
+				fragmentFriends.addData((SoldierData) data.getExtras().getSerializable("added_soldier_data"));
 				LongRequestPacket request = new LongRequestPacket();
 				request.setValue(data.getExtras().getLong("soldierId"));
 				request.setRequestCode(BidulgiRequestCode.REQUEST_ADD_FRIEND_SOLDIER);
 				HttpRequestThread.getInstance().addRequest(request);
 
-				Toast.makeText(getApplicationContext(), data.getExtras().getString("name") + " 비둘기가 추가 되었습니다.",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), data.getExtras().getString("name") + " 비둘기가 추가 되었습니다.", Toast.LENGTH_SHORT).show();
 
 			} else {
 			}
@@ -244,11 +239,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 				Log.d("aaaa", "군인친구 목록 첫번째 친구는" + data.get(0).getName().toString());
 				Log.d("aaaa", "군인 친구 목록 첫번째 친구 프로필 사진 URL은 " + data.get(0).getProfilePhotoSrc());
 				for (SoldierData soldierData : data) {
-					fragmentFriends.addData(soldierData.getProfilePhotoSrc(), soldierData.getName().toString(),
-							soldierData.getEnterDateString().toString(), soldierData.getRegiment().toString(),
-							soldierData.getCompany().toString(), soldierData.getPlatoon().toString(),
-							soldierData.getNumber().toString(), soldierData.getSoldierId(),
-							soldierData.getBirthString());
+					fragmentFriends.addData(soldierData);
 
 				}
 				SoldierInfoStore.getInstance().reload(data);

@@ -21,6 +21,7 @@ import com.teamnexters.bidulgi.client.DialogLongClickFriend;
 import com.teamnexters.bidulgi.client.R;
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
 import com.teamnexters.bidulgi.common.data.MessageData;
+import com.teamnexters.bidulgi.common.data.SoldierData;
 import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
 import com.teamnexters.bidulgi.common.request.LongRequestPacket;
 import com.teamnexters.bidulgi.list.FriendAdapter;
@@ -32,7 +33,7 @@ public class BidoolgiFreinds extends Fragment {
 	Intent intent;
 	private boolean isFriendsEmpty = true;
 
-	private ArrayList<ListViewItem> data = new ArrayList<ListViewItem>();
+	private ArrayList<SoldierData> data = new ArrayList<SoldierData>();
 	private FriendAdapter adapter;
 
 	@Override
@@ -65,29 +66,29 @@ public class BidoolgiFreinds extends Fragment {
 
 	}
 
-	public void addData(String profilePhotoSrc, String name, String date, String regiment, String company, String platoon, String number, Long soldierId, String birth) {
+	public void addData(SoldierData soldierData) {
 
 		Log.d("aaaa", "넘어온 String 값은 " + name);
-		if (name.equals("나둘기")) {
-			ListViewItem test1 = new ListViewItem(profilePhotoSrc, name, "복무중ㅠ.ㅠ", "", "", "", "", null, birth);
+		// if (name.equals("나둘기")) {
+		// ListViewItem test1 = new ListViewItem(profilePhotoSrc, name,
+		// "복무중ㅠ.ㅠ", "", "", "", "", null, birth);
+		//
+		// data.add(test1);
+		//
+		// adapter.notifyDataSetChanged();
+		// } else {
 
-			data.add(test1);
+		data.add(soldierData);
 
-			adapter.notifyDataSetChanged();
-		} else {
-			ListViewItem test1 = new ListViewItem(profilePhotoSrc, name, date, regiment, company, platoon, number, soldierId, birth);
+		adapter.notifyDataSetChanged();
 
-			data.add(test1);
-
-			adapter.notifyDataSetChanged();
-
-		}
+		// }
 
 	}
 
 	public void deleteData(int position) {
 		LongRequestPacket request = new LongRequestPacket();
-		request.setValue(data.get(position).getsoldierId());
+		request.setValue(data.get(position).getSoldierId());
 		request.setRequestCode(BidulgiRequestCode.REQUEST_REMOVE_FRIEND_SOLDIER);
 		HttpRequestThread.getInstance().addRequest(request);
 		data.remove(position);
@@ -99,16 +100,16 @@ public class BidoolgiFreinds extends Fragment {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			String enterDate = data.get(position).getDate();
+			String enterDate = data.get(position).getEnterDateString();
 			intent = new Intent(getView().getContext(), ClickFriendActivity.class);
-			intent.putExtra("birth", data.get(position).getDate());
+			intent.putExtra("birth", data.get(position).getEnterDateString());
 			intent.putExtra("profilePhotoSrc", data.get(position).getProfilePhotoSrc());
 			intent.putExtra("name", data.get(position).getName());
 			intent.putExtra("regiment", data.get(position).getRegiment());
 			intent.putExtra("address", data.get(position).getRegiment() + "연대 " + data.get(position).getCompany() + "중대 " + data.get(position).getPlatoon() + "소대 " + data.get(position).getNumber() + "번");
 			intent.putExtra("enterDate", enterDate.substring(0, 4) + "." + enterDate.substring(4, 6) + "." + enterDate.substring(6));
-			intent.putExtra("id", data.get(position).getsoldierId());
-			intent.putExtra("birth", data.get(position).getBirth());
+			intent.putExtra("id", data.get(position).getSoldierId());
+			intent.putExtra("birth", data.get(position).getBirthString());
 			startActivity(intent);
 			getActivity().finish();
 		}

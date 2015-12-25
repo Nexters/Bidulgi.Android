@@ -147,8 +147,7 @@ public class DialogAddFriend extends UIHandlingActivity {
 		switch (id) {
 		case 1:
 
-			return new DatePickerDialog(this, mDateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
-					cal.get(Calendar.DAY_OF_MONTH));
+			return new DatePickerDialog(this, mDateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
 
 		}
 		return null;
@@ -169,16 +168,7 @@ public class DialogAddFriend extends UIHandlingActivity {
 			Log.d("aaaa", data.getBirthString() + " " + data.getName() + " " + data.getCompany());
 			Log.d("aaaa", "사진 URL은 " + data.getProfilePhotoSrc());
 			resIntent.putExtra("addFriend", true);
-			resIntent.putExtra("name", data.getName());
-			resIntent.putExtra("profilePhotoSrc", data.getProfilePhotoSrc());
-			resIntent.putExtra("birthday", data.getBirthString());
-			resIntent.putExtra("enterday", data.getEnterDateString());
-			resIntent.putExtra("regiment", data.getRegiment());
-			resIntent.putExtra("company", data.getCompany());
-			resIntent.putExtra("platoon", data.getPlatoon());
-			resIntent.putExtra("number", data.getNumber());
-			resIntent.putExtra("soldierId", data.getSoldierId());
-			resIntent.putExtra("birth", data.getBirthString());
+			resIntent.putExtra("added_soldier_data", data);
 			setResult(1, resIntent);
 			finish();
 			break;
@@ -205,8 +195,7 @@ public class DialogAddFriend extends UIHandlingActivity {
 			} else if (monthOfYear + 1 >= 10 && dayOfMonth < 10) {
 				editDate.setText(new StringBuilder().append(year).append(monthOfYear + 1).append(0).append(dayOfMonth));
 			} else if (monthOfYear + 1 < 10 && dayOfMonth < 10) {
-				editDate.setText(new StringBuilder().append(year).append(0).append(monthOfYear + 1).append(0)
-						.append(dayOfMonth));
+				editDate.setText(new StringBuilder().append(year).append(0).append(monthOfYear + 1).append(0).append(dayOfMonth));
 			} else {
 				editDate.setText(new StringBuilder().append(year).append(monthOfYear + 1).append(dayOfMonth));
 			}

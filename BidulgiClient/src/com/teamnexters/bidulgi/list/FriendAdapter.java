@@ -8,8 +8,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import com.bumptech.glide.Glide;
+import com.teamnexters.bidulgi.client.R;
+import com.teamnexters.bidulgi.common.data.SoldierData;
+import com.teamnexters.bidulgi.glide.CircleTransform;
+
 import android.content.Context;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,16 +22,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.teamnexters.bidulgi.client.R;
-import com.teamnexters.bidulgi.glide.CircleTransform;
-
 public class FriendAdapter extends BaseAdapter {
 
 	private LayoutInflater inflater;
-	private ArrayList<ListViewItem> data;
+	private ArrayList<SoldierData> data;
 
-	public FriendAdapter(Context context, ArrayList<ListViewItem> data) {
+	public FriendAdapter(Context context, ArrayList<SoldierData> data) {
 		this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.data = data;
 	}
@@ -53,7 +53,7 @@ public class FriendAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.fragment_list, parent, false);
 		}
 
-		ListViewItem listViewItem = data.get(position);
+		SoldierData listViewItem = data.get(position);
 		ImageView icon = (ImageView) convertView.findViewById(R.id.friendListProfileImageView);
 		Log.d("aaaa", "넘어온 프로필 URL은 " + listViewItem.getProfilePhotoSrc());
 		if (listViewItem.getProfilePhotoSrc() == null) {
@@ -67,8 +67,8 @@ public class FriendAdapter extends BaseAdapter {
 		name.setText(listViewItem.getName() + " 훈련병");
 
 		TextView enterDate = (TextView) convertView.findViewById(R.id.friendListEnterDateTextView);
-		String txtEnterDate = listViewItem.getDate().substring(0, 4) + "." + listViewItem.getDate().substring(4, 6)
-				+ "." + listViewItem.getDate().substring(6);
+		String txtEnterDate = listViewItem.getEnterDateString().substring(0, 4) + "." + listViewItem.getEnterDateString().substring(4, 6)
+				+ "." + listViewItem.getEnterDateString().substring(6);
 		enterDate.setText("입소일 " + txtEnterDate);
 		// enterDate.setText(txtEnterDate);
 
