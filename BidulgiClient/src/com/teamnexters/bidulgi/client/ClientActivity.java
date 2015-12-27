@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
+import com.teamnexters.bidulgi.client.session.KATCSessionKeeper;
 import com.teamnexters.bidulgi.common.data.SoldierData;
 import com.teamnexters.bidulgi.common.request.BidulgiRequestCode;
 import com.teamnexters.bidulgi.common.request.CommonRequestPacket;
@@ -54,7 +55,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		KATCSessionKeeper.startSession();
 		setContentView(R.layout.activity_client);
 		try {
 			mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());

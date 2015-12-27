@@ -19,4 +19,5 @@ public interface BidulgiRequestCode {
 	public int REQUEST_LIST_COMMENT = 15;
 	public int REQUEST_WRITE_COMMENT = 16;
 	public int REQUEST_READ_ARTICLE = 17;
+	public int REQUEST_KEEP_SESSION = 18;
 }
