@@ -52,5 +52,6 @@
     <string name="title_activity_view_message">ViewMessageActivity</string>
     <string name="title_activity_requst_auth">RequstAuthActivity</string>
     <string name="title_activity_request_auth">RequestAuthActivity</string>
+    <string name="title_activity_click_album">ClickAlbumActivity</string>
 
 </resources>

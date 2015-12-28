@@ -8,15 +8,21 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import com.bumptech.glide.Glide;
 import com.teamnexters.bidulgi.client.ui.UIHandlingActivity;
 import com.teamnexters.bidulgi.common.response.BidulgiResponsePacket;
 import com.teamnexters.bidulgi.glide.CircleTransform;
+import com.teamnexters.bidulgi.list.AlbumAdapter;
 import com.teamnexters.bidulgi.message.MessageSendActivity;
 
 public class ClickFriendActivity extends UIHandlingActivity implements OnClickListener {
@@ -26,12 +32,15 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 	public static final int REQUEST_CODE_AUTH_REQUEST = 2000;
 
 	Intent intent;
-	ImageView imgFriend;
-	TextView txtFriendName;
-	TextView txtEnterDate;
-	Button btnEditEmail;
-	TextView txtFriendsAddress;
-	TextView txtFriendBirth;
+	private ImageView imgFriend;
+	private TextView txtFriendName;
+	private TextView txtEnterDate;
+	private Button btnEditEmail;
+	private TextView txtFriendsAddress;
+	private TextView txtFriendBirth;
+	private GridView gridAlbum;
+	private AlbumAdapter albumAdapter;
+	private ArrayList<String> albumURL = new ArrayList<String>();
 	//String address = "[320-839] 충청남도 논산시 연무읍 \r\n 득안대로 504번길 사서함 76 - ";
 
 	ActionBar actionBar;
@@ -59,12 +68,32 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 		txtFriendsAddress = (TextView) findViewById(R.id.txtFriendsAddress);
 		txtEnterDate = (TextView) findViewById(R.id.txtEnterDate);
 		txtFriendBirth = (TextView) findViewById(R.id.txtBirth);
+		gridAlbum = (GridView) findViewById(R.id.gridAlbum);
+		
+		
 		if (intent.getExtras().getString("profilePhotoSrc") == null) {
 			imgFriend.setImageResource(R.drawable.icon_noprofile);
 		} else {
 			Glide.with(this).load(intent.getExtras().getString("profilePhotoSrc"))
 					.transform(new CircleTransform(getApplicationContext())).into(imgFriend);
 		}
+		
+		//훈련사진 URL크기가 0 보다 크면(있으면)
+		if(intent.getExtras().getInt("albumURLSize") > 0 ){
+			for(int i = 0 ; i < intent.getExtras().getInt("albumURLSize") ; i++){
+				
+				//분대사진 URL을 ArrayList<String>에 추가
+				Log.d("aaaa", "ClickFriendActivity에서 훈련사진 받아와서 URL 담는 중");
+				albumURL.add(intent.getExtras().getString("albumURL"+i));
+			}
+			
+			
+		}
+		
+		//분대사진 그리드 뷰 Adapter 초기화 및 gridView에 연결
+		albumAdapter = new AlbumAdapter(getApplicationContext(), albumURL);		
+		gridAlbum.setAdapter(albumAdapter);
+		gridAlbum.setOnItemClickListener(onAlbumItemClickListener);
 
 		txtFriendName.setText(intent.getExtras().getString("name"));
 		txtEnterDate.setText(intent.getExtras().getString("enterDate"));
@@ -130,6 +159,19 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 
 		startActivity(intent);
 		finish();
+	};
+	
+	OnItemClickListener onAlbumItemClickListener = new OnItemClickListener(){
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			// TODO Auto-generated method stub
+			Intent intent = new Intent(getApplicationContext(), ClickAlbumActivity.class);
+			intent.putExtra("imgTrainingURL", albumURL.get(position));
+			startActivity(intent);
+			
+		}
+		
 	};
 
 	@Override

@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/signup01"
+        android:background="@drawable/patchbox3"
         android:maxLength="120"
         android:maxLines="1"
         android:paddingLeft="10dp"
@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/agree_border"
+        android:background="@drawable/patchbox3"
         android:maxLength="800"
         android:paddingLeft="10dp"
         android:text="" />
@@ -74,16 +74,16 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="비밀번호"
-        android:textColor="#58595b" />
+        android:textColor="#58595b"/>
 
     <EditText
         android:id="@+id/sendMessagePasswordEditText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@drawable/signup01"
+        android:background="@drawable/patchbox3"
         android:inputType="textPassword"
         android:maxLength="120"
         android:paddingLeft="10dp"
-        android:text="" />
+        android:text=""/>
 
 </LinearLayout>

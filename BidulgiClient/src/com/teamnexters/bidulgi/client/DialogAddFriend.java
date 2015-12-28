@@ -168,6 +168,8 @@ public class DialogAddFriend extends UIHandlingActivity {
 			Log.d("aaaa", data.getBirthString() + " " + data.getName() + " " + data.getCompany());
 			Log.d("aaaa", "사진 URL은 " + data.getProfilePhotoSrc());
 			resIntent.putExtra("addFriend", true);
+			resIntent.putExtra("soldierId", data.getSoldierId());
+			resIntent.putExtra("name", data.getName());
 			resIntent.putExtra("added_soldier_data", data);
 			setResult(1, resIntent);
 			finish();

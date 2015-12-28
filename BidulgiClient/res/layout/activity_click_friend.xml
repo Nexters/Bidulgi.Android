@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:weightSum="100"
     tools:context="com.teamnexters.bidulgi.client.ClickFriendActivity" >
@@ -12,17 +12,17 @@
         android:id="@+id/layoutImgFriend"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="50"
+        android:layout_weight="40"
         android:background="#f4f4f5"
         android:gravity="center" >
 
         <ImageView
             android:id="@+id/imgFriend"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignLeft="@+id/txtFriendName"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="40dp" />
+            android:layout_marginTop="30dp" />
 
         <TextView
             android:id="@+id/txtFriendName"
@@ -30,8 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgFriend"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp"
             android:gravity="center"
             android:textColor="#252525"
             android:textSize="25dp" />
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_below="@+id/layoutImgFriend"
-        android:layout_weight="40"
+        android:layout_weight="50"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="100" >
@@ -157,6 +157,39 @@
                     android:textColor="#58595b" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:gravity="top"
+                android:orientation="vertical"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:weightSum="100" >
+
+                <TextView
+                    android:id="@+id/txtAlbum"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="30"
+                    android:gravity="left|top"
+                    android:text="훈련앨범"
+                    android:textColor="#58595b" />
+
+                <GridView
+                    android:id="@+id/gridAlbum"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="70"
+                    android:columnWidth="90dp"
+                    android:gravity="center_horizontal"
+                    android:horizontalSpacing="5dp"
+                    android:numColumns="4"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="50dp" />
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -167,15 +200,15 @@
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
                 android:gravity="top"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:paddingBottom="15dp"
                 android:paddingTop="15dp"
                 android:visibility="gone"
                 android:weightSum="100" >
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="30"
                     android:gravity="left|top"
                     android:text="수료예정일"
@@ -183,7 +216,7 @@
 
                 <TextView
                     android:id="@+id/txtExitDate"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="70"
                     android:gravity="left"

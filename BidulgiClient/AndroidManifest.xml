@@ -10,7 +10,7 @@
 
     <!--
   IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-  to match your app's package name + ".permission.C2D_MESSAGE".
+  to match your app's package name + ".permission.C2D_MESSAGE".
     -->
 
     <uses-sdk
@@ -96,6 +96,11 @@
             android:name=".RequestAuthActivity"
             android:label="@string/title_activity_request_auth"
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".ClickAlbumActivity"
+            android:label="@string/title_activity_click_album"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
         </activity>
     </application>
 
