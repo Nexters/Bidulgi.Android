@@ -9,14 +9,17 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import com.bumptech.glide.Glide;
+import com.teamnexters.bidulgi.client.ClickProfileActivity;
 import com.teamnexters.bidulgi.client.R;
 import com.teamnexters.bidulgi.common.data.SoldierData;
 import com.teamnexters.bidulgi.glide.CircleTransform;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -26,8 +29,10 @@ public class FriendAdapter extends BaseAdapter {
 
 	private LayoutInflater inflater;
 	private ArrayList<SoldierData> data;
+	private Context context;
 
 	public FriendAdapter(Context context, ArrayList<SoldierData> data) {
+		this.context = context;
 		this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.data = data;
 	}
@@ -53,8 +58,19 @@ public class FriendAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.fragment_list, parent, false);
 		}
 
-		SoldierData listViewItem = data.get(position);
+		final SoldierData listViewItem = data.get(position);
 		ImageView icon = (ImageView) convertView.findViewById(R.id.friendListProfileImageView);
+		icon.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(context, ClickProfileActivity.class);
+				intent.putExtra("profileURL", listViewItem.getProfilePhotoSrc());
+				context.startActivity(intent);
+			}
+			
+		});
 		Log.d("aaaa", "넘어온 프로필 URL은 " + listViewItem.getProfilePhotoSrc());
 		if (listViewItem.getProfilePhotoSrc() == null) {
 			icon.setImageResource(R.drawable.icon_noprofile);
@@ -104,5 +120,6 @@ public class FriendAdapter extends BaseAdapter {
 		} 
 		return convertView;
 	}
+	
 
 }
