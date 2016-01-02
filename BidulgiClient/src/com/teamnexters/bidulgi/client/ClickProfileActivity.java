@@ -29,6 +29,7 @@ public class ClickProfileActivity extends Activity {
 	private ImageView imgProfile;
 	private ActionBar actionBar;
 	private Bitmap bitmap;
+	private String imgProfileURL;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -50,6 +51,7 @@ public class ClickProfileActivity extends Activity {
 			imgProfile.setImageResource(R.drawable.icon_noprofile);
 		} else {
 			Glide.with(getApplicationContext()).load(intent.getExtras().getString("imgProfileURL")).into(imgProfile);
+			imgProfileURL = intent.getExtras().getString("imgProfileURL");
 		}
 		/*
 		 * try{ File path = new File("/sdcard/image/bidoolgi/");
@@ -104,7 +106,7 @@ public class ClickProfileActivity extends Activity {
 							// TODO Auto-generated method stub
 							try {
 								bitmap = Glide.with(getApplicationContext())
-										.load(intent.getExtras().getString("imgTrainingURL")).asBitmap().into(100, 100)
+										.load(intent.getExtras().getString("imgProfileURL")).asBitmap().into(100, 100)
 										.get();
 								// Drawable drawable =
 								// imgTraining.getDrawable();

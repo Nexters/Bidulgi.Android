@@ -3,6 +3,8 @@ package com.teamnexters.bidulgi.client;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import com.bumptech.glide.Glide;
 import android.annotation.SuppressLint;
@@ -98,7 +100,11 @@ public class ClickAlbumActivity extends Activity {
 
 					protected void onPostExecute(Void result) {
 						try {
-							File file = new File(path.getAbsolutePath(), "bidoolgi.jpg");
+							Date date = new Date(System.currentTimeMillis());
+							SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmssSS", java.util.Locale.getDefault());
+							String strDate = "bidoolgi"+dateFormat.format(date)+".jpg";
+							
+							File file = new File(path.getAbsolutePath(), strDate);
 							OutputStream outputStream = new FileOutputStream(file);
 
 							bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
