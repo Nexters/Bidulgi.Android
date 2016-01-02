@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -110,6 +111,7 @@ public class ClickAlbumActivity extends Activity {
 							bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
 							outputStream.flush();
 							outputStream.close();
+							getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
 							Toast.makeText(getApplicationContext(), "사진 저장을 완료했습니다.", Toast.LENGTH_SHORT).show();
 						} catch (Exception e) {
 							Log.d("error", "비트맵 저장 시 에러내용은 " + e.toString());

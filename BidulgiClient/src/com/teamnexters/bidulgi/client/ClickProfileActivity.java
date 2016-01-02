@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -120,7 +122,11 @@ public class ClickProfileActivity extends Activity {
 
 						protected void onPostExecute(Void result) {
 							try {
-								File file = new File(path.getAbsolutePath(), "bidoolgi.jpg");
+								Date date = new Date(System.currentTimeMillis());
+								SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmssSS", java.util.Locale.getDefault());
+								String strDate = "bidoolgi"+dateFormat.format(date)+".jpg";
+								
+								File file = new File(path.getAbsolutePath(), strDate);
 								OutputStream outputStream = new FileOutputStream(file);
 
 								bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
