@@ -89,7 +89,7 @@ public class ClickAlbumActivity extends Activity {
 						// TODO Auto-generated method stub
 						try {
 							bitmap = Glide.with(getApplicationContext())
-									.load(intent.getExtras().getString("imgTrainingURL")).asBitmap().into(100, 100)
+									.load(intent.getExtras().getString("imgTrainingURL")).asBitmap().into(500,500)
 									.get();
 							// Drawable drawable = imgTraining.getDrawable();
 							// bitmap = ((BitmapDrawable)drawable).getBitmap();
