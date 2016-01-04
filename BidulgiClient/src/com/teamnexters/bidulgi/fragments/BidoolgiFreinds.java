@@ -96,6 +96,7 @@ public class BidoolgiFreinds extends Fragment {
 		adapter.notifyDataSetChanged();
 
 	}
+	
 
 	OnItemClickListener onItemClickListener = new OnItemClickListener() {
 
