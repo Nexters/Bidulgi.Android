@@ -18,6 +18,7 @@ public class SoldierData implements Serializable {
 	private String number;
 	private String identityCookie;
 	private long soldierId;
+	private long lastMessageTime;
 	private boolean isFriend;
 
 	private String profilePhotoSrc;
@@ -145,6 +146,14 @@ public class SoldierData implements Serializable {
 
 	public void setNewPhotoSrcSet(Set<String> newPhotoSrcSet) {
 		this.newPhotoSrcSet = newPhotoSrcSet;
+	}
+
+	public long getLastMessageTime() {
+		return lastMessageTime;
+	}
+
+	public void setLastMessageTime(long lastMessageTime) {
+		this.lastMessageTime = lastMessageTime;
 	}
 
 }
