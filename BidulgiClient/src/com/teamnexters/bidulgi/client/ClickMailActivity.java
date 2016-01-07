@@ -1,6 +1,11 @@
 package com.teamnexters.bidulgi.client;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import com.bumptech.glide.Glide;
 import com.teamnexters.bidulgi.client.network.HttpRequestThread;
@@ -41,6 +46,8 @@ public class ClickMailActivity extends UIHandlingActivity {
 	private SoldierMessageAdapter soldierMessageAdapter;
 	private ActionBar actionBar;
 	private Button btnLincEditMail;
+	private TextView txtMailCountNumber;
+	private TextView txtLastEditMailDateNumber;
 	private long soldierId;
 	private List<MessageData> messageData;
 
@@ -104,6 +111,26 @@ public class ClickMailActivity extends UIHandlingActivity {
 			soldierMessageAdapter = new SoldierMessageAdapter(messageListResponsePacket.getMessageData(),
 					getApplication());
 			messageData = messageListResponsePacket.getMessageData();
+			
+			txtMailCountNumber = (TextView) findViewById(R.id.txtMailCountNumber);
+			txtMailCountNumber.setText(messageData.size()+"개");
+			txtLastEditMailDateNumber = (TextView) findViewById(R.id.txtLastEditMailDateNumber);
+			
+			try{
+			Date date = new Date(messageData.get(0).getSendTime());
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", java.util.Locale.getDefault());
+			
+			String lastEditMailDate = dateFormat.format(date);
+			String toDayDate = dateFormat.format(new Date(System.currentTimeMillis()));
+			
+			long longDday = (dateFormat.parse(toDayDate).getTime() - dateFormat.parse(lastEditMailDate).getTime());
+			long Dday = longDday / (24 * 60 * 60 * 1000);
+			txtLastEditMailDateNumber.setText(Dday+"일째");
+			}catch(Exception e){
+				Log.d("error", "메일 보낸 후 지난 날짜 수 에러 내용은 " + e.toString());
+			}
+			
+			//String lastEditMailDate = messageData.get(0).getSendTime()
 
 			intent = getIntent();
 			imgMailFriend = (ImageView) findViewById(R.id.imgMailFriend);
