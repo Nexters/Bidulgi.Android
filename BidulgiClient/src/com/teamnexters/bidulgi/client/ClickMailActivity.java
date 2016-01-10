@@ -121,6 +121,7 @@ public class ClickMailActivity extends UIHandlingActivity {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", java.util.Locale.getDefault());
 			
 			String lastEditMailDate = dateFormat.format(date);
+			Log.d("aaaa", "마지막으로 편지 보낸 날짜는 " + lastEditMailDate);
 			String toDayDate = dateFormat.format(new Date(System.currentTimeMillis()));
 			
 			long longDday = (dateFormat.parse(toDayDate).getTime() - dateFormat.parse(lastEditMailDate).getTime());

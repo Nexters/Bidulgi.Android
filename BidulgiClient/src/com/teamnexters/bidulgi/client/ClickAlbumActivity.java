@@ -12,6 +12,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -19,6 +20,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -46,6 +48,7 @@ public class ClickAlbumActivity extends Activity {
 		actionBar.setHomeButtonEnabled(false);
 
 		intent = getIntent();
+		
 		imgTraining = (ImageView) findViewById(R.id.imgTraining);
 
 		Glide.with(getApplicationContext()).load(intent.getExtras().getString("imgTrainingURL")).into(imgTraining);
@@ -88,8 +91,13 @@ public class ClickAlbumActivity extends Activity {
 					protected Void doInBackground(Void... params) {
 						// TODO Auto-generated method stub
 						try {
+							Display display = getWindowManager().getDefaultDisplay();
+							//Point size = new Point();
+							//display.getSize(size);
+							
+							
 							bitmap = Glide.with(getApplicationContext())
-									.load(intent.getExtras().getString("imgTrainingURL")).asBitmap().into(500,500)
+									.load(intent.getExtras().getString("imgTrainingURL")).asBitmap().into(display.getWidth(),display.getHeight())
 									.get();
 							// Drawable drawable = imgTraining.getDrawable();
 							// bitmap = ((BitmapDrawable)drawable).getBitmap();

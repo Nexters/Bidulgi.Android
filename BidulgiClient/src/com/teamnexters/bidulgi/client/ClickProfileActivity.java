@@ -19,6 +19,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -107,8 +108,10 @@ public class ClickProfileActivity extends Activity {
 						protected Void doInBackground(Void... params) {
 							// TODO Auto-generated method stub
 							try {
+								Display display = getWindowManager().getDefaultDisplay();
+								
 								bitmap = Glide.with(getApplicationContext())
-										.load(intent.getExtras().getString("imgProfileURL")).asBitmap().into(100, 100)
+										.load(intent.getExtras().getString("imgProfileURL")).asBitmap().into(display.getWidth(), display.getHeight())
 										.get();
 								// Drawable drawable =
 								// imgTraining.getDrawable();
