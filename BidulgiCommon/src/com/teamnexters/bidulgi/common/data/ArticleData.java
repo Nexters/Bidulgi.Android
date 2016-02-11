@@ -9,6 +9,7 @@ public class ArticleData {
 	private String content;
 	private int commentCount;
 	private int viewCount;
+	private boolean isLiked;
 	
 	
 	public long getArticleId() {
@@ -58,5 +59,11 @@ public class ArticleData {
 	}
 	public void setViewCount(int viewCount) {
 		this.viewCount = viewCount;
+	}
+	public boolean isLiked() {
+		return isLiked;
+	}
+	public void setLiked(boolean isLiked) {
+		this.isLiked = isLiked;
 	}
 }
