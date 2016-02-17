@@ -39,7 +39,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuthRequester, NiceSMSCallBack {
+public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuthRequester, NiceSMSCallBack, BidoolgiBoard.ArticleLoadListener {
 
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	ViewPager mViewPager;
@@ -49,6 +49,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 	BidoolgiMail fragmentMail;
 	BidoolgiBoard fragmentBoard;
 	Intent intent;
+	private boolean isReload = false;
 
 	static int CURRENT_PAGE = 0;
 
@@ -58,7 +59,7 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 		KATCSessionKeeper.startSession();
 		setContentView(R.layout.activity_client);
 		try {
-			mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+			mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager	());
 			mViewPager = (ViewPager) findViewById(R.id.pager);
 			mViewPager.setAdapter(mSectionsPagerAdapter);
 			actionBar.setViewPager(mViewPager);
@@ -255,8 +256,16 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 			fragmentMail.refreshList(responseMessageList.getMessageData(), this);
 			break;
 		case BidulgiResponseCode.RESPONSE_LIST_ARTICLE:
+			
+			if(isReload){
+				ArticleListResponsePacket articleListResponse = (ArticleListResponsePacket) response;
+				fragmentBoard.reloadArticle(articleListResponse.getArticleList());
+				isReload = false;
+				unlockUI();
+			} else{
 			ArticleListResponsePacket articleListResponse = (ArticleListResponsePacket) response;
 			fragmentBoard.refreshList(articleListResponse.getArticleList(), this);
+			}
 			break;
 		case BidulgiResponseCode.RESPONSE_NICE_AUTH_FAIL:
 			unlockUI();
@@ -334,6 +343,19 @@ public class ClientActivity extends BidoolgiFragmentActivity implements NiceAuth
 		if (niceAuthDialog != null && niceAuthDialog.isShowing()) {
 			niceAuthDialog.fillSMSCode(authCode);
 		}
+	}
+
+	@Override
+	public void onReload(long id) {
+		// TODO Auto-generated method stub
+		
+		isReload = true;
+		LongRequestPacket requestArticleList = new LongRequestPacket();
+		requestArticleList.setValue(id);
+		requestArticleList.setRequestCode(BidulgiRequestCode.REQUEST_LIST_ARTICLE);
+		HttpRequestThread.getInstance().addRequest(requestArticleList);
+		lockUI();
+		
 	}
 }
 

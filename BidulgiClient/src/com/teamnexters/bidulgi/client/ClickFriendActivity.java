@@ -171,7 +171,7 @@ public class ClickFriendActivity extends UIHandlingActivity implements OnClickLi
 			startActivity(intent);
 			
 		}
-		
+
 	};
 
 	@Override

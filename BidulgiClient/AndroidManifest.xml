@@ -10,7 +10,7 @@
 
     <!--
   IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-  to match your app's package name + ".permission.C2D_MESSAGE".
+  to match your app's package name + ".permission.C2D_MESSAGE".
     -->
 
     <uses-sdk
@@ -66,7 +66,9 @@
             android:label="@string/title_activity_dialog_add_friend"
             android:theme="@style/DialogAddFriendTheme" >
         </activity>
-        <activity android:name="com.teamnexters.bidulgi.message.MessageSendActivity" >
+        <activity android:name="com.teamnexters.bidulgi.message.MessageSendActivity" 
+            android:theme="@style/WriteActionBarTheme"
+            android:label="편지 쓰기">
         </activity>
         <activity
             android:name=".ClickMailActivity"
@@ -104,8 +106,12 @@
         </activity>
         <activity
             android:name=".ClickProfileActivity"
-            android:label="@string/title_activity_click_profile">"
+            android:label="@string/title_activity_click_profile">
         </activity>
+        
+       
+        
+
     </application>
 
 </manifest>

@@ -51,5 +51,28 @@
     </style>
 
     <style name="DialogAddFriendTheme" parent="@android:style/Theme.Holo.Dialog.NoActionBar"></style>
+    
+    <!-- Application theme. -->
+    <style name="WriteActionBarTheme" parent="android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/WriteActionBar</item>
+        <item name="android:textColor">#ffffff</item>        
+        <item name="android:actionMenuTextAppearance">@style/TextAppearance.Holo.Widget.ActionBar.Menu</item>
+    </style>
+    
+     <!-- ActionBar styles -->
+    <style name="WriteActionBar" parent="android:style/Widget.Holo.ActionBar">
+        <item name="android:titleTextStyle">@style/WriteActionBarTitleText</item>
+        <item name="android:background">#ff6884</item>
+
+        <!-- <item name="android:background">#ffffff</item> -->
+    </style>
+
+    <style name="WriteActionBarTitleText" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center_horizontal|left</item>
+        
+    </style>
+    
+    
 
 </resources>

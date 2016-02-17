@@ -81,7 +81,7 @@ public class AgreeActivity extends UIHandlingActivity implements OnClickListener
 			intent = new Intent(getApplicationContext(), SignUpActivity.class);
 			startActivity(intent);
 			finish();
-		}else{
+		} else {
 			Toast.makeText(this, "회원가입을 위해서는 약관에 동의해주세요.", Toast.LENGTH_SHORT).show();
 		}
 

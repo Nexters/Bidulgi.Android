@@ -16,17 +16,17 @@ public class BidoolgiActionBar {
 	// activity로부터 가져온 ActionBar
 	private ActionBar actionBar;
 
-	// Test1 Tab
-	private ActionBar.Tab test1;
+	// tabFriendList Tab
+	private ActionBar.Tab tabFriendList;
 
-	// Test2 Tab
-	private ActionBar.Tab test2;
+	// tabMailList Tab
+	private ActionBar.Tab tabMailList;
 
-	// Test3 Tab
-	private ActionBar.Tab test3;
+	// tabBoardList Tab
+	private ActionBar.Tab tabBoardList;
 
 	// Test 4 Tab
-	private ActionBar.Tab test4;
+	private ActionBar.Tab tabSetting;
 
 	/**
 	 *
@@ -51,23 +51,23 @@ public class BidoolgiActionBar {
 	}
 
 	public void initTabs() {
-		test1 = actionBar.newTab().setIcon(R.drawable.re_friend);
-		test2 = actionBar.newTab().setIcon(R.drawable.re_letter);
-		test3 = actionBar.newTab().setIcon(R.drawable.re_board);
-		test4 = actionBar.newTab().setIcon(R.drawable.re_setting);
+		tabFriendList = actionBar.newTab().setIcon(R.drawable.re_friend);
+		tabMailList = actionBar.newTab().setIcon(R.drawable.re_letter);
+		tabBoardList = actionBar.newTab().setIcon(R.drawable.re_board);
+		tabSetting = actionBar.newTab().setIcon(R.drawable.re_setting);
 	}
 
 	public void setTabListener(ActionBar.TabListener tabListener) {
 
-			test1.setTabListener(tabListener);
-			test2.setTabListener(tabListener);
-			test3.setTabListener(tabListener);
-			test4.setTabListener(tabListener);
+			tabFriendList.setTabListener(tabListener);
+			tabMailList.setTabListener(tabListener);
+			tabBoardList.setTabListener(tabListener);
+			tabSetting.setTabListener(tabListener);
 
-			actionBar.addTab(test1);
-			actionBar.addTab(test2);
-			actionBar.addTab(test3);
-			actionBar.addTab(test4);
+			actionBar.addTab(tabFriendList);
+			actionBar.addTab(tabMailList);
+			actionBar.addTab(tabBoardList);
+			actionBar.addTab(tabSetting);
 	}
 
 	/**

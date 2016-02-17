@@ -56,7 +56,7 @@ public class MessageSendActivity extends UIHandlingActivity implements TextWatch
 
 		Typeface typeface = Typeface.createFromAsset(getAssets(), "NANUMGOTHIC.TTF");
 		ActionBar actionBar = getActionBar();
-		actionBar.setTitle(null);
+		actionBar.setTitle("편지쓰기");
 		actionBar.setIcon(null);
 		actionBar.setDisplayHomeAsUpEnabled(false);
 		actionBar.setDisplayUseLogoEnabled(false);
